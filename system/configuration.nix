@@ -25,21 +25,7 @@
  #    };
   };
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  # boot.initrd.kernelModules = [ "radeon" ];
-  boot.kernelParams = [
-   "radeon.cik_support=0"
-    "radeon.si_support=0" 
-    "amdgpu.cik_support=1"
-    "amdgpu.si_supoort=1" 
- #   "amdgup.dc=0"
- #   "amdgpu.dpm=0"
- #   "amdgpu.modeset=1"
-  ];
- # boot.kernelParams = [ 
- #   "amdgpu.cik_support=1"
- #   "amdcpu.si_support=1"
- # ];
+  boot.initrd.kernelModules = [ "nvidia" ];
 
   boot.initrd.luks = {
     devices = {
@@ -61,9 +47,9 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.enp5s0.useDHCP = true;
-  networking.interfaces.wlp4s0.useDHCP = false;
+  networking.useDHCP = true;
+ #  networking.interfaces.enp5s0.useDHCP = true;
+ #  networking.interfaces.wlp4s0.useDHCP = false;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -85,7 +71,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
   # services.xserver.videoDrivers = [ "radeon" ];
 
   # Enable the Plasma 5 Desktop Environment.
