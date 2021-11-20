@@ -34,8 +34,6 @@
       overlays = [ overlay-unstable ];
     };
 
-  #  lib = nixpkgs.lib;
-
   in {
     homeManagerConfigurations = {
       michael = home-manager.lib.homeManagerConfiguration {
