@@ -54,7 +54,7 @@
 
     nixosConfigurations = {
       mkn-p-hq-desk01 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system pkgs;
 
         modules = [
           ./system/configuration.nix
