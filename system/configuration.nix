@@ -47,9 +47,21 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
-  networking.useDHCP = true;
- #  networking.interfaces.enp5s0.useDHCP = true;
- #  networking.interfaces.wlp4s0.useDHCP = false;
+  # networking.useDHCP = true;
+  networking = {
+    interfaces.enp5s0.useDHCP = true;
+    interfaces.wlp4s0.useDHCP = true;
+
+    wireless = {
+      interfaces = [ "wlp4s0" ];
+      enable = true;
+      networks = {
+        mikansystems.pskRaw = ***REMOVED***;
+      };
+    };
+  };
+
+  # networking.networkmanager.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -62,6 +74,12 @@
     options = "--delete-older-than 30d";
   };
 
+  # Enable nix flakes support
+  nix.package = pkgs.nixFlakes;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
@@ -72,7 +90,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
-  # services.xserver.videoDrivers = [ "radeon" ];
+  # services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable the Plasma 5 Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
@@ -177,30 +195,30 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # fonts = {
-  #   fontDir.enable = true;
-  #   fonts = with pkgs; [
-  #     powerline-fonts
-  #     source-code-pro
-  #     source-sans-pro
-  #     source-serif-pro
-  #     
-  #     source-han-code-jp
-  #     source-han-sans-japanese
-  #     source-han-serif-japanese
-  #     source-han-sans-simplified-chinese
-  #     source-han-serif-simplified-chinese
-  #     source-han-sans-korean
-  #     source-han-serif-korean  
-  #   ];
-  #   fontconfig = {
-  #     defaultFonts = {
-  #       monospace = [ "Source Code Pro" "Source Han Sans JP" ];
-  #       sansSerif = [ "Source Sans Pro" "Source Han Sans JP Medium" "Source Han Sans KR Medium" "Source Han Sans CN Medium" ];
-  #       serif = [ "Source Serif Pro" "Source Han Serif JP Medium" "Source Han Serif KR Medium" "Source Han Serif CN Medium" ];
-  #     };
-  #   };
-  # };
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      powerline-fonts
+      source-code-pro
+      source-sans-pro
+      source-serif-pro
+      
+      source-han-code-jp
+      source-han-sans-japanese
+      source-han-serif-japanese
+      source-han-sans-simplified-chinese
+      source-han-serif-simplified-chinese
+      source-han-sans-korean
+      source-han-serif-korean  
+    ];
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "Source Code Pro" "Source Han Sans JP" ];
+        sansSerif = [ "Source Sans Pro" "Source Han Sans JP Medium" "Source Han Sans KR Medium" "Source Han Sans CN Medium" ];
+        serif = [ "Source Serif Pro" "Source Han Serif JP Medium" "Source Han Serif KR Medium" "Source Han Serif CN Medium" ];
+      };
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

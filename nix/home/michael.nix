@@ -12,12 +12,6 @@
   home.username = "michael";
   home.homeDirectory = "/home/michael";
 
-  imports = [
-    ./modules/zsh.nix
-    ./modules/doom-emacs.nix
-  ];
-
-  #nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     wally-cli
 

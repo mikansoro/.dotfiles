@@ -39,4 +39,5 @@ alias tf="terraform"
 alias mk="minikube"
 
 alias ssha="ssh -A"
+alias sshcisco="ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes128-cbc -l"
 
