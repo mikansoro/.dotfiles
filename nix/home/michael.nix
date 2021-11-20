@@ -36,14 +36,9 @@
 
     barrier
     neofetch 
-    starship
 
     vulkan-tools
 
-    kubectl
-    kustomize
-    kubectx
-    minikube
     ipmitool
   ];
 

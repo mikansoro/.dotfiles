@@ -1,6 +1,15 @@
 { config, pkgs, libs, ... }:
 
 {
+  home.packages = with pkgs; [
+    krew
+    kubectl
+    kustomize
+    kubectx
+    minikube
+    starship
+  ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -12,6 +21,7 @@
       GDK_SCALE=1
       EDITOR=vim
       PATH=$PATH:~/.dotfiles/scripts
+      PATH="$PATH:~/.krew/bin"
     '';
   };
 
