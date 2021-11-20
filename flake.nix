@@ -19,7 +19,7 @@
   let
     system = "x86_64-linux";
 
-    globalPkgsConfig = { allowUnfree = true; };
+    globalPkgsConfig = import ./nix/config/nixpkgs/config.nix;
 
     overlay-unstable = final: prev: {
       unstable = import nixpkgs-unstable {
