@@ -21,7 +21,6 @@
       GDK_SCALE=1
       EDITOR=vim
       PATH=$PATH:~/.dotfiles/scripts
-      PATH="$PATH:~/.krew/bin"
     '';
   };
 
