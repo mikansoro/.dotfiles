@@ -6,9 +6,16 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-21.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, ... }:
+  outputs = inputs@{ 
+      nixpkgs,
+      home-manager,
+      nixpkgs-unstable, 
+      nix-doom-emacs, 
+      ...
+  }: 
   let
     system = "x86_64-linux";
 
@@ -38,6 +45,7 @@
         stateVersion = "21.05";
         configuration = {
             imports = [
+              nix-doom-emacs.hmModule
               ./nix/home/michael.nix
               ./nix/modules/doom-emacs
               ./nix/modules/zsh
