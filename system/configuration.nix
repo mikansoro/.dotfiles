@@ -25,7 +25,8 @@
  #    };
   };
 
-  boot.initrd.kernelModules = [ "nvidia" ];
+  # boot.initrd.kernelModules = [ "nvidia" ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   boot.initrd.luks = {
     devices = {
@@ -87,19 +88,6 @@
     keyMap = "us";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  # services.xserver.videoDrivers = [ "amdgpu" ];
-
-  # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  # services.xserver.desktopManager.cinnamon.enable = true;
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -153,6 +141,12 @@
     p7zip
     clinfo
     gptfdisk
+
+    vulkan-tools
+    vulkan-loader
+    vulkan-headers
+    glxinfo
+    radeontop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -167,14 +161,34 @@
   
   programs.steam.enable = false;
 
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "amdgpu" ];
+    # videoDrivers = [ "nvidia" ];
+
+    deviceSection = ''
+      Option "TearFree" "true"
+    '';
+  };
+
+  # Enable the Plasma 5 Desktop Environment.
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  # Configure keymap in X11
+  # services.xserver.layout = "us";
+  # services.xserver.xkbOptions = "eurosign:e";
+
   hardware = {
     #steam-hardware.enable = false;
 
     opengl = {
+      enable = true;
       extraPackages = with pkgs; [
         amdvlk
-        rocm-opencl-icd
-        rocm-opencl-runtime
+        libva
+        #rocm-opencl-icd
+        #rocm-opencl-runtime
       ];
       driSupport = true;
       driSupport32Bit = true;
