@@ -37,8 +37,6 @@
     barrier
     neofetch 
 
-    vulkan-tools
-
     ipmitool
   ];
 
