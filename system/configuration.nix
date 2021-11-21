@@ -142,12 +142,18 @@
     p7zip
     clinfo
     gptfdisk
+    pinentry
 
     vulkan-tools
     vulkan-loader
     vulkan-headers
     glxinfo
     radeontop
+
+    yubikey-personalization
+    yubikey-personalization-gui
+    yubikey-manager
+    yubioath-desktop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -159,7 +165,17 @@
   # };
 
   programs.zsh.enable = true;
-  
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "curses";
+  };
+
+  services.yubikey-agent = {
+    enable = true;
+  };
+
   programs.steam.enable = false;
 
   services.xserver = {
