@@ -18,7 +18,7 @@ sudo dnf install -y starship zsh
 chsh -s /usr/bin/zsh
 
 # install orchestration tools
-sudo dnf install -y kubectl ansible terraform kubeseal
+sudo dnf install -y kubernetes-client ansible terraform kubeseal
 
 # install krew package manager for kubernetes
 (
