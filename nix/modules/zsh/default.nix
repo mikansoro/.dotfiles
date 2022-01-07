@@ -13,16 +13,14 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    initExtra = builtins.readFile ../../../files/zsh-alias.zsh + ''
-      eval "$(starship init zsh)"
-      [[ /home/michael/.nix-profile/bin/kubectl ]] && source <(kubectl completion zsh)
-    '';
+    initExtra = builtins.readFile ../../../files/zsh/.zshrc;
     envExtra = ''
       GDK_SCALE=1
-      EDITOR=vim
-      PATH=$PATH:~/.dotfiles/scripts
+      EDITOR=emacsclient -c
+      VISUAL=emacsclient -c
+      PATH=$PATH:~/.dotfiles/scripts/nix-system
     '';
   };
 
-  home.file.".config/starship.toml".source = ../../../files/starship.toml;
+  home.file.".config/starship.toml".source = ../../../files/starship/.config/starship.toml;
 }

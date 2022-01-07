@@ -127,7 +127,7 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    firefox
+    unstable.firefox
     git
     htop
     parted

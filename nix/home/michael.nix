@@ -14,6 +14,9 @@
 
   home.packages = with pkgs; [
     wally-cli
+    ripgrep
+    jq
+    kubeseal
 
     mpv
     ffmpeg
