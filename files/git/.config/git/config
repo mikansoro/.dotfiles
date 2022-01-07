@@ -1,0 +1,12 @@
+[include]
+        path = ~/.config/git/config.secret
+[core]
+        excludesFile = ~/.config/git/global_ignore
+[init]
+        defaultBranch = master
+[color]
+        ui = true
+[pull]
+        rebase = true
+[push]
+        default = current

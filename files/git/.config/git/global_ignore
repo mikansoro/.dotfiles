@@ -1,0 +1,19 @@
+*~
+
+# macos
+*.DS_store
+.DS_Store
+
+# vim
+*.swap
+*.swp
+
+# windows
+Desktop.ini
+
+# emacs
+\#*#
+.#*
+.dir-locals.el
+
+*.secret

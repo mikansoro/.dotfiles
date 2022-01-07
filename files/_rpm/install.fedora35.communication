@@ -1,0 +1,3 @@
+sudo dnf install -y discord
+
+sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/network:im:signal/Fedora_35/network:im:signal.repo && sudo dnf install -y signal-desktop
