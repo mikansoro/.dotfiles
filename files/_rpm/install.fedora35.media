@@ -6,5 +6,6 @@ sudo dnf copr enable atim/spotify-tui -y && sudo dnf install -y spotify-tui
 
 # install spotifyd
 pushd /tmp
-curl https://github.com/Spotifyd/spotifyd/releases/download/latest/spotifyd-linux-default.tar.gz && tar -xvf /tmp/spotifyd.tar.gz && mv /tmp/spotifyd /usr/local/bin && rm -f /tmp/spotifyd.tar.gz
+wget https://github.com/Spotifyd/spotifyd/releases/latest/download/spotifyd-linux-default.tar.gz -O - | tar xvz
+sudo mv /tmp/spotifyd /usr/local/bin
 popd
