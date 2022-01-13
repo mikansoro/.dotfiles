@@ -11,7 +11,7 @@ sudo dnf install -y \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 # install emacs
-sudo dnf install -y emacs ripgrep cmake ShellCheck
+sudo dnf install -y emacs ripgrep cmake ShellCheck libtool
 
 # shell setup
 sudo dnf install -y starship zsh
@@ -65,3 +65,4 @@ sudo mv yq_linux_amd64 /usr/local/bin/yq
 ./install-man-page.sh
 popd 
 
+sudo dnf install -y gnupg2 pinentry-curses pcsc-lite pcsc-lite-libs gnupg2-smime

@@ -1,3 +1,7 @@
 python3 -m pip install -U yt-dlp gallery-dl
 
 sudo dnf install -y ffmpeg mkvtoolnix mkvtoolnix-gui whipper
+
+sudo dnf config-manager --add-repo https://raw.githubusercontent.com/filebot/plugins/master/yum/main.repo
+sudo dnf config-manager --set-enabled filebot --dump
+sudo dnf install zenity mediainfo filebot
