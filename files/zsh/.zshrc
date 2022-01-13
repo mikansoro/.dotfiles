@@ -76,6 +76,22 @@ function containsElement() {
   return 1
 }
 
+function appendTextBeforeExtension() {
+  for file in "${1}"; do ext="${file##*.}"; filename="${file%.*}"; mv "$file" "${filename}${2}.${ext}"; done
+}
+
+
+# grabbed shamelessly from https://github.com/drduh/YubiKey-Guide
+function secret() {
+        output=~/"${1}".$(date +%s).enc
+        gpg --encrypt --armor --output ${output} -r 0x0000 -r 0x0001 -r 0x0002 "${1}" && echo "${1} -> ${output}"
+}
+
+function reveal() {
+        output=$(echo "${1}" | rev | cut -c16- | rev)
+        gpg --decrypt --output ${output} "${1}" && echo "${1} -> ${output}"
+}
+
 # Aliases
 # -------
 
@@ -110,6 +126,8 @@ alias kubeseal="f() {kubeseal --controller-namespace sealed-secrets <$1 >$2};f"
 alias tf="terraform"
 
 alias mk="minikube"
+
+alias ll="ls -al"
 
 alias ssha="ssh -A"
 alias sshcisco="ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes128-cbc -l"
