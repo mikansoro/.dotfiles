@@ -141,9 +141,9 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # setup gpg-agent for ssh on fedora
 if cat /etc/os-release | grep "ID=fedora" > /dev/null 2>&1; then
   if which gpg-agent > /dev/null 2>&1; then
-    export GPG_TTY="$(tty)"
-    if which gpg-connect-agent > /dev/null 2>&1; then
-      gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
-    fi
+    export GPG_TTY=$(tty)
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    gpgconf --launch gpg-agent
+    gpg-connect-agent updatestartuptty /bye 1>/dev/null 2>&1
   fi
 fi
