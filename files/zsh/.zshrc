@@ -104,7 +104,7 @@ function ksecretval() {
   for secret in ${@}; do
     secretJson=$(kubectl get -n $namespace secret $secret -o json)
     echo "Secret: ${secret} from Namespace ${namespace}"
-    jq '.data | walk( if type == "object" then with_entries( .key |= @base64d ) else . end )' <<< $secretJson && echo
+    jq '.data | walk( if type == "object" then with_entries( .value |= @base64d ) else . end )' <<< $secretJson && echo
   done
 }
 
