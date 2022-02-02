@@ -19,15 +19,15 @@ unsetopt EXTENDED_HISTORY
 # Functions
 # ---------
 
-# chpwd: zsh hook that fires on directory change
-function chpwd() {
-    changeKubernetesContext
-}
-
 function _bim() {
     echo "Hey Bim! Guess what?"
     echo "The Shijo-Ohashi bridge is a bridge representative of Kyoto that crosses the Kamo River over Shijo Street. It is also called Gionbashi."
     [[ ! -z "$1" ]] && read -k1 -s && vim "$1"
+}
+
+# chpwd: zsh hook that fires on directory change
+function chpwd() {
+    changeKubernetesContext
 }
 
 function changeKubernetesContext() {
@@ -76,10 +76,41 @@ function containsElement() {
   return 1
 }
 
+function ksecret64() {
+  echo -n "${1}" | base64
+}
+
+# signature: ksecretval [-n namespace] secretname [...]
+function ksecretval() {
+  local usage='Function Usage: ksecretval [-n namespace] secretname [...]'
+  local namespace=$(kubectl config view --minify --output 'jsonpath={..namespace}')
+
+  while getopts ":n:" opt; do
+    [[ $OPTARG == -* ]] && { echo "Missing argument for -${opt}\n${usage}" >&2; return 1; }
+    case $opt in
+      n)
+        local namespace=$OPTARG
+        ;;
+      *)
+        echo "Unknown argument -${opt}\n$usage" >&2
+        return 1
+        ;;
+    esac
+  done
+  shift "$((OPTIND-1))"
+
+  [[ -z ${@} ]] && { echo "No secret names provided. At least one secret name must be present.\n${usage}" >&2; return 1; }
+
+  for secret in ${@}; do
+    secretJson=$(kubectl get -n $namespace secret $secret -o json)
+    echo "Secret: ${secret} from Namespace ${namespace}"
+    jq '.data | walk( if type == "object" then with_entries( .key |= @base64d ) else . end )' <<< $secretJson && echo
+  done
+}
+
 function appendTextBeforeExtension() {
   for file in "${1}"; do ext="${file##*.}"; filename="${file%.*}"; mv "$file" "${filename}${2}.${ext}"; done
 }
-
 
 # grabbed shamelessly from https://github.com/drduh/YubiKey-Guide
 function secret() {
