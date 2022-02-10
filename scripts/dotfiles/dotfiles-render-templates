@@ -1,0 +1,13 @@
+#!/bin/sh
+
+DOTFILES_DIRECTORY="~/.dotfiles"
+
+pushd $DOTFILES_DIRECTORY
+
+template_files=$(find . -iname *.tmpl)
+for tmpl in $template_files; do
+  # ${tmpl%.*} strips the .tmpl suffix from the original filename
+  envsubst <$tmpl >${tmpl%.*}
+done
+
+popd
