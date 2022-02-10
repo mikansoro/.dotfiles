@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "Michael Rowland"
-      user-mail-address "michael@mikansystems.com")
+(setq user-full-name (getenv "USER_FULL_NAME")
+      user-mail-address (getenv "GIT_EMAIL"))
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -45,6 +45,16 @@
           '("\\.jsonnet" . jsonnet-mode)
           '("\\.libsonnet" . jsonnet-mode))
          auto-mode-alist)))
+
+(use-package! rego-mode
+  :config
+  ;; (rego-repl-executable "/usr/local/bin/opa")
+  (rego-opa-command "/usr/local/bin/opa"))
+
+;; switched to docker doom plugin
+;; (use-package! dockerfile-mode
+;;   :config
+;;   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;

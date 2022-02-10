@@ -42,6 +42,19 @@
 
 (package! jsonnet-mode)
 
+(package! rego-mode)
+
+(package! gitconfig-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitconfig-mode.el")))
+(package! gitignore-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitignore-mode.el")))
+
+(package! groovy-mode)
+
+;; (package! dockerfile-mode)
+
 ;;(package! ox-confluence
 ;;  :recipe (:local-repo "./lib/ox-confluence"
 ;;(use-package! ox-confluence

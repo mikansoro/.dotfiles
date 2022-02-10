@@ -30,6 +30,9 @@ function chpwd() {
     changeKubernetesContext
 }
 
+# changes kubernetes context based on current directory (checks against subdirectories of 'kubernetes-manifests' folder on pwd)
+# can take an associative array to match misnamed contexts & dirextories
+# See the original gist here for more context and notes: https://gist.github.com/mrowlandfsq/7e01d75ff3b50d522c69186828db1d9d
 function changeKubernetesContext() {
     if [[ $PWD =~ '/kubernetes-manifests/' ]]; then
         pwdArr=($(echo $PWD | sed -e "s/\// /g"))
@@ -76,11 +79,13 @@ function containsElement() {
   return 1
 }
 
+# make sure I base64 right the first time
 function ksecret64() {
   echo -n "${1}" | base64
 }
 
 # signature: ksecretval [-n namespace] secretname [...]
+# prints json .data body of n named secrets in a namespace, with their values base64 decoded.
 function ksecretval() {
   local usage='Function Usage: ksecretval [-n namespace] secretname [...]'
   local namespace=$(kubectl config view --minify --output 'jsonpath={..namespace}')
@@ -108,17 +113,27 @@ function ksecretval() {
   done
 }
 
+# print number of pods in a namespace vs number of nodes those pods are spread across
+function podsVsNodes() {
+    uniqueNodes=$(kg pod -n $1 -o wide | grep -v NAME | sed 's/ \{1,\}/,/g' | sort --unique -t, -k7,7 | wc -l)
+    pods=$(kg pod -n $1 | grep -v NAME | wc -l)
+    echo "Pods in Namespace: ${pods}\nNodes In Use By Namespace: ${uniqueNodes}"
+}
+
+# add arbitrary text to filenames before the file extension for a list of files
+# TODO: make sure this works correctly
 function appendTextBeforeExtension() {
   for file in "${1}"; do ext="${file##*.}"; filename="${file%.*}"; mv "$file" "${filename}${2}.${ext}"; done
 }
 
 # grabbed shamelessly from https://github.com/drduh/YubiKey-Guide
-function secret() {
+# does some gpg encode/decode for test files
+function gpgsecret() {
         output=~/"${1}".$(date +%s).enc
         gpg --encrypt --armor --output ${output} -r 0x0000 -r 0x0001 -r 0x0002 "${1}" && echo "${1} -> ${output}"
 }
 
-function reveal() {
+function gpgreveal() {
         output=$(echo "${1}" | rev | cut -c16- | rev)
         gpg --decrypt --output ${output} "${1}" && echo "${1} -> ${output}"
 }
@@ -144,19 +159,30 @@ alias k="kubectl"
 alias kg="kubectl get"
 alias kd="kubectl describe"
 alias ka="kubectl apply"
-alias kd="kubectl delete"
+alias kdel="kubectl delete"
 alias klogs="kubectl logs"
 alias kexec="kubectl exec -it"
 alias kcl="kubectl ctx"
 alias kns="kubectl ns"
 alias kbuild="kustomize build"
 
+alias kv='kubeval --skip-kinds Application,AppProject --strict --kubernetes-version 1.15.5 $1'
+alias kconftest='conftest test -p ${KUBERNETES_MANIFESTS_DIRECTORY}/policy $1'
+alias kconfcombined='conftest test -p ${KUBERNETES_MANIFESTS_DIRECTORY}/policy --namespace combined --combine $1'
+alias kconform="kubeconform -summary -skip AnalysisTemplate,Application,AppProject,Kustomization,Rollout,TCPMapping -strict -schema-location default -schema-location '${KUBERNETES_MANIFESTS_DIRECTORY}/crd_schemas/{{ .ResourceKind }}-{{ .ResourceAPIVersion }}.json' -kubernetes-version 1.21.0"
+alias ktestall='kconform && kconftest && kconfcombined'
+
 # hacky embed function in alias, just to not define a full function to have params
 alias kubeseal="f() {kubeseal --controller-namespace sealed-secrets <$1 >$2};f"
+
+alias saml='saml2aws login -a'
+alias samlexec='saml2aws exec -a'
 
 alias tf="terraform"
 
 alias mk="minikube"
+
+alias rg='ripgrep'
 
 alias ll="ls -al"
 
@@ -170,11 +196,18 @@ eval "$(starship init zsh)"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # setup gpg-agent for ssh on fedora
-if cat /etc/os-release | grep "ID=fedora" > /dev/null 2>&1; then
-  if which gpg-agent > /dev/null 2>&1; then
-    export GPG_TTY=$(tty)
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-    gpgconf --launch gpg-agent
-    gpg-connect-agent updatestartuptty /bye 1>/dev/null 2>&1
-  fi
+# moved to .zprofile
+#if cat /etc/os-release | grep "ID=fedora" > /dev/null 2>&1; then
+#  if which gpg-agent > /dev/null 2>&1; then
+#    export GPG_TTY=$(tty)
+#    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+#    gpgconf --launch gpg-agent
+#    gpg-connect-agent updatestartuptty /bye 1>/dev/null 2>&1
+#  fi
+#fi
+
+if [[ "Darwin" == $(uname) ]]; then
+  # homebrew db client workaround
+  export PATH="$PATH:/usr/local/opt/libpq/bin"
+  export PATH="$PATH:/usr/local/opt/mysql-client/bin"
 fi

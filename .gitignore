@@ -1,4 +1,6 @@
 result
+*.secret
+*.local
 
 # -- begin gitignore.io emacs/vim --
 # Created by https://www.toptal.com/developers/gitignore/api/vim,emacs
