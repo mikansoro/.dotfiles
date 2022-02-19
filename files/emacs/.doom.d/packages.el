@@ -53,8 +53,6 @@
 
 (package! groovy-mode)
 
-;; (package! dockerfile-mode)
-
 ;;(package! ox-confluence
 ;;  :recipe (:local-repo "./lib/ox-confluence"
 ;;(use-package! ox-confluence

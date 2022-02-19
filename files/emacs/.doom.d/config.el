@@ -47,9 +47,11 @@
          auto-mode-alist)))
 
 (use-package! rego-mode
-  :config
-  ;; (rego-repl-executable "/usr/local/bin/opa")
-  (rego-opa-command "/usr/local/bin/opa"))
+  ;; in case of needing a different opa than on path
+  ;; :config
+  ;; (setq rego-repl-executable "/usr/local/bin/opa"
+  ;;       rego-opa-command "/usr/local/bin/opa")
+)
 
 ;; switched to docker doom plugin
 ;; (use-package! dockerfile-mode
