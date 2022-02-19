@@ -1,0 +1,2 @@
+#declare -A KubernetesContextDefaultNameMap
+#KubernetesContextDefaultNameMap["colo"]="cluster.domain.local"

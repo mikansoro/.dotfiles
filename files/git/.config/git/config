@@ -1,12 +1,14 @@
-[include]
-        path = ~/.config/git/config.secret
-[core]
-        excludesFile = ~/.config/git/global_ignore
-[init]
-        defaultBranch = master
 [color]
         ui = true
+[core]
+        excludesFile = $HOME/.config/git/global_ignore
+[grep]
+        lineNumber = true
+[init]
+        defaultBranch = master
 [pull]
         rebase = true
 [push]
         default = current
+[include]
+        path = $HOME/.config/git/config.secret

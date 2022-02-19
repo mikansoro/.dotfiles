@@ -1,4 +1,5 @@
-KUBERNETES_MANIFESTS_DIRECTORY="~/git/kubernetes-manifests/"
+DOTFILES_DIRECTORY="/home/user/.dotfiles"
+KUBERNETES_MANIFESTS_DIRECTORY="~/git/kubernetes-manifests"
 GIT_EMAIL="user@example.com"
 GIT_USERNAME="user"
 USER_FULL_NAME="Full Name"
