@@ -1,0 +1,34 @@
+sudo dnf update -y
+
+# install orchestration tools
+sudo dnf install -y kubernetes-client kubeseal
+
+# install krew package manager for kubernetes
+(
+  set -x; cd "$(mktemp -d)" &&
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+  KREW="krew-${OS}_${ARCH}" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+  tar zxvf "${KREW}.tar.gz" &&
+  ./"${KREW}" install krew
+)
+
+# docker CE install
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager \
+   --add-repo \
+   https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io
+
+# minikube install
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
+sudo rpm -Uvh minikube-latest.x86_64.rpm
+
+# manually install yq for yaml parsing
+mkdir /tmp/yq
+pushd /tmp/yq
+wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64.tar.gz -O - | tar xz
+sudo mv yq_linux_amd64 /usr/local/bin/yq
+./install-man-page.sh
+popd
