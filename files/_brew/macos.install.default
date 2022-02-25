@@ -1,0 +1,7 @@
+brew install stow
+
+brew install minikube kind kustomize kubernetes-cli hyperkit helm eksctl
+
+brew install tmux yq jq
+
+brew install go go-jsonnet
