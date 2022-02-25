@@ -55,6 +55,15 @@ function ksecret64() {
   echo -n "${1}" | base64
 }
 
+function knetworktest() {
+    if [ -n "$1" ]; then
+        img=$1
+    else
+        img='centos:7'
+    fi
+    kubectl run -it networktest --image=$img bin/bash --restart=Never --rm
+}
+
 # signature: ksecretval [-n namespace] secretname [...]
 # prints json .data body of n named secrets in a namespace, with their values base64 decoded.
 function ksecretval() {
