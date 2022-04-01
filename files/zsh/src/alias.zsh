@@ -58,6 +58,9 @@ if command_exists saml2aws; then
   alias samlexec='saml2aws exec -a'
 fi
 
+if [ $MACOS ]; then
+  alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
+fi
 #if command_exists emacsclient; then
 #  alias edit='emacsclient -nw'
 #  alias gedit='emacsclient -c'

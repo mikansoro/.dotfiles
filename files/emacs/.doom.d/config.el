@@ -53,6 +53,11 @@
   ;;       rego-opa-command "/usr/local/bin/opa")
 )
 
+(use-package! highlight-indent-guides
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (setq highlight-indent-guides-method 'character))
+
 ;; switched to docker doom plugin
 ;; (use-package! dockerfile-mode
 ;;   :config

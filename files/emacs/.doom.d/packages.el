@@ -53,6 +53,8 @@
 
 (package! groovy-mode)
 
+(package! highlight-indent-guides)
+
 ;;(package! ox-confluence
 ;;  :recipe (:local-repo "./lib/ox-confluence"
 ;;(use-package! ox-confluence
