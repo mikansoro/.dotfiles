@@ -16,5 +16,7 @@ python3 -m ensurepip --upgrade
 # golang
 sudo dnf install -y go
 
+sudo dnf module install -y nodejs:16
+
 # gpg-agent dependencies
 sudo dnf install -y gnupg2 pinentry-curses pcsc-lite pcsc-lite-libs gnupg2-smime
