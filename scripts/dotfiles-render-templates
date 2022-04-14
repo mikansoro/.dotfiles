@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOTFILES_DIRECTORY="~/.dotfiles"
+DOTFILES_DIRECTORY="/home/michael/.dotfiles"
 
 pushd $DOTFILES_DIRECTORY
 

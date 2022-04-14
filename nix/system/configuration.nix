@@ -58,7 +58,7 @@
       interfaces = [ "wlp4s0" ];
       enable = true;
       networks = {
-        mikansystems.pskRaw = ***REMOVED***;
+        mikansystems.pskRaw = /* REPLACE WITH nix-sops SECRET */ ;
       };
     };
   };
@@ -105,7 +105,7 @@
   users.defaultUserShell = pkgs.zsh;
   users.users.michael = {
     isNormalUser = true;
-    initialPassword = ***REMOVED***;
+    initialPassword = /* REPLACE WITH nix-sops SECRET */;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
