@@ -1,2 +1,3 @@
+# used in src/function.zsh to map kube contexts -> dir names
 #declare -A KubernetesContextDefaultNameMap
 #KubernetesContextDefaultNameMap["colo"]="cluster.domain.local"

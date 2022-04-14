@@ -3,8 +3,9 @@ if command -v emacsclient 1>/dev/null 2>&1; then
     export VISUAL="$(command -v emacsclient)"
     export EDITOR="$(command -v emacsclient)"
   else
-    export VISUAL="$(command -v emacsclient) -c"
-    export EDITOR="$(command -v emacsclient) -nw"
+    # -a will start an emacs daemon if one isn't currently running
+    export VISUAL="$(command -v emacsclient) -c -a\"\""
+    export EDITOR="$(command -v emacsclient) -t -a\"\""
   fi
 else
   export EDITOR="$(command -v vim 1>/dev/null 2>&1 || command -v vi)"
