@@ -1,0 +1,29 @@
+[user]
+  name = Michael Rowland
+  email = michael@mikansystems.com
+
+[color]
+  ui = true
+[core]
+  excludesFile = ~/.gitignore
+  pager = delta
+[delta]
+  line-numbers = true
+[interactive]
+  diffFilter = delta --color-only
+
+[grep]
+  lineNumber = true
+
+[init]
+  defaultBranch = main
+
+[pull]
+  rebase = true
+[push]
+  default = current
+
+[url "git@github.com:"]
+  insteadOf = "github:"
+[url "https://github.com:"]
+  insteadOf = "github:"
