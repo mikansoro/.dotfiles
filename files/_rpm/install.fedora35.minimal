@@ -3,7 +3,7 @@ sudo dnf update -y
 # install base dependencies
 sudo dnf install -y git tree vim screen tmux ipmitool \
      jq openssl htop gparted firefox chromium ncdu \
-     stow timeshift
+     stow timeshift git-delta
 
 # setup rpmfusion
 sudo dnf install -y \
