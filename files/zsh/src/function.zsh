@@ -59,9 +59,9 @@ function knetworktest() {
     if [ -n "$1" ]; then
         img=$1
     else
-        img='centos:7'
+        img='nicolaka/netshoot'
     fi
-    kubectl run -it networktest --image=$img bin/bash --restart=Never --rm
+    kubectl run -it networktest-mrowland --image=$img --restart=Never --rm -- /bin/bash
 }
 
 # signature: ksecretval [-n namespace] secretname [...]
