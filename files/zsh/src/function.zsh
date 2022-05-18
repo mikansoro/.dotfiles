@@ -64,6 +64,24 @@ function knetworktest() {
     kubectl run -it networktest-mrowland --image=$img --restart=Never --rm -- /bin/bash
 }
 
+# check aws role assumption via eks service account/oidc
+function eksroletest() {
+    if [ -z "$1" ]; then
+        echo "requires a service account name"
+    else
+        kubectl run -it aws-role-test --image=amazon/aws-cli --overrides="{ \"spec\": { \"serviceAccount\": \"${1}\" }  }" --restart=Never --rm -- sts get-caller-identity
+    fi
+}
+
+# print the originally applied configuration of a k8s resource
+function koriginal() {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "Requires both an object type and an object name" >&2
+        return 1
+    fi
+    kubectl get $1 $2 -o json | jq ".metadata.annotations.\"kubectl.kubernetes.io/last-applied-configuration\" | fromjson" | yq eval -P -e
+}
+
 # signature: ksecretval [-n namespace] secretname [...]
 # prints json .data body of n named secrets in a namespace, with their values base64 decoded.
 function ksecretval() {
