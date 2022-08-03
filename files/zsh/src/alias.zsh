@@ -1,17 +1,6 @@
 
 if command_exists git; then
   alias g="git"
-  alias gcm="git commit -m"
-  alias gcam="git commit -am"
-  alias ga="git add"
-  alias gc="git checkout"
-  alias gcb="git checkout -b"
-  alias gb="git branch"
-  alias gbd="git branch -d"
-  alias glog="git log --pretty=oneline --graph"
-  alias gpush="git push"
-  alias gpull="git pull"
-  alias gs="git status"
 fi
 
 if command_exists kubectl; then
