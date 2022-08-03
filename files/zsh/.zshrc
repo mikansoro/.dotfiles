@@ -43,6 +43,16 @@ if [ -e $HOME/.zshrc.local ]; then source $HOME/.zshrc.local; fi
 source $DOTFILES_DIRECTORY/files/zsh/src/path.zsh
 source $DOTFILES_DIRECTORY/files/zsh/src/alias.zsh
 
+# EDITOR
+# https://emacs.stackexchange.com/questions/8078/how-to-set-environment-variables-editor-visual-to-prefer-running-emacs
+if [[ -z "${EDITOR}" ]] ; then
+    export ALTERNATE_EDITOR="emacs -nw $@"
+    export EDITOR="emacsclient"
+fi
+if [[ -n "${EDITOR}" && -z "${VISUAL}" ]] ; then
+  export VISUAL="${EDITOR}"
+fi
+
 # Source
 # -------
 eval "$(starship init zsh)"

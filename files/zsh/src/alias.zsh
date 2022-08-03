@@ -50,16 +50,8 @@ fi
 if [ $MACOS ]; then
   alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
 fi
-#if command_exists emacsclient; then
-#  alias edit='emacsclient -nw'
-#  alias gedit='emacsclient -c'
-#  # alias vim='emacsclient -c'
-#else
-#  alias edit='vim'
-#fi
 
-alias edit=$EDITOR
-alias gedit=$VISUAL
+alias edit="${EDITOR}"
 
 if command_exists terraform; then
   alias tf="terraform"
