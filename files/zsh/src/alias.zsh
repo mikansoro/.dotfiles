@@ -39,7 +39,7 @@ fi
 
 # hacky embed function in alias, just to not define a full function to have params
 if command_exists kubeseal; then
-  alias kubeseal="f() {kubeseal --controller-namespace sealed-secrets <$1 >$2};f"
+  alias kseal="f() {kubeseal --controller-namespace sealed-secrets <$1 >$2};f"
 fi
 
 if command_exists saml2aws; then
@@ -66,6 +66,7 @@ if command_exists ripgrep; then
 fi
 
 alias ll="ls -al"
+alias la="ls -al"
 
 alias ssha="ssh -A"
 # whitelist old algos for working with old cisco switches

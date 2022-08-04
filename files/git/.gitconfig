@@ -75,6 +75,9 @@
 
   s = status
 
+  st = stash
+  stp = stash pop
+
   # TODO: make work with ssh proto origins (i.e. github:user/reop or git@github.com:user/repo)
   # TODO: improve cross-platform (linux/mac) operation
   # open = "!f() { URL=$(git config remote.${1:-origin}.url); xdg-open \"${URL%%.git}\" || open \"${URL%%.git}\"; }; f"
