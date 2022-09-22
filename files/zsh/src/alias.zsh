@@ -39,9 +39,9 @@ fi
 # fi
 
 # hacky embed function in alias, just to not define a full function to have params
-if command_exists kubeseal; then
-  alias kseal="f() {kubeseal --controller-namespace sealed-secrets <$1 >$2};f"
-fi
+# if command_exists kubeseal; then
+#   alias kubeseal="f() {kubeseal --controller-namespace sealed-secrets <$1 >$2};f"
+# fi
 
 if command_exists saml2aws; then
   alias saml='saml2aws login -a'
