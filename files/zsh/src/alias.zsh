@@ -14,6 +14,7 @@ if command_exists kubectl; then
   alias kcl="kubectl ctx"
   alias kns="kubectl ns"
   alias kapir="kubectl api-resources"
+  alias kpodw="kubectl get pods -w"
 fi
 
 if command_exists kustomize; then

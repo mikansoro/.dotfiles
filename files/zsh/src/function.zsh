@@ -8,7 +8,7 @@ function chpwd() {
     changeKubernetesContext
 }
 
-# https://github.com/timidtogekiss/bim
+# https://github.com/mikansoro/bim
 # vim typo alias
 function bim() {
     echo "Hey Bim! Guess what?"

@@ -53,6 +53,8 @@
 
 (package! groovy-mode)
 
+(package! vcl-mode)
+
 (package! highlight-indent-guides)
 
 ;;(package! ox-confluence

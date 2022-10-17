@@ -15,6 +15,7 @@ fi
 
 path=(
   "${DOTFILES}/scripts"
+  "/usr/local/opt/go@1.17/bin"
 
   "${HOME}/bin"
   "${HOME}/.local/bin"
