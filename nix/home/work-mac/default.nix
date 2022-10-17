@@ -70,6 +70,7 @@
       ktestall = "kconform && kconftest && kconfcombined";
       flushdns = "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
     };
+    initExtraBeforeCompInit = "PATH='/Users/mrowland/bin':$PATH";
   };
 
   programs.git = {
