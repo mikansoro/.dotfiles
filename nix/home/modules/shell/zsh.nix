@@ -36,13 +36,13 @@ in
     sessionVariables = {
       EDITOR = "${emacs_editor}";
       ALTERNATE_EDITOR = "emacs -nw $@";
-      VISUAL = "${emacs_editor}"
-    }
+      VISUAL = "${emacs_editor}";
+    };
     initExtraBeforeCompInit = builtins.concatStringsSep "\n" [
       (builtins.readFile ./functions.zsh)
       # (builtins.readFile ./zshrc-extra.zsh)
     ];
-    initExtra = builtins.concatStringSep "\n" [
+    initExtra = builtins.concatStringsSep "\n" [
       "source <(${pkgs.kubectl}/bin/kubectl completion zsh)"
     ];
   };

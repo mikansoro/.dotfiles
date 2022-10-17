@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, system, ... }:
 
 {
-  home.packages = with pkgs; [
-    libvterm
-  ];
+  # libvterm not avaialable on darwin, but needed on linux
+  # TODO: how to make that happen?
+  # home.packages = with pkgs; [ libvterm ];
 
   programs.doom-emacs = {
     enable = true;

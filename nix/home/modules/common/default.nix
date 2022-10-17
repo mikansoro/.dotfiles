@@ -5,9 +5,9 @@
     packages = with pkgs; [
       _1password
       _1password-gui
-      helm
       ipmitool
       kubectl
+      kubernetes-helm
             #kubectx
       minikube
       mpv
@@ -15,33 +15,14 @@
       p7zip
       pinentry
       pgcli
-      spotify
+      # spotify # only available on x86_64-linux
       terraform
       unzip
       yubikey-personalization
-      yubikey-personalization-gui
+      # yubikey-personalization-gui # marked as broken
       yubikey-manager
-      yubioath-desktop
+      # yubioath-desktop # error when trying to install pyscard, exit code 2
       zip
     ];
-  };
-
-
-  programs.gpg = {
-    enable = false;
-    mutableKeys = true;
-    mutableTrust = true;
-  };
-
-  services.gpg-agent = {
-    enable = true;
-    enableScDaemon = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableSSHSupport = true;
-    grabKeyboardAndMouse = true;
-    # defaultCacheTtl = 60;
-    # maxCacheTtl = 120;
-    # pinentryFlavor =
   };
 }
