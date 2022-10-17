@@ -2,9 +2,9 @@
 
 {
   imports = [
-    # ../modules/common
-    # ../modules/shell
-    # ../modules/git
+    ../modules/common
+    ../modules/shell
+    ../modules/git
     # ../modules/emacs
   ];
 
@@ -17,7 +17,7 @@
 
     packages = with pkgs; [
       argocd
-      aws
+      awscli2
       aws-iam-authenticator
       aws-sam-cli
       conftest
@@ -25,15 +25,15 @@
       # docker-machine-hyperkit #darwin-only
       kind
       kubeconform
-      # mongosh - unknown variable
+      # mongosh # unknown variable
       mysql-shell
       open-policy-agent
       saml2aws
       skaffold
-      # skopeo
+      skopeo
       sqlite
       # upx #golang-tooling
-      pinentry-mac
+      pinentry_mac
     ];
   };
 
