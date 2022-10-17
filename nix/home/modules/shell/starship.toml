@@ -1,0 +1,78 @@
+add_newline = false
+ 
+format = """
+$username\
+$hostname\
+$shlvl\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$kubernetes\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$crystal\
+$custom\
+$cmd_duration\
+$line_break\
+$lua\
+$jobs\
+$battery\
+$time\
+$status\
+$shell\
+$character"""
+ 
+[directory]
+truncation_length = 5
+truncation_symbol = ".../"
+style = 'bold bright-blue'
+ 
+[kubernetes]
+disabled = false
+format = 'on [\($symbol$context:$namespace\)](cyan bold) '
+ 
+[package]
+disabled = true
+ 
+[terraform]
+format = "via [$symbol$version](bold 105) "
