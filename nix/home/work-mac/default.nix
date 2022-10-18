@@ -41,16 +41,12 @@
   # inispiration: https://github.com/jwiegley/nix-config/blob/master/config/home.nix
   #
   services.gpg-agent.enable = false;
-  xdg = {
-    enable = true;
-
-    configFile."gnupg/gpg-agent.conf".text = ''
-      enable-ssh-support
-      default-cache-ttl 60
-      max-cache-ttl 120
-      pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
-    '';
-  };
+  home.file.".gnupg/gpg-agent.conf".text = ''
+    enable-ssh-support
+    default-cache-ttl 60
+    max-cache-ttl 120
+    pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
+  '';
   programs.zsh.profileExtra = ''
     export GPG_TTY=$(tty)
     if ! pgrep -x "gpg-agent" > /dev/null; then
@@ -58,9 +54,13 @@
     fi
   '';
   home.sessionVariables = {
-    SSH_AUTH_SOCK = "${config.xdg.configHome}/gnupg/S.gpg-agent.ssh";
+    SSH_AUTH_SOCK = "${config.home.homeDirectory}/.gnupg/S.gpg-agent.ssh";
   };
   # gpg-agent with pinentry_mac workaround - END
+
+  xdg = {
+    enable = true;
+  };
 
   programs.zsh = {
     shellAliases = {
