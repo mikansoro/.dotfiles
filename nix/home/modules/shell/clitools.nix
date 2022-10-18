@@ -21,6 +21,14 @@
   programs.tmux.enable = true;
   programs.vim.enable = true;
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+  };
+  programs.bash.enable = true;
+
   xdg.configFile."starship.toml".text = (builtins.readFile ./starship.toml);
   programs.starship = {
     enable = true;

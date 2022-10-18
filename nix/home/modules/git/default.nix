@@ -11,6 +11,10 @@
     };
     userName = "Michael Rowland";
     userEmail = "michael@mikansystems.com";
+    ignores = [
+      ".envrc"
+      ".direnv"
+    ];
     aliases = {
       a = "add";
       b = "branch";

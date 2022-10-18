@@ -22,7 +22,7 @@
       aws-sam-cli
       conftest
       eksctl
-      # docker-machine-hyperkit #darwin-only
+      # docker-machine-hyperkit #darwin-only - from brew installed list
       kind
       kubeconform
       # mongosh # unknown variable
