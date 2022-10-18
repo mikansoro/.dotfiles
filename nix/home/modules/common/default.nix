@@ -4,7 +4,7 @@
   home = {
     packages = with pkgs; [
       _1password
-      _1password-gui
+      # _1password-gui
       ipmitool
       kubectl
       kubernetes-helm
