@@ -20,15 +20,24 @@ function bim() {
 # add arbitrary text to filenames before the file extension for a list of files
 # TODO: make sure this works correctly
 function appendTextBeforeExtension() {
-  for file in "${1}"; do ext="${file##*.}"; filename="${file%.*}"; mv "$file" "${filename}${2}.${ext}"; done
+    for file in "${1}"; do ext="${file##*.}"; filename="${file%.*}"; mv "$file" "${filename}${2}.${ext}"; done
 }
 
 # grabbed shamelessly from https://stackoverflow.com/a/8574392
 function containsElement() {
-  local e match="$1"
-  shift
-  for e; do [[ "$e" == "$match" ]] && return 0; done
-  return 1
+    local e match="$1"
+    shift
+    for e; do [[ "$e" == "$match" ]] && return 0; done
+    return 1
+}
+
+function mvlowercase() {
+    if [ -n $1 ]; then
+        local filepath="$1"
+    else
+        local filepath="*"
+    fi
+    for f in $filepath; do mv "$f" "$(echo "$f" | tr '[:lower:]' '[:upper:]')"; done
 }
 
 # --------------
@@ -50,6 +59,16 @@ function gpgreveal() {
 # --------------
 # kubernetes
 # --------------
+
+# split helm template into individual files
+function splithelm() {
+    if [ -z $1 ]; then
+        echo "Path to a helm template file required" >&2
+        return 1
+    fi
+    yq -s '.kind + "-" + .metadata.name' $1
+    mklowercase '*.yml'
+}
 
 # make sure I base64 right the first time
 function ksecret64() {
