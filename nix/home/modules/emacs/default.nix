@@ -5,6 +5,10 @@
   # TODO: how to make that happen?
   # home.packages = with pkgs; [ libvterm ];
 
+  home.packages = with pkgs; [
+    nixfmt
+  ];
+
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ./config;
