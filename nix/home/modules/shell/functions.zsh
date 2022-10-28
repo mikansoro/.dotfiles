@@ -102,6 +102,42 @@ function koriginal() {
     kubectl get $1 $2 -o json | jq ".metadata.annotations.\"kubectl.kubernetes.io/last-applied-configuration\" | fromjson" | yq eval -P -e
 }
 
+# prints stats about current kubernetes cluster usage
+function kstats() {
+  local usage='Function Usage: kstats [-d]'
+  local checkDaemonsets=false
+  while getopts ":d" opt; do
+    case $opt in
+      d)
+        local checkDaemonsets=true
+        ;;
+      *)
+        echo "Unknown argument -${opt}\n$usage" >&2
+        return 1
+        ;;
+    esac
+  done
+  shift "$((OPTIND-1))"
+
+  echo "Current context: $(kubectl config current-context)"
+
+  pods=$(kubectl get pods -A -o wide --no-headers)
+  podCount=$(wc -l <<< $pods)
+  nodes=$(kubectl get nodes -o wide --no-headers)
+  nodeCount=$(wc -l <<< $nodes)
+  if $checkDaemonsets; then
+    daemonsets=$(kubectl get daemonsets -A -o wide --no-headers)
+    daemonsetCount=$(wc -l <<< $daemonsets)
+  fi
+
+  echo "Nodes on this cluster: $nodeCount"
+  echo "Pods on this cluster: $podCount"
+  if $checkDaemonsets; then
+    echo "Pods from Daemonsets: $(($nodeCount * $daemonsetCount))"
+  fi
+  echo "Pods per Namespace: \n\n$(echo $pods | cut -f 1 -d ' ' | sort | uniq -c | sort -nr)"
+}
+
 # signature: ksecretval [-n namespace] secretname [...]
 # prints json .data body of n named secrets in a namespace, with their values base64 decoded.
 function ksecretval() {

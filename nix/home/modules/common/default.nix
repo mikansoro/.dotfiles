@@ -7,6 +7,7 @@
       # _1password-gui
       ipmitool
       kubectl
+      kubectx
       kubernetes-helm
             #kubectx
       minikube

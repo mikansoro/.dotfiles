@@ -17,13 +17,14 @@ in
       kdel = "kubectl delete";
       klogs = "kubectl logs";
       kexec = "kubectl exec -it";
-      kcl = "kubectl ctx";
-      kns = "kubectl ns";
+      kcl = "kubectx";
+      kns = "kubens";
       kapir = "kubectl api-resources";
       kbuild = "kustomize build";
       kv = "kubeval --skip-kinds Application,AppProject --strict --kubernetes-version 1.15.5 $1";
       # hacky embed function in alias, just to not define a full function to have params;
       kubeseal = "f() {kubeseal --controller-namespace sealed-secrets <$1 >$2};f";
+      kread = "f() {kubectl get $1 $2 -o yaml | less};f";
       tf = "terraform";
       mk = "minikube";
       rg = "ripgrep";
