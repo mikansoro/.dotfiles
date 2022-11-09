@@ -67,19 +67,17 @@
       packages.x86_64-linux = {
         # generate a VMDK for import to xenorchestra, not vcenter
         # disables vmware guest settings, enables systemd uefi boot for xen, and xe guest utils for monitoring
-        xenVmdk = nixos-generators.nixosGenerate {
+        xenImage = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
           pkgs = pkgs-stable;
           modules = [
             "${inputs.nixpkgs-stable}/nixos/modules/virtualisation/xen-domU.nix"
+            ./nix/config/modules/vmconfig.nix
             ({ lib, ...} : {
               services.xe-guest-utilities.enable = true;
-              services.openssh.enable = true;
-              # TODO: setup a bootstrap user w/ ssh key
               boot.loader.systemd-boot.enable = true;
               boot.loader.efi.canTouchEfiVariables = true;
               virtualisation.vmware.guest.enable = lib.mkForce false;
-              system.stateVersion = "22.05";
             })
             # create a separate module to not have to wrap the options above in config = {}
             # best way? probably not. /shrug
@@ -89,6 +87,14 @@
             })
           ];
           format = "vmware";
+        };
+        proxmoxImage = nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          pkgs = pkgs-stable;
+          modules = [
+            ./nix/config/modules/vmconfig.nix
+          ];
+          format = "proxmox";
         };
       };
     };
