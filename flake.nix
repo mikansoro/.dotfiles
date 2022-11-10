@@ -73,6 +73,7 @@
           modules = [
             "${inputs.nixpkgs-stable}/nixos/modules/virtualisation/xen-domU.nix"
             ./nix/config/modules/vmconfig.nix
+            ./nix/config/modules/tty.nix
             ({ lib, ...} : {
               services.xe-guest-utilities.enable = true;
               boot.loader.systemd-boot.enable = true;
@@ -93,6 +94,7 @@
           pkgs = pkgs-stable;
           modules = [
             ./nix/config/modules/vmconfig.nix
+            ./nix/config/modules/tty.nix
           ];
           format = "proxmox";
         };
