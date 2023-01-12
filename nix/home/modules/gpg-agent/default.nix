@@ -1,12 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  programs.gpg = {
-    enable = false;
-    mutableKeys = true;
-    mutableTrust = true;
-  };
-
+  # TODO: port this to nix-darwin, because it tries to create systemd services (not supported on macos)
   services.gpg-agent = {
     enable = true;
     enableScDaemon = true;
@@ -14,8 +9,12 @@
     enableZshIntegration = true;
     enableSshSupport = true;
     grabKeyboardAndMouse = true;
-    # defaultCacheTtl = 60;
-    # maxCacheTtl = 120;
-    # pinentryFlavor =
+    defaultCacheTtl = 60;
+    maxCacheTtl = 120;
+    pinentryFlavor = "curses";
+    extraConfig = ''
+      allow-emacs-pinentry
+      allow-loopback-pinentry
+    '';
   };
 }

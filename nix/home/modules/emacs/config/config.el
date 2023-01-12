@@ -58,6 +58,10 @@
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'character))
 
+;; enable gpg-agent minibuffer for pinentry
+;; https://www.emacswiki.org/emacs/EasyPG
+(setq epa-pinentry-mode 'loopback)
+
 ;; switched to docker doom plugin
 ;; (use-package! dockerfile-mode
 ;;   :config
