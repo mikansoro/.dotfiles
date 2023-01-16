@@ -12,7 +12,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    nix-doom-emacs = {
+      url = "github:nix-community/nix-doom-emacs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        emacs-overlay.follows = "emacs-overlay";
+      };
+    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -71,7 +78,11 @@
             specialArgs = { inherit pkgs self darwin; };
             modules = [
               {
-                users.users.mrowland.home = "/Users/mrowland";
+                users.users.mrowland = {
+                  name = "mrowland";
+                  home = "/Users/mrowland";
+                  shell = pkgs.zsh;
+                };
               }
               home-manager.darwinModules.home-manager {
                 home-manager.extraSpecialArgs = { inherit pkgs; };
