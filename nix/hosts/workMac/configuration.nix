@@ -12,10 +12,11 @@
     experimental-features = nix-command flakes
   '';
 
-  fonts.fontsDir.enable = true;
+  fonts.fontDir.enable = true;
 
   homebrew = {
-    enable = true;
+    # NOTE: Temporarily disable homebrew integration until i can remove the old binaries
+    enable = false;
     brews = [
       {
         name = "superbrothers/opener/opener";
