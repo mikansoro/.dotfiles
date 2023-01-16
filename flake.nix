@@ -100,34 +100,20 @@
       darwinConfigurations = processConfigurations {
         workMac = darwinSystem "x86_64-darwin";
       };
-      # darwinConfigurations."work-mac" = darwin.lib.darwinSystem {
-      #   system = "x86_64-darwin";
-      #   specialArgs = { inherit darwin pkgs; };
-      #   modules = [
-      #     nix-doom-emacs.hmModule
-      #     home-manager.darwinModules.home-manager {
-      #       home-manager.users.mrowland = lib.mkMerge [
-      #         nix-doom-emacs.hmModule
-      #         ./nix/home/work-mac
-
-      #       ];
-      #     }
-      #   ];
-      # };
 
       homeConfigurations = {
-        work-mac = home-manager.lib.homeManagerConfiguration {
-          pkgs = genPkgs "x86_64-linux";
-          modules = [
-            nix-doom-emacs.hmModule
-            ./nix/home/work-mac
-            # {
-            #   nixpkgs.overlays = [
-            #     ./nix/overlays/terraform.nix
-            #   ];
-            # }
-          ];
-        };
+        # work-mac = home-manager.lib.homeManagerConfiguration {
+        #   pkgs = genPkgs "x86_64-linux";
+        #   modules = [
+        #     nix-doom-emacs.hmModule
+        #     ./nix/home/work-mac
+        #     # {
+        #     #   nixpkgs.overlays = [
+        #     #     ./nix/overlays/terraform.nix
+        #     #   ];
+        #     # }
+        #   ];
+        # };
       };
 
       packages.x86_64-linux = {
