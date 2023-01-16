@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -94,11 +94,32 @@
             ];
           };
 
+      # inspired by github.com/thexyno/nixos-config
+      nixosServer = system: hostName:
+        let
+          pkgs = genPkgsStable system;
+          configPath = ./nix/hosts + "/${hostName}/configuration.nix";
+        in
+          nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = {
+              nixpkgs = pkgs;
+            };
+            modules = [
+              ./nix/config/modules/tty.nix
+              configPath
+            ];
+          };
+
       processConfigurations = lib.mapAttrs (name: func: func name);
 
     in {
       darwinConfigurations = processConfigurations {
         workMac = darwinSystem "x86_64-darwin";
+      };
+
+      nixosConfigurations = processConfigurations {
+        monferno = nixosServer "x86_64-linux";
       };
 
       homeConfigurations = {
