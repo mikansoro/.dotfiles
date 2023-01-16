@@ -14,4 +14,11 @@
     ];
   };
   users.groups.nixos = {};
+
+  environment.systemPackages = with pkgs; [
+    vim
+    htop
+    curl
+    git
+  ];
 }
