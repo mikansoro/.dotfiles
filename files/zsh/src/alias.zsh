@@ -72,3 +72,6 @@ alias la="ls -al"
 alias ssha="ssh -A"
 # whitelist old algos for working with old cisco switches
 alias sshcisco="ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes128-cbc -l"
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
