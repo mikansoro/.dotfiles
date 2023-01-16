@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  # https://github.com/NixOS/nixpkgs/issues/63322#issuecomment-506960445
   services.getty.helpLine = "IP Address: \\4";
+  networking.dhcpcd.runHook = "${pkgs.utillinux}/bin/agetty --reload";
 
   users.motd = with config; ''
 
