@@ -10,7 +10,8 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
 
-  networking.hostName = "monferno.int.mikansystems.com"; # Define your hostname.
+  networking.domain = "int.mikansystems.com";
+  networking.hostName = "monferno"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
