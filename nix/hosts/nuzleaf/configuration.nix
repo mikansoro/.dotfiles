@@ -12,7 +12,7 @@
 
   # Use the GRUB 2 boot loader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;``
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.domain = "int.mikansystems.com";
   networking.hostName = "nuzleaf"; # Define your hostname.
