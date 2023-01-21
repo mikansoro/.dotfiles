@@ -4,11 +4,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../nixos-modules/users
     ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
+  boot.loader.grub.device = "/dev/vda";
 
   networking.domain = "int.mikansystems.com";
   networking.hostName = "monferno"; # Define your hostname.
@@ -18,33 +20,6 @@
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-    useXkbConfig = true; # use xkbOptions in tty.
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.michael = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPCKkMo4zEB0IVy4ojrLV2RPGl+1MBXoNuK2vZjMdJT mikans@localhost"
-    ];
-    shell = pkgs.zsh;
-  };
-
-  users.users.mikans = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPCKkMo4zEB0IVy4ojrLV2RPGl+1MBXoNuK2vZjMdJT mikans@localhost"
-    ];
-    shell = pkgs.zsh;
-  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
