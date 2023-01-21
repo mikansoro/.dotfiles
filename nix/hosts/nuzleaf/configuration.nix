@@ -41,6 +41,10 @@
     openFirewall = true;
     defaultWindowManager = "startplasma-x11";
   };
+  nixpkgs.config.permittedInsecurePackages = [
+    "xrdp-0.9.9"
+  ];
+
 
   services.xe-guest-utilities.enable = true;
 
