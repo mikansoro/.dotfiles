@@ -99,12 +99,13 @@
         let
           pkgs = genPkgsStable system;
           configPath = ./nix/hosts + "/${hostName}/configuration.nix";
+          specialArgs = {
+            nixpkgs = pkgs;
+            inherit self;
+          };
         in
           nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = {
-              nixpkgs = pkgs;
-            };
+            inherit system specialArgs;
             modules = [
               ./nix/config/modules/tty.nix
               configPath
@@ -112,6 +113,9 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.michael = hmConfig hostName;
+                home-manager.extraSpecialArgs = {
+                  inherit pkgs self;
+                };
               }
             ];
           };
