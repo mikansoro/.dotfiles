@@ -108,6 +108,11 @@
             modules = [
               ./nix/config/modules/tty.nix
               configPath
+              home-manager.nixosModules.home-manager {
+                home-manager.useGlobalPackages = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.michael = hmConfig hostName;
+              }
             ];
           };
 
