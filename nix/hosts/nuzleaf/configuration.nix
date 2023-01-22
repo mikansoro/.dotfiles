@@ -30,6 +30,7 @@
     htop
     btop
     libsForQt5.bismuth
+    firefox
   ];
 
   services.xserver = {
@@ -45,6 +46,7 @@
     "xrdp-0.9.9"
   ];
 
+  # TODO: enable autofs to automatically mount nas shares
 
   services.xe-guest-utilities.enable = true;
 

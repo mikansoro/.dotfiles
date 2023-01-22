@@ -4,12 +4,10 @@
   home = {
     packages = with pkgs; [
       _1password
-      # _1password-gui
       ipmitool
       kubectl
       kubectx
       kubernetes-helm
-            #kubectx
       minikube
       mpv
       nmap
@@ -24,6 +22,9 @@
       yubikey-manager
       # yubioath-desktop # error when trying to install pyscard, exit code 2
       zip
+    ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+      _1password-gui
+      spotify
     ];
   };
 }
