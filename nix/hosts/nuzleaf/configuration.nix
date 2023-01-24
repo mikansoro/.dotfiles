@@ -13,6 +13,7 @@
   # Use the GRUB 2 boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "nfs" "nfsv4" ];
 
   networking.domain = "int.mikansystems.com";
   networking.hostName = "nuzleaf"; # Define your hostname.
@@ -31,6 +32,8 @@
     btop
     libsForQt5.bismuth
     firefox
+
+    nfs-utils
   ];
 
   services.xserver = {
