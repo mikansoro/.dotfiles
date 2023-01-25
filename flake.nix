@@ -39,11 +39,6 @@
     let
       lib = nixpkgs.lib;
 
-      # left for compatibility w/ xen image builds for now
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-      };
-
       genPkgs = system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -165,7 +160,7 @@
             })
             # create a separate module to not have to wrap the options above in config = {}
             # best way? probably not. /shrug
-            ({ config, ...} : {
+            ({ config, pkgs, ...} : {
               # same derivation name as upstream vmware-image, but replace vmware with xen
               vmware.vmDerivationName = "nixos-xen-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}";
             })
