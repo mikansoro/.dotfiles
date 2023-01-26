@@ -14,6 +14,7 @@ if command_exists kubectl; then
   alias kcl="kubectl ctx"
   alias kns="kubectl ns"
   alias kapir="kubectl api-resources"
+  alias kpodw="kubectl get pods -w"
 fi
 
 if command_exists kustomize; then
@@ -71,3 +72,6 @@ alias la="ls -al"
 alias ssha="ssh -A"
 # whitelist old algos for working with old cisco switches
 alias sshcisco="ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes128-cbc -l"
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'

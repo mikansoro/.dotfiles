@@ -1,4 +1,5 @@
-
+# zsh functions
+#
 # --------------
 # general
 # --------------
@@ -19,15 +20,24 @@ function bim() {
 # add arbitrary text to filenames before the file extension for a list of files
 # TODO: make sure this works correctly
 function appendTextBeforeExtension() {
-  for file in "${1}"; do ext="${file##*.}"; filename="${file%.*}"; mv "$file" "${filename}${2}.${ext}"; done
+    for file in "${1}"; do ext="${file##*.}"; filename="${file%.*}"; mv "$file" "${filename}${2}.${ext}"; done
 }
 
 # grabbed shamelessly from https://stackoverflow.com/a/8574392
 function containsElement() {
-  local e match="$1"
-  shift
-  for e; do [[ "$e" == "$match" ]] && return 0; done
-  return 1
+    local e match="$1"
+    shift
+    for e; do [[ "$e" == "$match" ]] && return 0; done
+    return 1
+}
+
+function mvlowercase() {
+    if [ -n $1 ]; then
+        local filepath="$1"
+    else
+        local filepath="*"
+    fi
+    for f in $filepath; do mv "$f" "$(echo "$f" | tr '[:lower:]' '[:upper:]')"; done
 }
 
 # --------------
@@ -49,6 +59,16 @@ function gpgreveal() {
 # --------------
 # kubernetes
 # --------------
+
+# split helm template into individual files
+function splithelm() {
+    if [ -z $1 ]; then
+        echo "Path to a helm template file required" >&2
+        return 1
+    fi
+    yq -s '.kind + "-" + .metadata.name' $1
+    mklowercase '*.yml'
+}
 
 # make sure I base64 right the first time
 function ksecret64() {
@@ -80,6 +100,42 @@ function koriginal() {
         return 1
     fi
     kubectl get $1 $2 -o json | jq ".metadata.annotations.\"kubectl.kubernetes.io/last-applied-configuration\" | fromjson" | yq eval -P -e
+}
+
+# prints stats about current kubernetes cluster usage
+function kstats() {
+  local usage='Function Usage: kstats [-d]'
+  local checkDaemonsets=false
+  while getopts ":d" opt; do
+    case $opt in
+      d)
+        local checkDaemonsets=true
+        ;;
+      *)
+        echo "Unknown argument -${opt}\n$usage" >&2
+        return 1
+        ;;
+    esac
+  done
+  shift "$((OPTIND-1))"
+
+  echo "Current context: $(kubectl config current-context)"
+
+  pods=$(kubectl get pods -A -o wide --no-headers)
+  podCount=$(wc -l <<< $pods)
+  nodes=$(kubectl get nodes -o wide --no-headers)
+  nodeCount=$(wc -l <<< $nodes)
+  if $checkDaemonsets; then
+    daemonsets=$(kubectl get daemonsets -A -o wide --no-headers)
+    daemonsetCount=$(wc -l <<< $daemonsets)
+  fi
+
+  echo "Nodes on this cluster: $nodeCount"
+  echo "Pods on this cluster: $podCount"
+  if $checkDaemonsets; then
+    echo "Pods from Daemonsets: $(($nodeCount * $daemonsetCount))"
+  fi
+  echo "Pods per Namespace: \n\n$(echo $pods | cut -f 1 -d ' ' | sort | uniq -c | sort -nr)"
 }
 
 # signature: ksecretval [-n namespace] secretname [...]
