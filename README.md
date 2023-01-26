@@ -1,5 +1,10 @@
-# How to use the files in this directory
+# mikansoro/.dotfiles 
 
-The directory structure in `files/` is meant to be used with `stow` to symlink the configs to the relevant parts of the system. They are also used with nixos modules in the `nix/` directory. There is a `flake.nix` flake file in this repo to be used with nixos.
+My collection of dotfiles and configs for both work and home. 
 
-`doom-emacs` is listed in this repository as a submodule, for ease of use with non-nixos systems. 
+Currently in the process of moving back to nix for configurations. Started with my work-mac using `nix-darwin`, but also using nix for several VMs, and eventually my personal desktop/laptop. Nix directory is in a lot of flux due to rapid development. trying to make a flake that can accomodate multiple systems and system architectures. 
+
+## Notable directories
+- Zsh: configuration is in `nix/home-modules/shell/`
+- Emacs: doom-emacs via nix flake. `nix/home-modules/emacs/`
+- per host configuration in `nix/hosts`
