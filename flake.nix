@@ -2,8 +2,8 @@
   description = "mikansoro system config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +22,7 @@
     };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -31,7 +31,7 @@
     nixpkgs,
     darwin,
     home-manager,
-    nixpkgs-stable,
+    nixpkgs-unstable,
     nix-doom-emacs,
     nixos-generators,
     ...
@@ -39,19 +39,14 @@
     let
       lib = nixpkgs.lib;
 
-      # left for compatibility w/ xen image builds for now
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-      };
-
       genPkgs = system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
-      genPkgsStable = system: import nixpkgs-stable {
-        inherit system;
-        config.allowUnfree = true;
-      };
+      # genPkgsStable = system: import nixpkgs-stable {
+        # inherit system;
+        # config.allowUnfree = true;
+      # };
 
       hmConfig = hostName:
         let
@@ -97,7 +92,7 @@
       # inspired by github.com/thexyno/nixos-config
       nixosServer = system: hostName:
         let
-          pkgs = genPkgsStable system;
+          pkgs = genPkgs system;
           configPath = ./nix/hosts + "/${hostName}/configuration.nix";
           specialArgs = {
             nixpkgs = pkgs;
@@ -109,6 +104,17 @@
             modules = [
               ./nix/config/modules/tty.nix
               configPath
+              (
+                { config, pkgs, ... }:
+                let
+                  overlay-unstable = final: prev: {
+                    unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
+                  };
+                in
+                  {
+                    nixpkgs.overlays = [ overlay-unstable ];
+                  }
+              )
               home-manager.nixosModules.home-manager {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
@@ -152,7 +158,7 @@
         # disables vmware guest settings, enables systemd uefi boot for xen, and xe guest utils for monitoring
         xenImage = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
-          pkgs = genPkgsStable "x86_64-linux";
+          pkgs = genPkgs "x86_64-linux";
           modules = [
             "${inputs.nixpkgs-stable}/nixos/modules/virtualisation/xen-domU.nix"
             ./nix/config/modules/vmconfig.nix
@@ -165,7 +171,7 @@
             })
             # create a separate module to not have to wrap the options above in config = {}
             # best way? probably not. /shrug
-            ({ config, ...} : {
+            ({ config, pkgs, ...} : {
               # same derivation name as upstream vmware-image, but replace vmware with xen
               vmware.vmDerivationName = "nixos-xen-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}";
             })
@@ -174,7 +180,7 @@
         };
         proxmoxImage = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
-          pkgs = genPkgsStable "x86_64-linux";
+          pkgs = genPkgs "x86_64-linux";
           modules = [
             ./nix/config/modules/vmconfig.nix
             ./nix/config/modules/tty.nix
