@@ -8,4 +8,5 @@
       p7zip
       unzip
     ];
+  };
 }
