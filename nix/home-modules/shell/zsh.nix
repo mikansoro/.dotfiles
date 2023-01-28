@@ -32,7 +32,7 @@ in
       la = "ls -al";
       ssha = "ssh -A";
       # whitelist old algos for working with old cisco switches;
-      sshcisco = "ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes128-cbc -l";
+      sshcisco = "ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-rsa -c aes128-cbc -l";
     };
     sessionVariables = {
       EDITOR = "${emacs_editor}";
