@@ -39,11 +39,14 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall = {
+    enable = false;
+    # allowedTCPPorts = [  ];
+  };
 
   services.k3s = {
-    enable = false;
-    extraFlags = "--no-deploy traefik --no-deploy servicelb --flannel-backend none --disable-network-policy --cluster-cidr 10.251.0.0/16";
+    enable = true;
+    extraFlags = "--disable traefik --disable servicelb --flannel-backend none --disable-network-policy --cluster-cidr 10.251.0.0/16";
     role = "server";
   };
 
