@@ -11,6 +11,7 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/vda";
+  boot.kernelModules = [ "nfs" "nfsv4" ];
 
   networking.domain = "int.mikansystems.com";
   networking.hostName = "monferno"; # Define your hostname.
@@ -30,10 +31,14 @@
     git
     htop
     btop
+    nfs-utils
   ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # needed for k3s (longhorn)
+  services.openiscsi.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
