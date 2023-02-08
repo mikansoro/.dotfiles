@@ -4,6 +4,7 @@
   imports = [
     ../../home-modules/server
     ../../home-modules/shell
+    ../../home-modules/git
     # ../../home-modules/gpg
   ];
 

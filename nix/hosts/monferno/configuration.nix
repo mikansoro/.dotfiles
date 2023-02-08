@@ -38,7 +38,10 @@
   services.openssh.enable = true;
 
   # needed for k3s (longhorn)
-  services.openiscsi.enable = true;
+  services.openiscsi = {
+    enable = true;
+    name = "iqn.2020-07.com.mikansystems.iscsi:monferno";
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
