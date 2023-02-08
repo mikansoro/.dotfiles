@@ -51,7 +51,7 @@
 
   services.k3s = {
     enable = true;
-    extraFlags = "--disable traefik --disable servicelb --flannel-backend none --disable-network-policy --cluster-cidr 10.251.0.0/16";
+    extraFlags = "--disable traefik --disable servicelb --flannel-backend none --disable-network-policy --cluster-cidr 10.244.0.0/16";
     role = "server";
   };
 
