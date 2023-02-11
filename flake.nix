@@ -95,8 +95,7 @@
           pkgs = genPkgs system;
           configPath = ./nix/hosts + "/${hostName}/configuration.nix";
           specialArgs = {
-            nixpkgs = pkgs;
-            inherit self;
+            inherit self pkgs;
           };
         in
           nixpkgs.lib.nixosSystem {
