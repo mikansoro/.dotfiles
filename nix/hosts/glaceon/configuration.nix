@@ -11,10 +11,27 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    device = "nodev";
+    efiSupport = true;
+    enableCryptodisk = true;
+    useOSProber = true;
+  };
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.initrd.luks.devices = {
+    root = {
+      device = "";
+      preLVM = true;
+    };
+  };
+
   boot.kernelModules = [ "nfs" "nfsv4" ];
 
+  # hostname
   networking.domain = "int.mikansystems.com";
   networking.hostName = "glaceon"; # Define your hostname.
 
