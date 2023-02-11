@@ -136,6 +136,7 @@
       nixosConfigurations = processConfigurations {
         monferno = nixosServer "x86_64-linux";
         nuzleaf = nixosServer "x86_64-linux";
+        glaceon = nixosServer "x86_64-linux";
       };
 
       homeConfigurations = {
