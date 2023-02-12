@@ -13,19 +13,10 @@
   # Use the systemd-boot EFI boot loader.
   #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    device = "nodev";
-    efiSupport = true;
-    enableCryptodisk = true;
-    useOSProber = true;
-    #efiInstallAsRemovable = true;
-  };
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.systemd-boot.enable = true;
   boot.initrd.luks.devices = {
     root = {
-      device = "/dev/disk/by-uuid/dd30ec7a-19a5-4e5a-ba02-6dd8bccd5360"; # /dev/nvme0n1p2
+      device = "/dev/disk/by-uuid/606849d7-64ac-41a5-b3a3-1f2eb15fccb8"; # /dev/nvme0n1p2
       preLVM = true;
     };
   };
@@ -40,6 +31,8 @@
   time.timeZone = "America/Los_Angeles";
 
   environment.systemPackages = with pkgs; [
+    refind
+
     vim
     wget
     curl
