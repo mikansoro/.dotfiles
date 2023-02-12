@@ -17,6 +17,10 @@
     enable = true;
   };
 
+  systemd.user.sessionVariables = {
+    GDK_SCALE = "1";
+  };
+
   home = {
     stateVersion = "22.11";
 
