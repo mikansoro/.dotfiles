@@ -23,8 +23,8 @@ sudo gdisk
 read -p "Hostname: " HOSTNAME
 read -p "Disk device: " DISK_DEVICE
 
-sudo cryptsetup luksFormat --type luks2 "/dev/${DISK_DEVICE}p2"
-sudo cryptsetup open /dev/[device-name] nixos-enc
+sudo cryptsetup luksFormat --type luks1 "${DISK_DEVICE}p2"
+sudo cryptsetup open "${DISK_DEVICE}p2" nixos-enc
 sudo pvcreate /dev/mapper/nixos-enc
 sudo vgcreate nixos-vg /dev/mapper/nixos-enc
 sudo lvcreate -L 8G nixos-vg -n swap
@@ -32,12 +32,12 @@ sudo lvcreate -l 100%FREE nixos-vg -n root
 
 sudo mkfs.ext4 /dev/nixos-vg/root
 sudo mkswap /dev/nixos-vg/swap
-sudo mkfs.vfat -n boot "/dev/${DISK_DEVICE}p1"
+sudo mkfs.vfat -n boot "${DISK_DEVICE}p1"
 
 sudo mount /dev/nixos-vg/root /mnt
 sudo swapon /dev/nixos-vg/swap
-sudo mkdir /mnt/boot
-sudo mount "/dev/${DISK_DEVICE}p1" /mnt/boot
+sudo mkdir -p /mnt/boot/efi
+sudo mount "${DISK_DEVICE}p1" /mnt/boot/efi
 
 sudo nixos-generate-config --root /mnt
 
