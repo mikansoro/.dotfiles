@@ -188,6 +188,23 @@
           ];
           format = "proxmox";
         };
+        graphicalInstallImage = nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          pkgs = genPkgs "x86_64-linux";
+          modules = [
+            ./nix/config/modules/vmconfig.nix
+            ./nix/config/modules/tty.nix
+            ({ pkgs, ... } : {
+              services.xserver = {
+                desktopManager.plasma5.enable = true;
+              };
+              environment.systemPackages = with pkgs; [
+                gparted
+              ];
+            })
+          ];
+          format = "install-iso";
+        };
       };
     };
 }
