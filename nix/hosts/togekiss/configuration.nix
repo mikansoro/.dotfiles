@@ -1,13 +1,16 @@
 { config, pkgs, ... }:
 
 # Description:
-# Physical Workstation
+# Lenovo x13 Remote Workstation
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../nixos-modules/users
+      ../../nixos-modules/nfs/client
+      ../../nixos-modules/audio
+      ../../nixos-modules/hardware/devices/lenovo/x13
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -19,9 +22,6 @@
       preLVM = true;
     };
   };
-
-  boot.kernelModules = [ "nfs" "nfsv4" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
 
   # hostname
   networking.domain = "int.mikansystems.com";
@@ -43,8 +43,6 @@
     firefox
     ripgrep
 
-    nfs-utils
-
     steam-tui
     steam-run
     lutris
@@ -58,7 +56,6 @@
   };
 
   # video
-  services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true;
@@ -70,15 +67,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
 
   #services.openssh.enable = false;
 
