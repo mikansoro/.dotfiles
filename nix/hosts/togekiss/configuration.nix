@@ -18,7 +18,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.initrd.luks.devices = {
     root = {
-      device = ""; # /dev/nvme0n1p2
+      device = "/dev/disk/by-uuid/e3adb61b-5d71-4d5a-9487-7f70646e17ff"; # /dev/nvme0n1p6
       preLVM = true;
     };
   };
@@ -26,6 +26,9 @@
   # hostname
   networking.domain = "int.mikansystems.com";
   networking.hostName = "togekiss"; # Define your hostname.
+
+  networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
