@@ -25,6 +25,8 @@
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       _1password-gui
       spotify
+      chromium
+      firefox
     ];
   };
 }
