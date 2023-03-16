@@ -37,6 +37,7 @@
       filebot
       mpv
       yt-dlp
+      filebot
     ];
   };
 }
