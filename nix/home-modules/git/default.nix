@@ -45,17 +45,20 @@
       r = "rebase";
     	ra = "rebase --abort";
     	rc = "rebase --continue";
+      re = "reset";
+    	reh = "reset --hard";
+    	res = "reset --soft";
     	rq = "rebase --quit";
       rs = "rebase --skip";
-      re = "reset";
-    	res = "reset --soft";
-    	reh = "reset --hard";
       s = "status";
       st = "stash";
       stp = "stash pop";
       # TODO: make work with ssh proto origins (i.e. github:user/reop or git@github.com:user/repo)
       # TODO: improve cross-platform (linux/mac) operation
       # open = "!f() { URL=$(git config remote.${1:-origin}.url); xdg-open \"${URL%%.git}\" || open \"${URL%%.git}\"; }; f"
+      rebase-branch = "!COMMITS=$(BRANCH=$(git rev-parse --abbrev-ref HEAD); git rev-list --count master..$BRANCH); git rebase -i HEAD^$COMMITS";
+      # thanks https://zarino.co.uk/post/git-set-upstream/
+      set-upstream = "!git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`";
       whoami = "!echo $(git config --get user.name) '<'$(git config --get user.email)'>'";
       git = "!git";
     };
