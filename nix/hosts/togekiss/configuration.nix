@@ -76,6 +76,24 @@
   networking.firewall.enable = true;
   #networking.firewall.allowedTCPPorts = [ 22 ];
 
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      address = [ "10.254.253.3/32" ];
+      dns = [ "10.254.253.0" ];
+      privateKeyFile = "/root/wireguard-keys/togekiss.key";
+
+      peers = [
+        {
+          publicKey = "9AKkas/9C1Ih/Z3WFl5pdvNxwvY6uxqrpZ7xcZgj8xM=";
+          presharedKeyFile = "/root/wireguard-keys/preshared.key";
+          allowedIPs = [ "172.16.0.0/16" "10.254.253.0/23" ];
+          endpoint = "159.65.105.164:51820";
+          persistentKeepalive = 16;
+        }
+      ];
+    };
+  };
+
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
