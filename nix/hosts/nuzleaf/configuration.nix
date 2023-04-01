@@ -8,6 +8,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../nixos-modules/users
+      ../../nixos-modules/fonts
     ];
 
   # Use the GRUB 2 boot loader.

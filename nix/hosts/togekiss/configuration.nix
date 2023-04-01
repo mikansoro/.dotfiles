@@ -10,6 +10,7 @@
       ../../nixos-modules/users
       ../../nixos-modules/nfs/client
       ../../nixos-modules/audio
+      ../../nixos-modules/fonts
       ../../nixos-modules/hardware/devices/lenovo/x13
     ];
 

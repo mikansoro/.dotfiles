@@ -9,6 +9,7 @@
       ./hardware-configuration.nix
       ../../nixos-modules/users
       ../../nixos-modules/audio
+      ../../nixos-modules/fonts
     ];
 
   # Use the systemd-boot EFI boot loader.
