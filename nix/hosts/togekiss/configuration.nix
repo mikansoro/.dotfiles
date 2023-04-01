@@ -71,6 +71,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  virtualisation.docker.enable = true;
   #services.openssh.enable = false;
 
   networking.firewall.enable = true;
