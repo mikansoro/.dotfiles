@@ -83,6 +83,7 @@
       address = [ "10.254.253.3/32" ];
       dns = [ "10.254.253.0" ];
       privateKeyFile = "/root/wireguard-keys/togekiss.key";
+      mtu = 1280;
 
       peers = [
         {
