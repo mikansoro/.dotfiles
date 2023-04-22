@@ -27,7 +27,6 @@ in
       kread = "f() {kubectl get $1 $2 -o yaml | less};f";
       tf = "terraform";
       mk = "minikube";
-      rg = "ripgrep";
       ll = "ls -al";
       la = "ls -al";
       ssha = "ssh -A";

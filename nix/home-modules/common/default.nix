@@ -8,6 +8,7 @@
       kubectl
       kubectx
       kubernetes-helm
+      kustomize
       minikube
       mpv
       nmap
@@ -24,6 +25,8 @@
       zip
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       _1password-gui
+      yubioath-desktop
+      yubikey-personalization-gui
       spotify
       chromium
       firefox
