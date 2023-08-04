@@ -137,6 +137,7 @@
         nuzleaf = nixosServer "x86_64-linux";
         glaceon = nixosServer "x86_64-linux";
         togekiss = nixosServer "x86_64-linux";
+        x220 = nixosServer "x86_64-linux";
       };
 
       homeConfigurations = {
