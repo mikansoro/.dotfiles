@@ -89,7 +89,7 @@
         {
           publicKey = "9AKkas/9C1Ih/Z3WFl5pdvNxwvY6uxqrpZ7xcZgj8xM=";
           presharedKeyFile = "/root/wireguard-keys/preshared.key";
-          allowedIPs = [ "172.16.0.0/16" "10.254.253.0/23" ];
+          allowedIPs = [ "172.16.0.0/16" "10.254.253.0/23" "10.10.0.0/16" ];
           endpoint = "159.65.105.164:51820";
           persistentKeepalive = 16;
         }
