@@ -4,6 +4,8 @@
   # libvterm not avaialable on darwin, but needed on linux
   home.packages = with pkgs; [
     nixfmt
+    nodePackages.yaml-language-server
+    nodePackages.pyright
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
     libvterm
   ];
