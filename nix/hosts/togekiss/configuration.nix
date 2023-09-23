@@ -24,6 +24,14 @@
     };
   };
 
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-mozc
+      fcitx5-gtk
+    ];
+  };
+
   # hostname
   networking.domain = "int.mikansystems.com";
   networking.hostName = "togekiss"; # Define your hostname.
