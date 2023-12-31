@@ -11,6 +11,7 @@
       kubernetes-helm
       kustomize
       minikube
+      mosh
       nmap
       p7zip
       pgcli

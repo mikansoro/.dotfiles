@@ -31,6 +31,11 @@
       fcitx5-gtk
     ];
   };
+  services.blueman.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   # hostname
   networking.domain = "int.mikansystems.com";
