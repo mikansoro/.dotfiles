@@ -7,10 +7,10 @@
       ipmitool
       kubectl
       kubectx
+      pinniped
       kubernetes-helm
       kustomize
       minikube
-      mpv
       nmap
       p7zip
       pinentry
@@ -24,6 +24,7 @@
       # yubioath-desktop # error when trying to install pyscard, exit code 2
       zip
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+      mpv
       _1password-gui
       yubioath-desktop
       yubikey-personalization-gui

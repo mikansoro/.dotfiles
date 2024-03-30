@@ -10,9 +10,11 @@
     ripgrep
     tmux
     tree
-    whois
     yq-go
+  ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+    whois
   ];
+
 
   # add git config here?
   programs.bat.enable = true;
