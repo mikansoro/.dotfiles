@@ -21,6 +21,7 @@
       source-han-serif-korean
       source-han-serif-simplified-chinese
       source-han-code-jp
+      emacs-all-the-icons-fonts
     ];
     fontconfig = {
       enable = true;

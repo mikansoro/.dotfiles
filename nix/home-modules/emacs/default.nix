@@ -1,10 +1,18 @@
 { config, lib, pkgs, system, inputs, ... }:
 
-{
+let
+  doom = {
+    repoUrl = "https://github.com/doomemacs/doomemacs.git";
+  };
+  emacsConfigDir = "${config.xdg.configHome}/emacs";
+in {
 
-  nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+  #nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
 
   home.packages = with pkgs; [
+    ((emacsPackagesFor emacs29).emacsWithPackages (epkgs: [
+      epkgs.vterm
+    ]))
     emacs-all-the-icons-fonts
     nixfmt
     binutils
@@ -15,38 +23,20 @@
     gnutls              # for TLS connectivity
     fd                  # faster projectile indexing
     imagemagick         # for image-dired
-    emacsPackages.vterm
+  ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+    libvterm
+  ] ++ lib.optionals (pkgs.stdenv.isDarwin) [
+    cmake               # for some reason the default make on macos 14 doesn't work for compiling vterm
   ];
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs29;
+  home.file.".doom.d".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/.dotfiles/nix/home-modules/emacs/config";
+
+  home.activation = {
+    install-doom = lib.hm.dag.entryAfter [ "installPackages" ] ''
+      if ! [ -d "${config.xdg.configHome}/emacs" ]; then
+        $DRY_RUN_CMD git clone $VERBOSE_ARG --depth=1 --single-branch "${doom.repoUrl}" "${emacsConfigDir}"
+        $DRY_RUN_CMD "${emacsConfigDir}/bin/doom" sync
+      fi
+    '';
   };
- #  # libvterm not avaialable on darwin, but needed on linux
- #  home.packages = with pkgs; [
- #    nixfmt
- #    nodePackages.yaml-language-server
- #    nodePackages.pyright
- #  ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
- #    libvterm
- #  ];
-
- # # programs.emacs.package = lib.mkIf pkgs.stdenv.isDarwin ( lib.mkForce pkgs.emacsMacport );
-
- #  programs.doom-emacs = {
- #    enable = true;
- #    doomPrivateDir = ./config;
- #    # package = lib.mkIf pkgs.stdenv.isDarwin pkgs.emacsMacport;
-
- #    emacsPackagesOverlay = self: super: with pkgs.emacsPackages; {
- #      gitignore-mode = git-modes;
- #      gitconfig-mode = git-modes;
- #    };
- #  };
-
-  # TODO: probably should put in either per-system home manager config or nixos/nix-darwin config?
-  # services.emacs = {
-  #   enable = true;
-  #   # package = doom-emacs;
-  # };
 }
