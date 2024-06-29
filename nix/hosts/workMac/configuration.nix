@@ -8,11 +8,14 @@
   ];
 
   nix.extraOptions = ''
-    auto-optimise-store = true
+    auto-optimise-store = false
     experimental-features = nix-command flakes
   '';
 
   fonts.fontDir.enable = true;
+  fonts.fonts = with pkgs; [
+    emacs-all-the-icons-fonts
+  ];
 
   homebrew = {
     # NOTE: Temporarily disable homebrew integration until i can remove the old binaries

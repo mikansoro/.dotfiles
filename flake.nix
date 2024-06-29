@@ -2,24 +2,24 @@
   description = "mikansoro system config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    nix-doom-emacs = {
-      url = "github:nix-community/nix-doom-emacs";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        emacs-overlay.follows = "emacs-overlay";
-      };
-    };
+    # nix-doom-emacs = {
+    #   url = "github:nix-community/nix-doom-emacs";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     emacs-overlay.follows = "emacs-overlay";
+    #   };
+    # };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +32,7 @@
     darwin,
     home-manager,
     nixpkgs-unstable,
-    nix-doom-emacs,
+    #nix-doom-emacs,
     nixos-generators,
     ...
   }:
@@ -53,7 +53,7 @@
           configPath = ./nix/hosts + "/${hostName}/home.nix";
         in
         lib.mkMerge [
-          nix-doom-emacs.hmModule
+          #nix-doom-emacs.hmModule
           configPath
           {
             nixpkgs.overlays = [
@@ -80,7 +80,7 @@
                 };
               }
               home-manager.darwinModules.home-manager {
-                home-manager.extraSpecialArgs = { inherit pkgs; };
+                home-manager.extraSpecialArgs = { inherit pkgs self; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.mrowland = hmConfig hostName;

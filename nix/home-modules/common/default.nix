@@ -7,10 +7,10 @@
       ipmitool
       kubectl
       kubectx
+      pinniped
       kubernetes-helm
       kustomize
       minikube
-      mpv
       nmap
       p7zip
       pinentry
@@ -25,11 +25,14 @@
       zip
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       _1password-gui
-      yubioath-desktop
-      yubikey-personalization-gui
-      spotify
       chromium
       firefox
+      mpv
+      nextcloud-client
+      spotify
+      #yubioath-desktop
+      yubioath-flutter
+      yubikey-personalization-gui
     ];
   };
 }

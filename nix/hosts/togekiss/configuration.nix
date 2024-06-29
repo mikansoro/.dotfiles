@@ -39,6 +39,8 @@
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
 
+  services.mullvad-vpn.enable = false;
+
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
@@ -59,6 +61,8 @@
     steam-run
     lutris
   ];
+
+  hardware.bluetooth.enable = true;
 
   # graphical environment
   services.xserver = {
