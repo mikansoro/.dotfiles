@@ -23,19 +23,20 @@ in {
     gnutls              # for TLS connectivity
     fd                  # faster projectile indexing
     imagemagick         # for image-dired
+    ispell
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
     libvterm
   ] ++ lib.optionals (pkgs.stdenv.isDarwin) [
     cmake               # for some reason the default make on macos 14 doesn't work for compiling vterm
   ];
 
-  home.file.".doom.d".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/.dotfiles/nix/home-modules/emacs/config";
+  # home.file.".doom.d".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/.dotfiles/nix/home-modules/emacs/config";
 
   home.activation = {
     install-doom = lib.hm.dag.entryAfter [ "installPackages" ] ''
       if ! [ -d "${config.xdg.configHome}/emacs" ]; then
-        $DRY_RUN_CMD git clone $VERBOSE_ARG --depth=1 --single-branch "${doom.repoUrl}" "${emacsConfigDir}"
-        $DRY_RUN_CMD "${emacsConfigDir}/bin/doom" sync
+        $DRY_RUN_CMD PATH="${config.home.path}/bin:$PATH" clone $VERBOSE_ARG --depth=1 --single-branch "${doom.repoUrl}" "${emacsConfigDir}"
+        $DRY_RUN_CMD PATH="${config.home.path}/bin:$PATH" "${emacsConfigDir}/bin/doom" sync
       fi
     '';
   };

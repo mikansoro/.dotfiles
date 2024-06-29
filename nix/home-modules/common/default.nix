@@ -24,13 +24,15 @@
       # yubioath-desktop # error when trying to install pyscard, exit code 2
       zip
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
-      mpv
       _1password-gui
-      yubioath-desktop
-      yubikey-personalization-gui
-      spotify
       chromium
       firefox
+      mpv
+      nextcloud-client
+      spotify
+      #yubioath-desktop
+      yubioath-flutter
+      yubikey-personalization-gui
     ];
   };
 }
