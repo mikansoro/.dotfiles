@@ -35,8 +35,8 @@ in {
   home.activation = {
     install-doom = lib.hm.dag.entryAfter [ "installPackages" ] ''
       if ! [ -d "${config.xdg.configHome}/emacs" ]; then
-        $DRY_RUN_CMD PATH="${config.home.path}/bin:$PATH" clone $VERBOSE_ARG --depth=1 --single-branch "${doom.repoUrl}" "${emacsConfigDir}"
-        $DRY_RUN_CMD PATH="${config.home.path}/bin:$PATH" "${emacsConfigDir}/bin/doom" sync
+        PATH="${config.home.path}/bin:$PATH" $DRY_RUN_CMD git clone $VERBOSE_ARG --depth=1 --single-branch "${doom.repoUrl}" "${emacsConfigDir}"
+        PATH="${config.home.path}/bin:$PATH" $DRY_RUN_CMD "${emacsConfigDir}/bin/doom" sync
       fi
     '';
   };

@@ -13,7 +13,6 @@
       minikube
       nmap
       p7zip
-      pinentry
       pgcli
       # spotify # only available on x86_64-linux
       terraform
@@ -24,6 +23,7 @@
       # yubioath-desktop # error when trying to install pyscard, exit code 2
       zip
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+      pinentry
       _1password-gui
       chromium
       firefox

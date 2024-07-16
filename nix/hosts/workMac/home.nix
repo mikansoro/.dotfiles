@@ -5,7 +5,7 @@
     ../../home-modules/common
     ../../home-modules/shell
     ../../home-modules/git
-    ../../home-modules/gpg-agent
+    #../../home-modules/gpg-agent
     # ../../home-modules/gpg
     ../../home-modules/emacs
   ];
@@ -13,29 +13,29 @@
   programs.home-manager.enable = true;
 
   home = {
-    # username = "mrowland";
-    # homeDirectory = "/Users/mrowland";
+    # username = "michael.rowland";
+    # homeDirectory = "/Users/michael.rowland";
     stateVersion = "22.05";
 
     packages = with pkgs; [
       argocd
       awscli2
-      aws-iam-authenticator
-      aws-sam-cli
-      conftest
-      eksctl
+      #aws-iam-authenticator
+      #aws-sam-cli
+      #conftest
+      #eksctl
       # docker-machine-hyperkit #darwin-only - from brew installed list
       kind
       kubeconform
       # mongosh # unknown variable
       # mysql-shell # build fail, ld fatal warning - libs were build for newer macos version than linked (10.12 vs 10.10)
       open-policy-agent
-      saml2aws
-      skaffold
+      #saml2aws
+      #skaffold
       skopeo
       sqlite
       # upx #golang-tooling
-      pinentry_mac
+      #pinentry_mac
     ];
   };
 
@@ -58,43 +58,25 @@
       ktestall = "kconform && kconftest && kconfcombined";
       flushdns = "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
     };
-    initExtraBeforeCompInit = "PATH='/Users/mrowland/bin':$PATH";
+    initExtraBeforeCompInit = "PATH='/Users/michael.rowland/bin':$PATH";
   };
 
   programs.git = {
     includes = [
       {
-        condition = "gitdir:~/git/foursquare/";
+        condition = "gitdir:~/git/ziprecruiter/";
         contents = {
           user = {
-            email = "mrowland@foursquare.com";
+            email = "michael.rowland@ziprecruiter.com";
             name = "Michael Rowland";
           };
         };
       }
       {
-        condition = "gitdir:~/git/factual/";
+        condition = "gitdir:~/git/zr-private/";
         contents = {
           user = {
-            email = "mrowland@foursquare.com";
-            name = "Michael Rowland";
-          };
-        };
-      }
-      {
-        condition = "gitdir:~/git/placed/";
-        contents = {
-          user = {
-            email = "mrowland@foursquare.com";
-            name = "Michael Rowland";
-          };
-        };
-      }
-      {
-        condition = "gitdir:~/git/unfolded/";
-        contents = {
-          user = {
-            email = "mrowland@foursquare.com";
+            email = "michael.rowland@ziprecruiter.com";
             name = "Michael Rowland";
           };
         };

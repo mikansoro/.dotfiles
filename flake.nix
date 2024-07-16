@@ -83,7 +83,7 @@
                 home-manager.extraSpecialArgs = { inherit pkgs self; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.mrowland = hmConfig hostName;
+                home-manager.users."michael.rowland" = hmConfig hostName;
               }
               configPath
             ];
