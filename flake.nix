@@ -24,6 +24,9 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # handles .app bundle sync
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = inputs@{
@@ -34,6 +37,7 @@
     nixpkgs-unstable,
     #nix-doom-emacs,
     nixos-generators,
+    mac-app-util,
     ...
   }:
     let
@@ -72,6 +76,7 @@
             inherit system;
             specialArgs = { inherit pkgs self darwin; };
             modules = [
+              mac-app-util.darwinModules.default
               {
                 users.users."michael.rowland" = {
                   name = "michael.rowland";
@@ -84,6 +89,10 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users."michael.rowland" = hmConfig hostName;
+
+                home-manager.sharedModules = [
+                  mac-app-util.homeManagerModules.default
+                ];
               }
               configPath
             ];
@@ -129,7 +138,7 @@
 
     in {
       darwinConfigurations = processConfigurations {
-        workMac = darwinSystem "x86_64-darwin";
+        workMac = darwinSystem "aarch64-darwin";
       };
 
       nixosConfigurations = processConfigurations {
