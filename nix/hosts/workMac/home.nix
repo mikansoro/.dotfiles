@@ -36,6 +36,10 @@
       sqlite
       # upx #golang-tooling
       #pinentry_mac
+
+      python312
+      colima
+      docker-client
     ];
   };
 
@@ -59,6 +63,10 @@
       flushdns = "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
     };
     initExtraBeforeCompInit = "PATH='/Users/michael.rowland/bin':$PATH";
+    envExtra = ''
+    export STARTERVIEW="/Users/michael.rowland/git/zr-private/ziprecruiter"
+    PATH=$STARTERVIEW/bin:$PATH
+    '';
   };
 
   programs.git = {
