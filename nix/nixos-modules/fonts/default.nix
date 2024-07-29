@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-    fonts = {
+  fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
       # hack-font
@@ -21,7 +21,7 @@
       source-han-serif-korean
       source-han-serif-simplified-chinese
       source-han-code-jp
-      emacs-all-the-icons-fonts
+      emacsPackages.nerd-icons
     ];
     fontconfig = {
       enable = true;

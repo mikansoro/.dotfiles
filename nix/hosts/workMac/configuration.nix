@@ -14,8 +14,10 @@
 
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
-    emacs-all-the-icons-fonts
+    emacsPackages.nerd-icons
   ];
+
+  nixpkgs.hostPlatform = "aarch64-darwin";
 
   homebrew = {
     # NOTE: Temporarily disable homebrew integration until i can remove the old binaries

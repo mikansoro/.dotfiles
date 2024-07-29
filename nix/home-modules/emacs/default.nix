@@ -13,7 +13,7 @@ in {
     ((emacsPackagesFor emacs29).emacsWithPackages (epkgs: [
       epkgs.vterm
     ]))
-    emacs-all-the-icons-fonts
+    emacsPackages.nerd-icons # doom-emacs switched from all-the-icons to nerd-icons https://github.com/doomemacs/doomemacs/issues/7379
     nixfmt
     binutils
     nodePackages.yaml-language-server
