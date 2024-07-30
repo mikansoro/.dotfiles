@@ -24,6 +24,8 @@ in {
     fd                  # faster projectile indexing
     imagemagick         # for image-dired
     ispell
+    python312Packages.grip
+    gopls               # go language server
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
     libvterm
   ] ++ lib.optionals (pkgs.stdenv.isDarwin) [

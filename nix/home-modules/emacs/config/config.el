@@ -62,6 +62,8 @@
 ;; https://www.emacswiki.org/emacs/EasyPG
 (setq epa-pinentry-mode 'loopback)
 
+(setq grip-preview-use-webkit t)
+
 ;; switched to docker doom plugin
 ;; (use-package! dockerfile-mode
 ;;   :config
