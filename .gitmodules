@@ -1,3 +1,0 @@
-[submodule "files/emacs/.emacs.d"]
-	path = files/emacs/.emacs.d
-	url = github:hlissner/doom-emacs
