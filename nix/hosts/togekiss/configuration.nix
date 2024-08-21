@@ -67,8 +67,6 @@
     lutris
   ];
 
-  hardware.bluetooth.enable = true;
-
   # graphical environment
   services.xserver = {
     enable = true;

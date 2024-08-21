@@ -11,7 +11,7 @@ lib.mkIf pkgs.stdenv.isLinux {
     grabKeyboardAndMouse = true;
     defaultCacheTtl = 60;
     maxCacheTtl = 120;
-    pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-curses;
     extraConfig = ''
       allow-emacs-pinentry
       allow-loopback-pinentry
