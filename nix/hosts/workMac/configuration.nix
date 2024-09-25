@@ -7,9 +7,13 @@
     git
   ];
 
+  # https://github.com/DeterminateSystems/nix-installer/issues/234
+  # Determinite Systems Installer doesn't add a nix channel, so nix-shell doesn't work
+  # adding extra-nix-path fixes it
   nix.extraOptions = ''
     auto-optimise-store = false
     experimental-features = nix-command flakes
+    extra-nix-path = nixpkgs=flake:nixpkgs
   '';
 
   fonts.fontDir.enable = true;
