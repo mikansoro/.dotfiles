@@ -28,6 +28,7 @@ in {
     gopls               # go language server
     delve
     gdlv
+    cue
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
     libvterm
   ] ++ lib.optionals (pkgs.stdenv.isDarwin) [
