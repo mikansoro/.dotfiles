@@ -16,7 +16,7 @@
 
     ---------------------------------------------------------
 
-    Welcome to ${networking.hostName}
+    Welcome to ${networking.fqdnOrHostName}
 
     - This server is managed by NixOS
     - All changes are futile
