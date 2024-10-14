@@ -7,29 +7,28 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./disk.nix
       ../../nixos-modules/users
       ../../nixos-modules/nfs/client
       ../../nixos-modules/audio
       ../../nixos-modules/fonts
+      ../../nixos-modules/nix
       ../../nixos-modules/hardware/devices/lenovo/x13
     ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/disk/by-uuid/e3adb61b-5d71-4d5a-9487-7f70646e17ff"; # /dev/nvme0n1p6
-      preLVM = true;
-    };
-  };
 
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-mozc
-      fcitx5-gtk
-    ];
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
   };
   services.blueman.enable = true;
   hardware.bluetooth = {
@@ -70,8 +69,11 @@
   # graphical environment
   services.xserver = {
     enable = true;
+  };
+
+  services = { 
     displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
+    desktopManager.plasma6.enable = true;
   };
 
   # video

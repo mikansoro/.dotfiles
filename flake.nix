@@ -25,6 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # handles .app bundle sync
     mac-app-util.url = "github:hraban/mac-app-util";
   };
@@ -37,6 +42,7 @@
     nixpkgs-unstable,
     #nix-doom-emacs,
     nixos-generators,
+    disko,
     mac-app-util,
     ...
   }:
@@ -111,6 +117,7 @@
             inherit system specialArgs;
             modules = [
               ./nix/config/modules/tty.nix
+              disko.nixosModules.disko
               configPath
               (
                 { config, pkgs, ... }:
