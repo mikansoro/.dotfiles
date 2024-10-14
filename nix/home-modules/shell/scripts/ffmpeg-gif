@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+usage="Help: ffmpeg-gif -i input_file -s start_time -d duration -w width -h height outfile"
+while getopts ":i:s:d:wh" opt; do
+  case $opt in
+    i)
+        inputFile=$OPTARG
+        ;;
+    s)
+        startTime=$OPTARG
+        ;;
+    d)
+        duration=$OPTARG
+        ;;
+    w)
+        width=$OPTARG
+        ;;
+    h)
+        height=$OPTARG;
+        ;;
+    *)
+      echo "Unknown argument -${opt}\n$usage" >&2
+      exit 1
+      ;;
+  esac
+done
+shift "$((OPTIND-1))"
+
+if [[ -z $width ]]; then
+  width=480
+fi
+
+if [[ -z $height ]]; then
+  width=-1
+fi
+
+ffmpeg -ss "$startTime" -t "$duration" -i "$inputFile" -filter_complex "[0:v] scale=${width}:${height},split [a][b];[a] palettegen [p];[b][p] paletteuse" $1
