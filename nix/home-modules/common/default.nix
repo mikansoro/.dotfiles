@@ -25,9 +25,9 @@
       zip
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       pinentry
-      _1password-gui
       chromium
       firefox
+      darktable
       mpv
       nextcloud-client
       spotify
