@@ -40,6 +40,7 @@ in
     };
     initExtraBeforeCompInit = builtins.concatStringsSep "\n" [
       (builtins.readFile ./functions.zsh)
+      "bindkey \"^[[3~\" delete-char"
       # (builtins.readFile ./zshrc-extra.zsh)
     ];
     initExtra = builtins.concatStringsSep "\n" [
