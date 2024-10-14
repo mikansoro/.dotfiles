@@ -9,6 +9,7 @@
       ./hardware-configuration.nix
       ../../nixos-modules/users
       ../../nixos-modules/fonts
+      ../../nixos-modules/1password
     ];
 
   # Use the GRUB 2 boot loader.

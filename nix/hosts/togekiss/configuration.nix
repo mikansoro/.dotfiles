@@ -83,8 +83,11 @@
   };
 
   programs.steam = {
-    enable = true;
+    enable = false;
   };
+  
+  programs._1password.enable = true;
+  programs._1password-gui.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
