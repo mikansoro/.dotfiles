@@ -18,6 +18,18 @@
 
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
+    ibm-plex
+    source-code-pro
+    source-sans-pro
+    source-serif-pro
+    noto-fonts-cjk
+    source-han-sans-japanese
+    source-han-sans-korean
+    source-han-sans-simplified-chinese
+    source-han-serif-japanese
+    source-han-serif-korean
+    source-han-serif-simplified-chinese
+    source-han-code-jp
     emacsPackages.nerd-icons
   ];
 
