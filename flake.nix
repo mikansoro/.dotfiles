@@ -49,7 +49,17 @@
     let
       lib = nixpkgs.lib;
 
+      overlays = {
+        unstable-packages = final: _prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            system = final.system;
+            config.allowUnfree = true;
+          };
+        };
+      };
+
       genPkgs = system: import nixpkgs {
+        overlays = [ overlays.unstable-packages ];
         inherit system;
         config.allowUnfree = true;
       };
@@ -119,17 +129,6 @@
               ./nix/config/modules/tty.nix
               disko.nixosModules.disko
               configPath
-              (
-                { config, pkgs, ... }:
-                let
-                  overlay-unstable = final: prev: {
-                    unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
-                  };
-                in
-                  {
-                    nixpkgs.overlays = [ overlay-unstable ];
-                  }
-              )
               home-manager.nixosModules.home-manager {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
@@ -144,6 +143,7 @@
       processConfigurations = lib.mapAttrs (name: func: func name);
 
     in {
+
       darwinConfigurations = processConfigurations {
         workMac = darwinSystem "aarch64-darwin";
       };
