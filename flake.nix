@@ -3,23 +3,20 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    # nix-doom-emacs = {
-    #   url = "github:nix-community/nix-doom-emacs";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     emacs-overlay.follows = "emacs-overlay";
-    #   };
-    # };
+
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +25,10 @@
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
     };
 
     # handles .app bundle sync
@@ -43,6 +44,7 @@
     #nix-doom-emacs,
     nixos-generators,
     disko,
+    wezterm,
     mac-app-util,
     ...
   }:
@@ -101,7 +103,7 @@
                 };
               }
               home-manager.darwinModules.home-manager {
-                home-manager.extraSpecialArgs = { inherit pkgs self; };
+                home-manager.extraSpecialArgs = { inherit pkgs self wezterm; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users."michael.rowland" = hmConfig hostName;
@@ -120,7 +122,7 @@
           pkgs = genPkgs system;
           configPath = ./nix/hosts + "/${hostName}/configuration.nix";
           specialArgs = {
-            inherit self pkgs;
+            inherit self pkgs wezterm;
           };
         in
           nixpkgs.lib.nixosSystem {
@@ -134,7 +136,7 @@
                 home-manager.useUserPackages = true;
                 home-manager.users.michael = hmConfig hostName;
                 home-manager.extraSpecialArgs = {
-                  inherit pkgs self;
+                  inherit pkgs self wezterm;
                 };
               }
             ];
