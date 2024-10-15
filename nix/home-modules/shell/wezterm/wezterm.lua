@@ -1,10 +1,14 @@
 local wezterm = require 'wezterm'
-local config = {}
 
-config.color_scheme = 'ayu'
-config.font = wezterm.font 'Source Code Pro'
-config.front_end = "WebGpu"
+local config = {
+  audible_bell = "Disabled",
 
-config.dpi = 72
+  color_scheme = 'ayu',
+  font = wezterm.font('Source Code Pro'),
+  front_end = "WebGpu",
+
+  enable_wayland = false,
+  dpi = 72,
+}
 
 return config
