@@ -14,7 +14,7 @@ in {
       epkgs.vterm
     ]))
     emacsPackages.nerd-icons # doom-emacs switched from all-the-icons to nerd-icons https://github.com/doomemacs/doomemacs/issues/7379
-    nixfmt
+    nixfmt-rfc-style
     binutils
     nodePackages.yaml-language-server
     nodePackages.pyright
@@ -29,6 +29,8 @@ in {
     delve
     gdlv
     cue
+    lua-language-server
+    docker-ls
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
     libvterm
   ] ++ lib.optionals (pkgs.stdenv.isDarwin) [
