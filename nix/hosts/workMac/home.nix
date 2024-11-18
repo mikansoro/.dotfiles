@@ -41,6 +41,7 @@
       colima
       docker-client
       go_1_21
+      unstable.granted
     ];
   };
 
@@ -61,6 +62,8 @@
       # kconfcombined = "conftest test -p $HOME/git/foursquare/kubernetes-manifests/policy --namespace combined --combine $1";
       # kconform = "kubeconform -summary -skip AnalysisTemplate,Application,AppProject,Kustomization,Rollout,TCPMapping -strict -schema-location default -schema-location '$HOME/git/foursquare/kubernetes-manifests/crd_schemas/{{ .ResourceKind }}-{{ .ResourceAPIVersion }}.json' -kubernetes-version 1.21.0";
       # ktestall = "kconform && kconftest && kconfcombined";
+
+      assume = "source ${pkgs.granted}/bin/assume";
       flushdns = "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
     };
     initExtraBeforeCompInit = "PATH='/Users/michael.rowland/bin':$PATH";
