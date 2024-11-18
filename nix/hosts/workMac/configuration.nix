@@ -16,8 +16,8 @@
     extra-nix-path = nixpkgs=flake:nixpkgs
   '';
 
-  fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
+  #fonts.fontDir.enable = true;
+  fonts.packages = with pkgs; [
     ibm-plex
     source-code-pro
     source-sans-pro
@@ -104,23 +104,26 @@
   };
 
   services.skhd = {
-    enable = false;
+    enable = true;
     skhdConfig = ''
-      alt - h : yabai -m window --focus west
-      alt - j : yabai -m window --focus north
-      alt - k : yabai -m window --focus south
-      alt - l : yabai -m window --focus east
-
-      alt + shift - h : yabai -m space prev
-      alt + shift - l : yabai -m space next
-      ctrl + alt - f : yabai -m window --space next; yabai -m space --focus next
-      ctrl + alt - s : yabai -m window --space prev; yabai -m space --focus prev
-
-      alt - e : yabai -m display --focus next
-      alt - d : yabai -m display --focus prev
-      shift + alt - e : yabai -m window --display next; yabai -m display --focus next
-      shift + alt - d : yabai -m window --display prev; yabai -m display --focus prev
+      alt + shift - e : emacsclient --eval "(emacs-everywhere)"
     '';
+    # skhdConfig = ''
+    #   alt - h : yabai -m window --focus west
+    #   alt - j : yabai -m window --focus north
+    #   alt - k : yabai -m window --focus south
+    #   alt - l : yabai -m window --focus east
+
+    #   alt + shift - h : yabai -m space prev
+    #   alt + shift - l : yabai -m space next
+    #   ctrl + alt - f : yabai -m window --space next; yabai -m space --focus next
+    #   ctrl + alt - s : yabai -m window --space prev; yabai -m space --focus prev
+
+    #   alt - e : yabai -m display --focus next
+    #   alt - d : yabai -m display --focus prev
+    #   shift + alt - e : yabai -m window --display next; yabai -m display --focus next
+    #   shift + alt - d : yabai -m window --display prev; yabai -m display --focus prev
+    # '';
   };
 
   services.spacebar = {
