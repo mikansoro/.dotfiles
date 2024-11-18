@@ -20,8 +20,6 @@
     packages = with pkgs; [
       argocd
       awscli2
-      #aws-iam-authenticator
-      #aws-sam-cli
       #conftest
       #eksctl
       # docker-machine-hyperkit #darwin-only - from brew installed list
@@ -29,8 +27,6 @@
       kubeconform
       # mongosh # unknown variable
       # mysql-shell # build fail, ld fatal warning - libs were build for newer macos version than linked (10.12 vs 10.10)
-      open-policy-agent
-      #saml2aws
       #skaffold
       skopeo
       sqlite
@@ -63,6 +59,7 @@
       # kconform = "kubeconform -summary -skip AnalysisTemplate,Application,AppProject,Kustomization,Rollout,TCPMapping -strict -schema-location default -schema-location '$HOME/git/foursquare/kubernetes-manifests/crd_schemas/{{ .ResourceKind }}-{{ .ResourceAPIVersion }}.json' -kubernetes-version 1.21.0";
       # ktestall = "kconform && kconftest && kconfcombined";
 
+      # for pkgs.granted. Need to add the alias or the shell script errors out...
       assume = "source ${pkgs.granted}/bin/assume";
       flushdns = "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
     };
