@@ -15,7 +15,12 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -29,10 +34,14 @@
 
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # handles .app bundle sync
-    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs@{
