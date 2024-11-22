@@ -46,7 +46,7 @@
   services.mullvad-vpn.enable = false;
 
   # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
+  services.automatic-timezoned.enable = true;
 
   environment.systemPackages = with pkgs; [
     refind
