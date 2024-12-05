@@ -7,7 +7,7 @@ local config = {
   font = wezterm.font('Source Code Pro'),
   front_end = "WebGpu",
 
-  enable_wayland = false,
+  enable_wayland = true,
   --dpi = 72,
 }
 
