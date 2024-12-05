@@ -56,7 +56,9 @@
     htop
     btop
     libsForQt5.bismuth
-    firefox
+
+    # switch to ESR so it doesn't clash with home-manager managed firefox
+    firefox-esr
 
     nfs-utils
 
@@ -104,6 +106,7 @@
 
   # required to run electron applications natively in wayland
   # instead of using xwayland
+  # can check with `xlsclients`
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # fix an nvidia bug that causes simpledrm to stay around as an

@@ -27,7 +27,7 @@
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       pinentry
       chromium
-      firefox
+      #firefox
       darktable
       mpv
       nextcloud-client
