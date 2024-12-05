@@ -13,6 +13,7 @@
       minikube
       mosh
       nmap
+      obsidian
       p7zip
       pgcli
       # spotify # only available on x86_64-linux
