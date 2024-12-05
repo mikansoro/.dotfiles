@@ -8,7 +8,7 @@ local config = {
   front_end = "WebGpu",
 
   enable_wayland = false,
-  dpi = 72,
+  --dpi = 72,
 }
 
 return config
