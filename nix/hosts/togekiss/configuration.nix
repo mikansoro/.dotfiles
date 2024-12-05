@@ -13,6 +13,7 @@
       ../../nixos-modules/audio
       ../../nixos-modules/fonts
       ../../nixos-modules/nix
+      ../../nixos-modules/1password
       ../../nixos-modules/hardware/devices/lenovo/x13
     ];
 
@@ -86,9 +87,6 @@
     enable = false;
   };
   
-  programs._1password.enable = true;
-  programs._1password-gui.enable = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
