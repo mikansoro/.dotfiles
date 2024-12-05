@@ -55,14 +55,19 @@
   ];
 
   # graphical environment
-  services.xserver = {
-    enable = true;
-    displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
-  };
+  services.xserver.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = true;
 
   # video
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true;
@@ -85,6 +90,15 @@
 
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
+
+  # required to run electron applications natively in wayland
+  # instead of using xwayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # fix an nvidia bug that causes simpledrm to stay around as an
+  # extra frame buffer that harms gpu render performance
+  # https://github.com/NixOS/nixpkgs/issues/302059#issuecomment-2192598395
+  boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
