@@ -6,6 +6,7 @@
     ../../home-modules/shell
     ../../home-modules/git
     ../../home-modules/emacs
+    ../../home-modules/firefox
     ../../home-modules/gpg-agent
   ];
 

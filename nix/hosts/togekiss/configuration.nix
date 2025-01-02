@@ -59,7 +59,7 @@
     htop
     btop
     libsForQt5.bismuth
-    firefox
+    firefox-esr
     ripgrep
 
     steam-tui
