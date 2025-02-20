@@ -17,7 +17,7 @@ in {
     nixfmt-rfc-style
     binutils
     nodePackages.yaml-language-server
-    nodePackages.pyright
+    pyright
     git
     (ripgrep.override {withPCRE2 = true;})
     gnutls              # for TLS connectivity

@@ -23,6 +23,7 @@
 
   i18n.inputMethod = {
     enabled = "fcitx5";
+    #type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [
@@ -78,9 +79,9 @@
   };
 
   # video
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   programs.steam = {

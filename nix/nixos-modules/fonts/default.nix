@@ -13,7 +13,7 @@
       source-sans-pro
       source-serif-pro
 
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       source-han-sans-japanese
       source-han-sans-korean
       source-han-sans-simplified-chinese

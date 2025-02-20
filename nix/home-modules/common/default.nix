@@ -3,7 +3,7 @@
 {
   home = {
     packages = with pkgs; [
-      _1password
+      _1password-cli
       ipmitool
       kubectl
       kubectx
@@ -15,6 +15,7 @@
       nmap
       obsidian
       p7zip
+      pandoc
       pgcli
       # spotify # only available on x86_64-linux
       terraform
