@@ -27,6 +27,7 @@
       cb = "!f() { git checkout -b \"mrowland/$(date +'%Y%m%d')/$1\"; }; f";
       cbfeat = "!f() { git checkout -b \"feat/$1\"; }; f";
       cbfix = "!f() { git checkout -b \"fix/$1\"; }; f";
+      cbzip = "!f() { git checkout -b \"michaelr.$1\"; }; f";
       cp = "cherry-pick";
       cpa = "cherry-pick --abort";
       cpc = "cherry-pick --continue";

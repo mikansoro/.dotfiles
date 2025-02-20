@@ -20,6 +20,7 @@
     packages = with pkgs; [
       argocd
       awscli2
+      devbox
       #conftest
       #eksctl
       # docker-machine-hyperkit #darwin-only - from brew installed list
@@ -60,13 +61,13 @@
       # ktestall = "kconform && kconftest && kconfcombined";
 
       # for pkgs.granted. Need to add the alias or the shell script errors out...
-      assume = "source ${pkgs.granted}/bin/assume";
+      assume = "source ${pkgs.unstable.granted}/bin/assume";
       flushdns = "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
     };
     initExtraBeforeCompInit = "PATH='/Users/michael.rowland/bin':$PATH";
     envExtra = ''
-    export STARTERVIEW="/Users/michael.rowland/git/zr-private/ziprecruiter"
-    PATH=$STARTERVIEW/bin:$PATH
+    export STARTERVIEW="/Users/michael.rowland/git/zr-private/ziprecruiter/main"
+    PATH=$PATH:$STARTERVIEW/bin
     '';
   };
 

@@ -4,6 +4,7 @@
   home = {
     packages = with pkgs; [
       _1password-cli
+      dive # docker image inspector
       ipmitool
       kubectl
       kubectx

@@ -16,6 +16,8 @@
     extra-nix-path = nixpkgs=flake:nixpkgs
   '';
 
+  nix.channel.enable = false;
+
   #fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
     ibm-plex
@@ -93,6 +95,7 @@
       yabai -m space 2 --label emacs
       yabai -m space 3 --label active-work
       yabai -m space 4 --label slack
+      yabai -m space 8 --label other-browser-projects
       yabai -m space 9 --label music
 
       yabai -m rule --add app="Notion" space=persistence
@@ -106,24 +109,30 @@
   services.skhd = {
     enable = true;
     skhdConfig = ''
+      alt - h : yabai -m window --focus west
+      alt - j : yabai -m window --focus north
+      alt - k : yabai -m window --focus south
+      alt - l : yabai -m window --focus east
+      alt - left : yabai -m window --focus west
+      alt - up : yabai -m window --focus north
+      alt - down : yabai -m window --focus south
+      alt - right : yabai -m window --focus east
+
+      alt + shift - h : yabai -m space --focus prev
+      alt + shift - l : yabai -m space --focus next
+      alt + shift - left : yabai -m space --focus prev
+      alt + shift - right : yabai -m space --focus next
+      ctrl + alt - f : yabai -m window --space next; yabai -m space --focus next
+      ctrl + alt - s : yabai -m window --space prev; yabai -m space --focus prev
+
+      alt - e : yabai -m display --focus next
+      alt - d : yabai -m display --focus prev
+      shift + alt - e : yabai -m window --display next; yabai -m display --focus next
+      shift + alt - d : yabai -m window --display prev; yabai -m display --focus prev
+
       alt + shift - e : emacsclient --eval "(emacs-everywhere)"
     '';
-    # skhdConfig = ''
-    #   alt - h : yabai -m window --focus west
-    #   alt - j : yabai -m window --focus north
-    #   alt - k : yabai -m window --focus south
-    #   alt - l : yabai -m window --focus east
-
-    #   alt + shift - h : yabai -m space prev
-    #   alt + shift - l : yabai -m space next
-    #   ctrl + alt - f : yabai -m window --space next; yabai -m space --focus next
-    #   ctrl + alt - s : yabai -m window --space prev; yabai -m space --focus prev
-
-    #   alt - e : yabai -m display --focus next
-    #   alt - d : yabai -m display --focus prev
-    #   shift + alt - e : yabai -m window --display next; yabai -m display --focus next
-    #   shift + alt - d : yabai -m window --display prev; yabai -m display --focus prev
-    # '';
+      #cmd - return : wezterm start
   };
 
   services.spacebar = {
