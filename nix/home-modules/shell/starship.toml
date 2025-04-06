@@ -3,6 +3,7 @@ add_newline = false
 format = """
 $directory$git_branch$git_state$git_status\
 $kubernetes\
+$aws\
 $cmake\
 $dart\
 $deno\
@@ -72,3 +73,11 @@ format = "via [$symbol$version](bold 105) "
 disabled = false
 format = "[$time]($style)"
 time_format = "%H:%M"
+
+[aws]
+format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+symbol = '☁️ '
+style = 'bold yellow'
+disabled = false
+expiration_symbol = 'X'
+force_display = false
