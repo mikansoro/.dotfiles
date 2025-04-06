@@ -15,6 +15,18 @@
     whois
   ];
 
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+    flags = [ "--disable-up-arrow" ];
+    settings = {
+      update_check = false;
+      #auto_sync = true;
+      #sync_address = "";
+      #sync_frequency = "5m";
+      secrets_filter = true;
+    };
+  };
 
   # add git config here?
   programs.bat.enable = true;
