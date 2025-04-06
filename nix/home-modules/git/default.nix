@@ -21,10 +21,11 @@
       base = "rev-parse --show-toplevel";
       bl = "branch -vv";
       bd = "branch --delete --force";
+      br = "branch --sort=-committerdate";
       c = "checkout";
       cl = "checkout -";
-      # cb = "!f() { checkout --branch $(date +'%Y%m%')-${1} }; f";
-      cb = "!f() { git checkout -b \"mrowland/$(date +'%Y%m%d')/$1\"; }; f";
+      cb = "!f() { git checkout -b \"$(date +'%Y%m%d')-$1\"; }; f";
+      # cb = "!f() { git checkout -b \"mrowland/$(date +'%Y%m%d')/$1\"; }; f";
       cbfeat = "!f() { git checkout -b \"feat/$1\"; }; f";
       cbfix = "!f() { git checkout -b \"fix/$1\"; }; f";
       cbzip = "!f() { git checkout -b \"michaelr.$1\"; }; f";
