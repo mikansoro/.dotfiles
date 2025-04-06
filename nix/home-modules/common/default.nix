@@ -36,6 +36,7 @@
       #yubioath-desktop
       yubioath-flutter
       yubikey-personalization-gui
+      thunderbird
     ];
   };
 }
