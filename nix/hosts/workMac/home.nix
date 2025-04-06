@@ -37,7 +37,7 @@
       python312
       colima
       docker-client
-      go_1_21
+      go
       unstable.granted
     ];
   };
