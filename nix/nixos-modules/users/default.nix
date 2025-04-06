@@ -24,4 +24,8 @@
   };
 
   programs.zsh.enable = true;
+
+  # enable smartcard daemon so I can use yubikeys with yubico authenticator.
+  # vaguely authentication related, dont have a better place for this right now.
+  services.pcscd.enable = true;
 }
