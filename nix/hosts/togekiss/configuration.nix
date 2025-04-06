@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 # Description:
 # Lenovo x13 Remote Workstation
@@ -97,23 +97,17 @@
   networking.firewall.enable = true;
   #networking.firewall.allowedTCPPorts = [ 22 ];
 
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      address = [ "10.254.253.3/32" ];
-      dns = [ "10.254.253.0" ];
-      privateKeyFile = "/root/wireguard-keys/togekiss.key";
-      mtu = 1280;
+  networking.interfaces."tailscale0".useDHCP = lib.mkForce false;
 
-      peers = [
-        {
-          publicKey = "9AKkas/9C1Ih/Z3WFl5pdvNxwvY6uxqrpZ7xcZgj8xM=";
-          presharedKeyFile = "/root/wireguard-keys/preshared.key";
-          allowedIPs = [ "172.16.0.0/16" "10.254.253.0/23" "10.10.0.0/16" ];
-          endpoint = "159.65.105.164:51820";
-          persistentKeepalive = 16;
-        }
-      ];
-    };
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+    disableTaildrop = true;
+
+    extraSetFlags = [
+      "--accept-dns"
+      "--accept-routes"
+    ];
   };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
