@@ -97,6 +97,9 @@
   networking.firewall.enable = true;
   #networking.firewall.allowedTCPPorts = [ 22 ];
 
+  # Tailscale
+  services.resolved.enable = true;
+  #networking.networkmanager.dns = "systemd-resolved";
   networking.interfaces."tailscale0".useDHCP = lib.mkForce false;
 
   services.tailscale = {
@@ -109,6 +112,7 @@
       "--accept-routes"
     ];
   };
+  # End Tailscale
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
