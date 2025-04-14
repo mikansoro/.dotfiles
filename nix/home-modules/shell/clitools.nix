@@ -31,7 +31,11 @@
   # add git config here?
   programs.bat.enable = true;
   programs.btop.enable = true;
-  programs.tmux.enable = true;
+  programs.tmux = {
+    enable = true;
+    keyMode = "vi";
+    mouse = true;
+  };
   programs.vim.enable = true;
 
   programs.fzf = {
