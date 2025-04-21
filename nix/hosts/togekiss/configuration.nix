@@ -114,6 +114,8 @@
   };
   # End Tailscale
 
+  services.yubikey-agent.enable = true;
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Copy the NixOS configuration file and link it from the resulting system
