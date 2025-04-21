@@ -28,7 +28,7 @@
       ffmpeg
       filebot
       mpv
-      yt-dlp
+      unstable.yt-dlp
       qimgv
     ];
   };
