@@ -10,7 +10,7 @@ in {
   #nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
 
   home.packages = with pkgs; [
-    ((emacsPackagesFor emacs29).emacsWithPackages (epkgs: [
+    ((emacsPackagesFor emacs30).emacsWithPackages (epkgs: [
       epkgs.vterm
     ]))
     emacsPackages.nerd-icons # doom-emacs switched from all-the-icons to nerd-icons https://github.com/doomemacs/doomemacs/issues/7379
