@@ -2,37 +2,23 @@ add_newline = false
 
 format = """
 $directory$git_branch$git_state$git_status\
+$direnv\
 $kubernetes\
 $aws\
-$cmake\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$golang\
-$helm\
-$java\
-$julia\
-$kotlin\
-$nim\
-$nodejs\
-$ocaml\
-$perl\
-$php\
-$purescript\
-$python\
-$red\
-$ruby\
-$rust\
-$scala\
-$swift\
-$vlang\
-$vagrant\
-$zig\
 $terraform
 $time $username$hostname $nix_shell$character"""
+
+
+[aws]
+format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+symbol = '☁️ '
+style = 'bold yellow'
+disabled = false
+expiration_symbol = 'X'
+force_display = false
+
+[direnv]
+disabled = false
 
 [git_branch]
 style = "bold green"
@@ -47,7 +33,7 @@ format = "@[$hostname]($style)"
 style = "bold white"
 
 [username]
-show_always = true
+show_always = false
 format = "[$user]($style)"
 style_user = "bold white"
 
@@ -58,26 +44,20 @@ style = 'bold bright-blue'
 
 [kubernetes]
 disabled = false
-format = 'on [\($symbol$context:$namespace\)](purple bold) '
+format = 'on [\($context:$namespace\)](purple bold) '
 
 [nix_shell]
 disabled = false
-impure_msg = "[impure shell](bold red)"
-pure_msg = "[pure shell](bold green)"
+impure_msg = "[impure](bold red)"
+pure_msg = "[pure](bold green)"
 format = '[\(nix: $state $name\)](bold blue) '
 
 [terraform]
-format = "via [$symbol$version](bold 105) "
+format = "with [tf $version](bold 105) "
+disabled = true
 
 [time]
 disabled = false
 format = "[$time]($style)"
 time_format = "%H:%M"
 
-[aws]
-format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
-symbol = '☁️ '
-style = 'bold yellow'
-disabled = false
-expiration_symbol = 'X'
-force_display = false
