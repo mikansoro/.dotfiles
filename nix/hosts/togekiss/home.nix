@@ -21,6 +21,7 @@
 
     packages = with pkgs; [
       discord
+      webcord
       signal-desktop
 
       remmina
