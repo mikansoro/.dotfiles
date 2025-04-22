@@ -18,7 +18,7 @@ expiration_symbol = 'X'
 force_display = false
 
 [direnv]
-disabled = false
+disabled = true
 
 [git_branch]
 style = "bold green"
