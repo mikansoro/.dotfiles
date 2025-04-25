@@ -14,7 +14,9 @@
       minikube
       mosh
       nmap
-      obsidian
+      # TODO(mrowland): revert to stable after upgrade to 25.05
+      # need https://github.com/NixOS/nixpkgs/pull/358620 for IME support in plasma
+      unstable.obsidian
       p7zip
       pandoc
       pgcli
@@ -28,7 +30,9 @@
       zip
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       pinentry
-      chromium
+      # TODO(mrowland): revert to stable after upgrade to 25.05
+      # need https://github.com/NixOS/nixpkgs/pull/358620 for IME support in plasma
+      unstable.chromium
       #firefox
       darktable
       mpv
