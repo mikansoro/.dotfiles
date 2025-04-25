@@ -22,8 +22,8 @@
   boot.loader.systemd-boot.enable = true;
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
-    #type = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [
