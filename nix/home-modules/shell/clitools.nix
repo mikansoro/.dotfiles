@@ -15,6 +15,7 @@
     whois
   ];
 
+  # shell history in sqlite
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
@@ -28,7 +29,7 @@
     };
   };
 
-  # add git config here?
+  # shell tools
   programs.bat.enable = true;
   programs.btop.enable = true;
   programs.tmux = {
@@ -37,21 +38,24 @@
     mouse = true;
     shell = "${pkgs.zsh}/bin/zsh";
   };
+
   programs.vim.enable = true;
+  programs.bash.enable = true;
 
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
   };
 
+  # direnv
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
     enableZshIntegration = true;
     enableBashIntegration = true;
   };
-  programs.bash.enable = true;
 
+  # starship
   xdg.configFile."starship.toml".text = (builtins.readFile ./starship.toml);
   programs.starship = {
     enable = true;
