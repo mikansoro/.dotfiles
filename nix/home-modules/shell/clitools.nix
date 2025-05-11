@@ -35,6 +35,7 @@
     enable = true;
     keyMode = "vi";
     mouse = true;
+    shell = "${pkgs.zsh}/bin/zsh";
   };
   programs.vim.enable = true;
 
