@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nixos-hardware, ... }:
 
 # Description:
 # Lenovo x13 Remote Workstation
@@ -14,8 +14,10 @@
       ../../nixos-modules/fonts
       ../../nixos-modules/nix
       ../../nixos-modules/1password
-      ../../nixos-modules/hardware/devices/lenovo/x13
+#      ../../nixos-modules/hardware/devices/lenovo/x13
+      nixos-hardware.nixosModules.lenovo-thinkpad-x13-amd
     ];
+
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;

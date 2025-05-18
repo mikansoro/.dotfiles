@@ -6,6 +6,8 @@
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +49,7 @@
   outputs = inputs@{
     self,
     nixpkgs,
+    nixos-hardware,
     darwin,
     home-manager,
     nixpkgs-unstable,
@@ -131,7 +134,7 @@
           pkgs = genPkgs system;
           configPath = ./nix/hosts + "/${hostName}/configuration.nix";
           specialArgs = {
-            inherit self pkgs wezterm;
+            inherit self pkgs wezterm nixos-hardware;
           };
         in
           nixpkgs.lib.nixosSystem {
