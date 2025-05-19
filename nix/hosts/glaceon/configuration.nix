@@ -83,11 +83,12 @@
     powerManagement.enable = false;
     powerManagement.finegrained = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    open = true;
+    #package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    #driSupport32Bit = true; # removed in 24.11
   };
 
   programs.steam = {
