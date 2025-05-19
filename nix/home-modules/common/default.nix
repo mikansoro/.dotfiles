@@ -8,6 +8,7 @@
       ipmitool
       kubectl
       kubectx
+      jless
       pinniped
       kubernetes-helm
       kustomize
