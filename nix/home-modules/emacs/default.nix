@@ -16,6 +16,8 @@ in {
     emacsPackages.nerd-icons # doom-emacs switched from all-the-icons to nerd-icons https://github.com/doomemacs/doomemacs/issues/7379
     nixfmt-rfc-style
     binutils
+    python314
+    python312Packages.grip
     nodePackages.yaml-language-server
     pyright
     git
@@ -24,7 +26,6 @@ in {
     fd                  # faster projectile indexing
     imagemagick         # for image-dired
     ispell
-    python312Packages.grip
     gopls               # go language server
     delve
     gdlv
