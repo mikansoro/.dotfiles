@@ -28,17 +28,12 @@
     packages = with pkgs; [
       discord
       signal-desktop
-
-      chromium
-      #firefox
-
       remmina
 
       ffmpeg
       filebot
       mpv
       yt-dlp
-      filebot
     ];
   };
 }
