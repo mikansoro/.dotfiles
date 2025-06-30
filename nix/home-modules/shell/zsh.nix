@@ -10,6 +10,7 @@ in
       edit = "${emacs_editor}";
       emcs = "${emacs_editor}";
       g = "git";
+      jqish = "jq -R \"fromjson? | .\""; # for reading a file that's only partially jsonlines, ignore any line that isnt jsonlines format
       k = "kubectl";
       kg = "kubectl get";
       kd = "kubectl describe";
