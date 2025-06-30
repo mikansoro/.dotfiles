@@ -89,11 +89,6 @@
         lib.mkMerge [
           #nix-doom-emacs.hmModule
           configPath
-          {
-            nixpkgs.overlays = [
-              ./nix/overlays/terraform.nix
-            ];
-          }
         ];
 
       # inspired by github.com/thexyno/nixos-config
@@ -176,11 +171,6 @@
         #   modules = [
         #     nix-doom-emacs.hmModule
         #     ./nix/home/work-mac
-        #     # {
-        #     #   nixpkgs.overlays = [
-        #     #     ./nix/overlays/terraform.nix
-        #     #   ];
-        #     # }
         #   ];
         # };
       };
