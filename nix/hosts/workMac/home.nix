@@ -34,7 +34,7 @@
       # upx #golang-tooling
       #pinentry_mac
 
-      python312
+      #python312
       colima
       docker-client
       go

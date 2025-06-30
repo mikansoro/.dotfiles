@@ -16,7 +16,10 @@
     extra-nix-path = nixpkgs=flake:nixpkgs
   '';
 
+  nix.enable = true;
   nix.channel.enable = false;
+
+  system.primaryUser = "michael.rowland";
 
   #fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
@@ -56,7 +59,6 @@
   };
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
