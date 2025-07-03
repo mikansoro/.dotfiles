@@ -21,6 +21,7 @@
       p7zip
       pandoc
       pgcli
+      stern # k8s log tailing that doesn't suck
       # spotify # only available on x86_64-linux
       terraform
       unzip

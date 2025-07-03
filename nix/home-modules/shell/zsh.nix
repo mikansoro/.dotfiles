@@ -33,6 +33,9 @@ in
       ssha = "ssh -A";
       # whitelist old algos for working with old cisco switches;
       sshcisco = "ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-rsa -c aes128-cbc -l";
+
+      # cut stern's output to remove which pod returned the log, leaving the raw log output (usually to pipe to jq)
+      unstern = "tr -s ' ' ' ' | cut -d' ' -f3-";
     };
     sessionVariables = {
       EDITOR = "${emacs_editor}";
