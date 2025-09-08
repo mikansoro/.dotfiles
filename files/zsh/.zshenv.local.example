@@ -1,4 +1,0 @@
-DOTFILES_DIRECTORY="/home/user/.dotfiles"
-KUBERNETES_MANIFESTS_DIRECTORY="~/git/kubernetes-manifests"
-PINENTRY_PROGRAM_PATH="/usr/bin/pinentry-curses"
-#PINENTRY_PROGRAM_PATH="/usr/local/MacGPG2/libexec/pinentry-mac.app/Contents/MacOS/pinentry-mac"

@@ -1,9 +1,0 @@
-sudo dnf install -y xorg-x11-drv-amdgpu
-
-cat <<EOF | sudo tee -a /etc/default/grub
-GRUB_GFXMODE=3840x2160x32
-GRUB_CMDLINE_LINUX_DEFAULT="radeon.si_support=0 radeon.cik_support=0 amdgpu.si_support=1 amdgpu.cik_support=1 amdgpu.dc=1 amdgpu.dpm=1 amdgpu.modeset=1"
-EOF
-
-sudo grub2-mkconfig -o "$(readlink -e /etc/grub2.conf)"
-sudo grub2-mkconfig -o "$(readlink -e /etc/grub2-efi.conf)"

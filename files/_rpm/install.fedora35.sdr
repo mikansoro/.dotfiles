@@ -1,5 +1,0 @@
-sudo dnf group install -y 'Electronic Lab'
-
-sudo dnf install -y rtl-sdr gr-osmosdr
-
-sudo dnf install -y gqrx

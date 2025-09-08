@@ -1,5 +1,0 @@
-#!/bin/sh
-pushd ~/.dotfiles
-nix build .#homeManagerConfigurations.michael.activationPackage
-./result/activate
-popd
