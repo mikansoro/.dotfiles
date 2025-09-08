@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    code-cursor
   ];
 
   # https://github.com/DeterminateSystems/nix-installer/issues/234

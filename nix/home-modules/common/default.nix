@@ -5,6 +5,7 @@
     packages = with pkgs; [
       _1password-cli
       dive # docker image inspector
+      gitu
       ipmitool
       kubectl
       kubectx
@@ -29,6 +30,7 @@
       # yubikey-personalization-gui # marked as broken
       yubikey-manager
       # yubioath-desktop # error when trying to install pyscard, exit code 2
+      zed-editor
       zip
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       pinentry
