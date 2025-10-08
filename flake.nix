@@ -73,7 +73,10 @@
       };
 
       genPkgs = system: import nixpkgs {
-        overlays = [ overlays.unstable-packages ];
+        overlays = [
+          overlays.unstable-packages
+          (import ./nix/overlays/yt-dlp.nix)
+        ];
         inherit system;
         config.allowUnfree = true;
       };
