@@ -9,6 +9,7 @@
       ipmitool
       kubectl
       kubectx
+      k9s
       jless
       pinniped
       kubernetes-helm
