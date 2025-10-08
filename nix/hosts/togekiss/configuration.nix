@@ -14,6 +14,7 @@
       ../../nixos-modules/fonts
       ../../nixos-modules/nix
       ../../nixos-modules/1password
+      ./power.nix
 #      ../../nixos-modules/hardware/devices/lenovo/x13
       nixos-hardware.nixosModules.lenovo-thinkpad-x13-amd
     ];
@@ -107,7 +108,7 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";
-    disableTaildrop = true;
+    disableTaildrop = false;
 
     extraSetFlags = [
       "--accept-dns"
