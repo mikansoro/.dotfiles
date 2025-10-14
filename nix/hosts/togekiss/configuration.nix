@@ -66,9 +66,9 @@
     firefox-esr
     ripgrep
 
-    steam-tui
-    steam-run
-    lutris
+    #steam-tui
+    #steam-run
+    #lutris
   ];
 
   # graphical environment
