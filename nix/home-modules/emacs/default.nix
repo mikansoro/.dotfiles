@@ -9,10 +9,21 @@ in {
 
   #nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
 
-  home.packages = with pkgs; [
-    ((emacsPackagesFor emacs30).emacsWithPackages (epkgs: [
+  programs.emacs = {
+    enable = true;
+    package = with pkgs; ((emacsPackagesFor emacs30).emacsWithPackages (epkgs: [
       epkgs.vterm
-    ]))
+    ]));
+  };
+
+  services.emacs = {
+    enable = true;
+    client.enable = true;
+    defaultEditor = true;
+    startWithUserSession = "graphical";
+  };
+
+  home.packages = with pkgs; [
     emacsPackages.nerd-icons # doom-emacs switched from all-the-icons to nerd-icons https://github.com/doomemacs/doomemacs/issues/7379
     nixfmt-rfc-style
     binutils

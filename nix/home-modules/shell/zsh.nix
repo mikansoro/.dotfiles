@@ -1,14 +1,11 @@
 { config, lib, pkgs, ... }:
-let
-  emacs_editor = "emacsclient";
-in
+
 {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     shellAliases = {
-      edit = "${emacs_editor}";
-      emcs = "${emacs_editor}";
+      editor = "f(){ ${lib.getBin config.programs.emacs.package}/bin/emacsclient \"\${@:--c}\" };f";
       g = "git";
       jqish = "jq -R \"fromjson? | .\""; # for reading a file that's only partially jsonlines, ignore any line that isnt jsonlines format
       k = "kubectl";
@@ -36,11 +33,6 @@ in
 
       # cut stern's output to remove which pod returned the log, leaving the raw log output (usually to pipe to jq)
       unstern = "tr -s ' ' ' ' | cut -d' ' -f3-";
-    };
-    sessionVariables = {
-      EDITOR = "${emacs_editor}";
-      ALTERNATE_EDITOR = "emacs -nw $@";
-      VISUAL = "${emacs_editor}";
     };
     initContent = lib.mkMerge [
       (lib.mkOrder 550
