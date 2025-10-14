@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   emacs_editor = "emacsclient";
 in
@@ -42,13 +42,14 @@ in
       ALTERNATE_EDITOR = "emacs -nw $@";
       VISUAL = "${emacs_editor}";
     };
-    initExtraBeforeCompInit = builtins.concatStringsSep "\n" [
-      (builtins.readFile ./functions.zsh)
-      "bindkey \"^[[3~\" delete-char"
-      # (builtins.readFile ./zshrc-extra.zsh)
-    ];
-    initExtra = builtins.concatStringsSep "\n" [
-      "source <(${pkgs.kubectl}/bin/kubectl completion zsh)"
+    initContent = lib.mkMerge [
+      (lib.mkOrder 550
+        (builtins.readFile ./functions.zsh)
+      )
+      ''
+        bindkey "^[[3~" delete-char
+        source <(${pkgs.kubectl}/bin/kubectl completion zsh)
+      ''
     ];
   };
 }
