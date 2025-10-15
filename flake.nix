@@ -100,13 +100,6 @@
                 nixpkgs.config.allowUnfree = true;
               }
               mac-app-util.darwinModules.default
-              {
-                users.users."michael.rowland" = {
-                  name = "michael.rowland";
-                  home = "/Users/michael.rowland";
-                  shell = lib.mkDefault pkgs.zsh;
-                };
-              }
               home-manager.darwinModules.home-manager {
                 home-manager.extraSpecialArgs = { inherit self wezterm; };
                 home-manager.useGlobalPkgs = true;
