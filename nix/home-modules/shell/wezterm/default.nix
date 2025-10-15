@@ -7,23 +7,23 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
     extraConfig = ''
-    local config = {
-      audible_bell = "Disabled",
+      local config = {
+        audible_bell = "Disabled",
 
-      color_scheme = 'ayu',
-      font = wezterm.font('Source Code Pro'),
-      font_size = ${ if pkgs.stdenv.isDarwin then "13.0" else "10.0" },
-      front_end = "WebGpu",
+        color_scheme = 'ayu',
+        font = wezterm.font('Source Code Pro'),
+        font_size = ${ if pkgs.stdenv.isDarwin then "13.0" else "10.0" },
+        front_end = "WebGpu",
 
-      initial_cols = 120,
-      initial_rows = 30,
+        initial_cols = 120,
+        initial_rows = 30,
 
-      hide_tab_bar_if_only_one_tab = true,
+        hide_tab_bar_if_only_one_tab = true,
 
-      enable_wayland = true,
-    }
+        enable_wayland = true,
+      }
 
-    return config
+      return config
     '';
   };
 
