@@ -71,12 +71,6 @@
           };
         };
       };
-
-      genPkgs = system: import nixpkgs {
-        overlays = [ overlays.unstable-packages ];
-        inherit system;
-        config.allowUnfree = true;
-      };
       # genPkgsStable = system: import nixpkgs-stable {
         # inherit system;
         # config.allowUnfree = true;
@@ -94,23 +88,27 @@
       # inspired by github.com/thexyno/nixos-config
       darwinSystem = system: hostName:
         let
-          pkgs = genPkgs system;
           configPath = ./nix/hosts + "/${hostName}/configuration.nix";
         in
           darwin.lib.darwinSystem {
             inherit system;
-            specialArgs = { inherit pkgs self darwin; };
+            specialArgs = { inherit self darwin; };
             modules = [
+              # Configure nixpkgs with overlays
+              {
+                nixpkgs.overlays = [ overlays.unstable-packages ];
+                nixpkgs.config.allowUnfree = true;
+              }
               mac-app-util.darwinModules.default
               {
                 users.users."michael.rowland" = {
                   name = "michael.rowland";
                   home = "/Users/michael.rowland";
-                  shell = pkgs.zsh;
+                  shell = lib.mkDefault pkgs.zsh;
                 };
               }
               home-manager.darwinModules.home-manager {
-                home-manager.extraSpecialArgs = { inherit pkgs self wezterm; };
+                home-manager.extraSpecialArgs = { inherit self wezterm; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users."michael.rowland" = hmConfig hostName;
@@ -126,15 +124,19 @@
       # inspired by github.com/thexyno/nixos-config
       nixosServer = system: hostName:
         let
-          pkgs = genPkgs system;
           configPath = ./nix/hosts + "/${hostName}/configuration.nix";
           specialArgs = {
-            inherit self pkgs wezterm nixos-hardware;
+            inherit self wezterm nixos-hardware;
           };
         in
           nixpkgs.lib.nixosSystem {
             inherit system specialArgs;
             modules = [
+              # Configure nixpkgs with overlays
+              {
+                nixpkgs.overlays = [ overlays.unstable-packages ];
+                nixpkgs.config.allowUnfree = true;
+              }
               ./nix/config/modules/tty.nix
               disko.nixosModules.disko
               configPath
@@ -143,7 +145,7 @@
                 home-manager.useUserPackages = true;
                 home-manager.users.michael = hmConfig hostName;
                 home-manager.extraSpecialArgs = {
-                  inherit pkgs self wezterm;
+                  inherit self wezterm;
                 };
               }
             ];
@@ -175,40 +177,55 @@
         # };
       };
 
-      packages.x86_64-linux = {
-        # generate a VMDK for import to xenorchestra, not vcenter
-        # disables vmware guest settings, enables systemd uefi boot for xen, and xe guest utils for monitoring
-        xenImage = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          pkgs = genPkgs "x86_64-linux";
-          modules = [
-            "${inputs.nixpkgs-stable}/nixos/modules/virtualisation/xen-domU.nix"
-            ./nix/config/modules/vmconfig.nix
-            ./nix/config/modules/tty.nix
-            ({ lib, ...} : {
-              services.xe-guest-utilities.enable = true;
-              boot.loader.systemd-boot.enable = true;
-              boot.loader.efi.canTouchEfiVariables = true;
-              virtualisation.vmware.guest.enable = lib.mkForce false;
-            })
-            # create a separate module to not have to wrap the options above in config = {}
-            # best way? probably not. /shrug
-            ({ config, pkgs, ...} : {
-              # same derivation name as upstream vmware-image, but replace vmware with xen
-              vmware.vmDerivationName = "nixos-xen-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}";
-            })
-          ];
-          format = "vmware";
+      packages.x86_64-linux =
+        let
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ overlays.unstable-packages ];
+            config.allowUnfree = true;
+          };
+        in {
+          # generate a VMDK for import to xenorchestra, not vcenter
+          # disables vmware guest settings, enables systemd uefi boot for xen, and xe guest utils for monitoring
+          xenImage = nixos-generators.nixosGenerate {
+            system = "x86_64-linux";
+            inherit pkgs;
+            modules = [
+              {
+                nixpkgs.overlays = [ overlays.unstable-packages ];
+                nixpkgs.config.allowUnfree = true;
+              }
+              "${inputs.nixpkgs}/nixos/modules/virtualisation/xen-domU.nix"
+              ./nix/config/modules/vmconfig.nix
+              ./nix/config/modules/tty.nix
+              ({ lib, ...} : {
+                services.xe-guest-utilities.enable = true;
+                boot.loader.systemd-boot.enable = true;
+                boot.loader.efi.canTouchEfiVariables = true;
+                virtualisation.vmware.guest.enable = lib.mkForce false;
+              })
+              # create a separate module to not have to wrap the options above in config = {}
+              # best way? probably not. /shrug
+              ({ config, pkgs, ...} : {
+                # same derivation name as upstream vmware-image, but replace vmware with xen
+                vmware.vmDerivationName = "nixos-xen-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}";
+              })
+            ];
+            format = "vmware";
+          };
+          proxmoxImage = nixos-generators.nixosGenerate {
+            system = "x86_64-linux";
+            inherit pkgs;
+            modules = [
+              {
+                nixpkgs.overlays = [ overlays.unstable-packages ];
+                nixpkgs.config.allowUnfree = true;
+              }
+              ./nix/config/modules/vmconfig.nix
+              ./nix/config/modules/tty.nix
+            ];
+            format = "proxmox";
+          };
         };
-        proxmoxImage = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          pkgs = genPkgs "x86_64-linux";
-          modules = [
-            ./nix/config/modules/vmconfig.nix
-            ./nix/config/modules/tty.nix
-          ];
-          format = "proxmox";
-        };
-      };
     };
 }
