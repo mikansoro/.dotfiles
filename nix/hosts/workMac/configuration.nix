@@ -2,6 +2,12 @@
 
 {
 
+  users.users."michael.rowland" = {
+    name = "michael.rowland";
+    home = "/Users/michael.rowland";
+    shell = lib.mkDefault pkgs.zsh;
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     git
