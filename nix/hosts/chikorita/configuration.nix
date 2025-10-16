@@ -18,6 +18,25 @@
       nixos-hardware.nixosModules.common-pc-laptop-ssd
     ];
 
+  # ---------------
+  # ssh/networking
+  # ---------------
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      KbdInteractiveAuthentication = false;
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
+  services.fail2ban = {
+    enable = true;
+    maxretry = 5;
+  };
+
+  networking.firewall.allowedTCPPorts = config.services.openssh.ports;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
