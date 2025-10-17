@@ -32,6 +32,8 @@
       nodePackages.yaml-language-server
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       libvterm
+      wl-clipboard
+      xclip
     ] ++ lib.optionals (pkgs.stdenv.isDarwin) [
       cmake               # for some reason the default make on macos 14 doesn't work for compiling vterm
     ];
