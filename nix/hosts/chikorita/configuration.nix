@@ -38,6 +38,12 @@
 
   networking.firewall.allowedTCPPorts = config.services.openssh.ports;
 
+  networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true;
+  # -------------------
+  # end ssh/networking
+  # -------------------
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
@@ -57,9 +63,6 @@
   # hostname
   networking.domain = "int.mikansystems.com";
   networking.hostName = "chikorita"; # Define your hostname.
-
-  networking.networkmanager.enable = true;
-  programs.nm-applet.enable = true;
 
   time.timeZone = "America/Los_Angeles";
 
