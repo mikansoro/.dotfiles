@@ -46,6 +46,10 @@
     startWithUserSession = "graphical";
   };
 
+  programs.zsh.shellAliases = {
+    editor = "f(){ ${lib.getBin config.services.emacs.package}/bin/emacsclient \"\${@:--c}\" };f";
+  };
+
   home.packages = with pkgs; [
     delve
     gdlv

@@ -5,7 +5,6 @@
     enable = true;
     enableCompletion = true;
     shellAliases = {
-      editor = "f(){ ${lib.getBin config.programs.emacs.package}/bin/emacsclient \"\${@:--c}\" };f";
       g = "git";
       jqish = "jq -R \"fromjson? | .\""; # for reading a file that's only partially jsonlines, ignore any line that isnt jsonlines format
       k = "kubectl";
