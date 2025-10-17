@@ -18,12 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,6 +38,11 @@
       url = "github:hraban/mac-app-util";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "";
+    };
   };
 
   outputs = inputs@{
@@ -53,7 +52,7 @@
     darwin,
     home-manager,
     nixpkgs-unstable,
-    #nix-doom-emacs,
+    nix-doom-emacs-unstraightened,
     nixos-generators,
     disko,
     wezterm,
@@ -81,7 +80,7 @@
           configPath = ./nix/hosts + "/${hostName}/home.nix";
         in
         lib.mkMerge [
-          #nix-doom-emacs.hmModule
+          nix-doom-emacs-unstraightened.homeModule
           configPath
         ];
 
@@ -163,7 +162,7 @@
         # work-mac = home-manager.lib.homeManagerConfiguration {
         #   pkgs = genPkgs "x86_64-linux";
         #   modules = [
-        #     nix-doom-emacs.hmModule
+        #     nix-doom-emacs-unstraightened.homeModule
         #     ./nix/home/work-mac
         #   ];
         # };

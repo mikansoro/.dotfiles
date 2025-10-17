@@ -39,26 +39,26 @@
 
 ;;('require 'ox-confluence)
 
-(use-package! jsonnet-mode
-  :config
-  (setq auto-mode-alist
-        (append
-         (list
-          '("\\.jsonnet" . jsonnet-mode)
-          '("\\.libsonnet" . jsonnet-mode))
-         auto-mode-alist)))
+;;(use-package! jsonnet-mode
+;;  :config
+;;  (setq auto-mode-alist
+;;        (append
+;;         (list
+;;          '("\\.jsonnet" . jsonnet-mode)
+;;          '("\\.libsonnet" . jsonnet-mode))
+;;         auto-mode-alist)))
 
-(use-package! rego-mode
-  ;; in case of needing a different opa than on path
-  ;; :config
-  ;; (setq rego-repl-executable "/usr/local/bin/opa"
-  ;;       rego-opa-command "/usr/local/bin/opa")
-)
+;;(use-package! rego-mode
+;;  ;; in case of needing a different opa than on path
+;;  ;; :config
+;;  ;; (setq rego-repl-executable "/usr/local/bin/opa"
+;;  ;;       rego-opa-command "/usr/local/bin/opa")
+;;)
 
-(use-package! highlight-indent-guides
-  :config
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  (setq highlight-indent-guides-method 'character))
+;;(use-package! highlight-indent-guides
+;;  :config
+;;  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+;;  (setq highlight-indent-guides-method 'character))
 
 ;; enable gpg-agent minibuffer for pinentry
 ;; https://www.emacswiki.org/emacs/EasyPG
