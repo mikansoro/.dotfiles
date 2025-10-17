@@ -10,7 +10,7 @@
       local config = {
         audible_bell = "Disabled",
 
-        color_scheme = 'ayu',
+        color_scheme = 'Rapture',
         font = wezterm.font('Source Code Pro'),
         font_size = ${ if pkgs.stdenv.isDarwin then "13.0" else "10.0" },
         front_end = "WebGpu",
