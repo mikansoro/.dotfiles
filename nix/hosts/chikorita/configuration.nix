@@ -36,12 +36,41 @@
     maxretry = 5;
   };
 
-  networking.firewall.allowedTCPPorts = config.services.openssh.ports;
+  networking.firewall.allowedTCPPorts = config.services.openssh.ports ++ [
+  ];
+
+  services.xrdp = {
+    enable = true;
+    openFirewall = true;
+    defaultWindowManager = "startplasma-x11";
+  };
 
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
   # -------------------
   # end ssh/networking
+  # -------------------
+
+
+  # -------------------
+  # hardware
+  # -------------------
+
+  #powerManagement = {
+    #enable = true;
+  #};
+   
+  services.upower.ignoreLid = true;
+  
+  services.logind = {
+    powerKey = "ignore";
+    lidSwitch = "ignore";
+    lidSwitchExternalPower = "ignore";
+    lidSwitchDocked = "ignore";
+  };
+
+  # -------------------
+  # end hardware
   # -------------------
 
   # Use the systemd-boot EFI boot loader.
