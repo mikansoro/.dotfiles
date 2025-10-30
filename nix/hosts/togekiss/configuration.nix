@@ -66,6 +66,8 @@
     firefox-esr
     ripgrep
 
+    sunshine
+    libxcvt
     #steam-tui
     #steam-run
     #lutris
@@ -116,6 +118,28 @@
     ];
   };
   # End Tailscale
+
+  #programs.weylus = {
+  #  enable = true;
+  #  users = [ "michael" ];
+  #  openFirewall = true;
+  #};
+
+  # Configure Sunshine to ONLY listen on Tailscale interface
+  services.sunshine = {
+    enable = true;
+    autoStart = false;
+    capSysAdmin = true;
+  };
+
+  # Lock down firewall - only allow Sunshine on Tailscale interface
+  networking.firewall = {
+    # Only allow Sunshine ports on Tailscale interface
+    interfaces."tailscale0" = {
+      allowedTCPPorts = [ 47984 47989 47990 48010 ];
+      allowedUDPPorts = [ 47998 47999 48000 48002 48010 ];
+    };
+  };
 
   services.yubikey-agent.enable = true;
 
