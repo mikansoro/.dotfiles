@@ -7,6 +7,7 @@
     extraPackages = epkgs: with pkgs; [
       # emacs modes
       emacsPackages.gitconfig
+      emacsPackages.just-mode
 
       # package dependencies
       emacsPackages.nerd-icons
