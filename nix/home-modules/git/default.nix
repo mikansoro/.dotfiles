@@ -46,6 +46,7 @@
       cam = "commit --add --message";
       can = "commit --amend --no-edit";
       lg = "log --pretty=oneline --graph";
+      last-sha = "!f() { git log --pretty=oneline  | head -1 | awk '{print $1}' }; f";
       p = "pull";
       pu = "push";
       puf = "push --force-with-lease";
