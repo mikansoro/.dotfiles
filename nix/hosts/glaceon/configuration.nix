@@ -92,9 +92,19 @@
     #driSupport32Bit = true; # removed in 24.11
   };
 
+  xdg.portal = {
+    enable = true;
+    #extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+    config.common.default = "kde";
+  };
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+    extest.enable = true;
   };
 
   # Enable CUPS to print documents.
