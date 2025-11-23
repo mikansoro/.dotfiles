@@ -67,6 +67,10 @@
 
     nfs-utils
 
+    # ios mounting
+    libimobiledevice
+    ifuse
+
     steam-tui
     steam-run
     lutris
@@ -119,6 +123,9 @@
 
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
+
+  # ios mounting
+  services.usbmuxd.enable = true;
 
   # required to run electron applications natively in wayland
   # instead of using xwayland
