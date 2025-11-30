@@ -25,7 +25,7 @@
       pgcli
       stern # k8s log tailing that doesn't suck
       # spotify # only available on x86_64-linux
-      terraform
+      #terraform
       unzip
       yubikey-personalization
       # yubikey-personalization-gui # marked as broken
