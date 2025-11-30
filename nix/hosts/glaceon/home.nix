@@ -3,6 +3,7 @@
 {
   imports = [
     ../../home-modules/common
+    ../../home-modules/common/mpv.nix
     ../../home-modules/shell
     ../../home-modules/git
     ../../home-modules/emacs

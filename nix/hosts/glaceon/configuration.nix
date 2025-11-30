@@ -124,6 +124,9 @@
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
 
+  #networking.wg-quick.interfaces.wg0.configFile = "/etc/wireguard/wg0.conf";
+  #services.resolved.enable = true;
+
   # ios mounting
   services.usbmuxd.enable = true;
 
