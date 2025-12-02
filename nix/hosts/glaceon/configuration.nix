@@ -60,7 +60,6 @@
     git
     htop
     btop
-    libsForQt5.bismuth
 
     # switch to ESR so it doesn't clash with home-manager managed firefox
     firefox-esr

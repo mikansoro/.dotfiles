@@ -3,7 +3,8 @@
 {
   programs.wezterm = {
     enable = true;
-    package = wezterm.packages.${pkgs.system}.default;
+    #package = wezterm.packages.${pkgs.system}.default;
+    package = pkgs.unstable.wezterm;
     enableBashIntegration = true;
     enableZshIntegration = true;
     extraConfig = ''

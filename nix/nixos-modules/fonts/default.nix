@@ -14,12 +14,8 @@
       source-serif-pro
 
       noto-fonts-cjk-sans
-      source-han-sans-japanese
-      source-han-sans-korean
-      source-han-sans-simplified-chinese
-      source-han-serif-japanese
-      source-han-serif-korean
-      source-han-serif-simplified-chinese
+      source-han-sans
+      source-han-serif
       source-han-code-jp
       emacsPackages.nerd-icons
     ];

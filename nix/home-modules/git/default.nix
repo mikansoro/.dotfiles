@@ -9,6 +9,12 @@
         line-numbers = true;
       };
     };
+    # TODO: migrate settings during 25.11
+    #settings = {
+    #  alias = {
+    #    
+    #  };
+    #};
     userName = "Michael Rowland";
     userEmail = "michael@mikansystems.com";
     ignores = [

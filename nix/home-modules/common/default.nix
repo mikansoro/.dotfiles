@@ -34,7 +34,7 @@
       zed-editor
       zip
     ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
-      pinentry
+      #pinentry # disabled on upgrade to 25.11 (deprecated)
       # TODO(mrowland): revert to stable after upgrade to 25.05
       # need https://github.com/NixOS/nixpkgs/pull/358620 for IME support in plasma
       unstable.chromium
@@ -45,7 +45,7 @@
       spotify
       #yubioath-desktop
       yubioath-flutter
-      yubikey-personalization-gui
+      #yubikey-personalization-gui # disabled on upgrade to 25.11 (deprecated upstream)
       thunderbird
     ];
   };

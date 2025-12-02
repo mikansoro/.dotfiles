@@ -30,7 +30,6 @@
     git
     htop
     btop
-    libsForQt5.bismuth
     firefox
 
     nfs-utils

@@ -12,7 +12,7 @@
       # package dependencies
       emacsPackages.nerd-icons
 
-      binutils
+      #binutils
       fd              # faster projectile indexing
       git
       gnutls          # for TLS connectivity
