@@ -36,6 +36,8 @@
       filebot
       mpv
       yt-dlp
+
+      unstable.opencode
     ];
   };
 }
