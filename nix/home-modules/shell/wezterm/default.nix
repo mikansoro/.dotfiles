@@ -24,7 +24,9 @@
 
         keys = {
           {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"}}, 
-        }
+        },
+
+        mux_enable_ssh_agent = false,
 
       }
 
