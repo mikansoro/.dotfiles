@@ -5,16 +5,17 @@
     packages = with pkgs; [
       _1password-cli
       dive # docker image inspector
+      gcrane # like skopeo, docker image copy tools
       gitu
       ipmitool
+      jless
       kubectl
       kubectx
       k9s
-      jless
-      pinniped
       kubernetes-helm
       kustomize
       minikube
+      moreutils # extra utilities
       mosh
       nmap
       # TODO(mrowland): revert to stable after upgrade to 25.05
@@ -24,7 +25,6 @@
       pandoc
       pgcli
       stern # k8s log tailing that doesn't suck
-      # spotify # only available on x86_64-linux
       #terraform
       unzip
       yubikey-personalization

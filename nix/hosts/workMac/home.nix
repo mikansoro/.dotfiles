@@ -20,24 +20,20 @@
     packages = with pkgs; [
       argocd
       awscli2
+      coreutils
       devbox
-      #conftest
-      #eksctl
-      # docker-machine-hyperkit #darwin-only - from brew installed list
+      eks-node-viewer
       kind
       kubeconform
-      # mongosh # unknown variable
       # mysql-shell # build fail, ld fatal warning - libs were build for newer macos version than linked (10.12 vs 10.10)
-      #skaffold
-      skopeo
       sqlite
-      # upx #golang-tooling
       #pinentry_mac
 
       #python312
       colima
       docker-client
-      go
+      # go
+      go_1_24
       unstable.granted
     ];
   };
