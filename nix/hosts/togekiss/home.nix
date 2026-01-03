@@ -20,6 +20,10 @@
     stateVersion = "22.11";
 
     packages = with pkgs; [
+      devbox
+      crush
+      mcp-nixos
+      
       vesktop
       discord
       webcord
