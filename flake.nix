@@ -28,11 +28,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wezterm = {
-      url = "github:wez/wezterm?dir=nix";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # handles .app bundle sync
     mac-app-util = {
       url = "github:hraban/mac-app-util";
@@ -55,7 +50,6 @@
     nix-doom-emacs-unstraightened,
     nixos-generators,
     disko,
-    wezterm,
     mac-app-util,
     ...
   }:
@@ -100,7 +94,7 @@
               }
               mac-app-util.darwinModules.default
               home-manager.darwinModules.home-manager {
-                home-manager.extraSpecialArgs = { inherit self wezterm; };
+                home-manager.extraSpecialArgs = { inherit self; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users."michael.rowland" = hmConfig hostName;
@@ -118,7 +112,7 @@
         let
           configPath = ./nix/hosts + "/${hostName}/configuration.nix";
           specialArgs = {
-            inherit self wezterm nixos-hardware;
+            inherit self nixos-hardware;
           };
         in
           nixpkgs.lib.nixosSystem {
@@ -137,7 +131,7 @@
                 home-manager.useUserPackages = true;
                 home-manager.users.michael = hmConfig hostName;
                 home-manager.extraSpecialArgs = {
-                  inherit self wezterm;
+                  inherit self;
                 };
               }
             ];

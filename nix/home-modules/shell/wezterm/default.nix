@@ -1,9 +1,8 @@
-{ config, lib, pkgs, wezterm, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.wezterm = {
     enable = true;
-    #package = wezterm.packages.${pkgs.system}.default;
     package = pkgs.unstable.wezterm;
     enableBashIntegration = true;
     enableZshIntegration = true;
