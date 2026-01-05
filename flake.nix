@@ -29,10 +29,10 @@
     };
 
     # handles .app bundle sync
-    mac-app-util = {
-      url = "github:hraban/mac-app-util";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    # mac-app-util = {
+    #   url = "github:hraban/mac-app-util";
+    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # };
 
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
@@ -50,7 +50,7 @@
     nix-doom-emacs-unstraightened,
     nixos-generators,
     disko,
-    mac-app-util,
+    # mac-app-util,
     ...
   }:
     let
@@ -92,16 +92,16 @@
                 nixpkgs.overlays = [ overlays.unstable-packages ];
                 nixpkgs.config.allowUnfree = true;
               }
-              mac-app-util.darwinModules.default
+              # mac-app-util.darwinModules.default
               home-manager.darwinModules.home-manager {
                 home-manager.extraSpecialArgs = { inherit self; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users."michael.rowland" = hmConfig hostName;
 
-                home-manager.sharedModules = [
-                  mac-app-util.homeManagerModules.default
-                ];
+                # home-manager.sharedModules = [
+                #   mac-app-util.homeManagerModules.default
+                # ];
               }
               configPath
             ];
