@@ -45,8 +45,6 @@
       spotify
       #yubioath-desktop
       yubioath-flutter
-      #yubikey-personalization-gui # disabled on upgrade to 25.11 (deprecated upstream)
-      thunderbird
     ];
   };
 }
