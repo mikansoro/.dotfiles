@@ -16,7 +16,6 @@
     packages = with pkgs; [
       ffmpeg
       filebot
-      mpv
       yt-dlp
     ];
   };

@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./mpv.nix
+  ];
+  
   home = {
     packages = with pkgs; [
       _1password-cli
@@ -40,7 +44,7 @@
       unstable.chromium
       #firefox
       darktable
-      mpv
+      #mpv #handled by mpv.nix
       nextcloud-client
       spotify
       #yubioath-desktop

@@ -10,6 +10,7 @@ in
 {
   programs.mpv = {
     enable = true;
+    package = pkgs.unstable.mpv-unwrapped;
     config = {
       #autofit = "60%x45%";
        
@@ -33,7 +34,7 @@ in
       ao = "pulse";
 
       # video
-      vo = "gpu";
+      vo = "gpu-next";
       profile = "high-quality";
       hwdec = "auto";
 
@@ -46,20 +47,20 @@ in
       "protocol.https" = {
         cache = true;
         cache-secs = 100;
-        cache-default = 500000;
-        cache-backbuffer = 250000;
+        #cache-default = 500000;
+        #cache-backbuffer = 250000;
       };
       "protocol.http" = {
         cache = true;
         cache-secs = 100;
-        cache-default = 500000;
-        cache-backbuffer = 250000;
+        #cache-default = 500000;
+        #cache-backbuffer = 250000;
       };
       "protocol.ftp" = {
         cache = true;
         cache-secs = 100;
-        cache-default = 500000;
-        cache-backbuffer = 250000;
+        #cache-default = 500000;
+        #cache-backbuffer = 250000;
       };
       "extension.webm" = {
         loop-file = "inf";

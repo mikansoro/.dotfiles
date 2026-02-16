@@ -3,7 +3,6 @@
 {
   imports = [
     ../../home-modules/common
-    ../../home-modules/common/mpv.nix
     ../../home-modules/shell
     ../../home-modules/git
     ../../home-modules/emacs
@@ -23,6 +22,9 @@
     GDK_SCALE = "1";
   };
 
+  # stop vulkan from crashing all the time on nvidia
+  programs.mpv.config.hwdec = lib.mkForce "nvdec";
+  
   home = {
     stateVersion = "22.11";
 
@@ -40,7 +42,6 @@
 
       ffmpeg
       filebot
-      mpv
       yt-dlp
 
       unstable.opencode
