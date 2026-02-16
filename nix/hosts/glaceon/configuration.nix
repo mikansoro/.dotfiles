@@ -90,6 +90,7 @@
     open = true;
     #package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  hardware.nvidia-container-toolkit.enable = true;
   hardware.graphics = {
     enable = true;
     #driSupport32Bit = true; # removed in 24.11
