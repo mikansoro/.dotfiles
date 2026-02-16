@@ -28,10 +28,15 @@
 
     packages = with pkgs; [
       discord
-      unstable.vesktop
-      unstable.webcord
+      vesktop
+      webcord
       signal-desktop
       remmina
+
+      makemkv
+      losslesscut-bin
+      mkvtoolnix
+      handbrake
 
       ffmpeg
       filebot

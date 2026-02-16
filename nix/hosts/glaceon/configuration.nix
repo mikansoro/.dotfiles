@@ -64,8 +64,6 @@
     # switch to ESR so it doesn't clash with home-manager managed firefox
     firefox-esr
 
-    makemkv
-    
     nfs-utils
 
     # ios mounting
