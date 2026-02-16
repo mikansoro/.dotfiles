@@ -75,6 +75,11 @@
     lutris
   ];
 
+  # build apps with cuda support by default
+  #nixpkgs.config = {
+  #  cudaSupport = true;
+  #};
+
   # graphical environment
   services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
