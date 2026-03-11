@@ -28,6 +28,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flox = {
+      url = "github:flox/flox";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # handles .app bundle sync
     # mac-app-util = {
     #   url = "github:hraban/mac-app-util";
@@ -50,6 +55,7 @@
     nix-doom-emacs-unstraightened,
     nixos-generators,
     disko,
+    flox,
     # mac-app-util,
     ...
   }:
@@ -95,6 +101,7 @@
                 nixpkgs.overlays = builtins.attrValues overlays;
                 nixpkgs.config.allowUnfree = true;
               }
+              { environment.systemPackages = [ flox.packages."aarch64-darwin".default ]; }
               # mac-app-util.darwinModules.default
               home-manager.darwinModules.home-manager {
                 home-manager.extraSpecialArgs = { inherit self; };
