@@ -63,6 +63,9 @@
             config.allowUnfree = true;
           };
         };
+        custom-packages = final: prev: {
+          mcp-searxng = final.callPackage ./nix/packages/mcp-searxng.nix { };
+        };
       };
       # genPkgsStable = system: import nixpkgs-stable {
         # inherit system;
@@ -89,7 +92,7 @@
             modules = [
               # Configure nixpkgs with overlays
               {
-                nixpkgs.overlays = [ overlays.unstable-packages ];
+                nixpkgs.overlays = builtins.attrValues overlays;
                 nixpkgs.config.allowUnfree = true;
               }
               # mac-app-util.darwinModules.default
@@ -120,7 +123,7 @@
             modules = [
               # Configure nixpkgs with overlays
               {
-                nixpkgs.overlays = [ overlays.unstable-packages ];
+                nixpkgs.overlays = builtins.attrValues overlays;
                 nixpkgs.config.allowUnfree = true;
               }
               ./nix/config/modules/tty.nix
@@ -166,7 +169,7 @@
         let
           pkgs = import nixpkgs {
             system = "x86_64-linux";
-            overlays = [ overlays.unstable-packages ];
+            overlays = builtins.attrValues overlays;
             config.allowUnfree = true;
           };
         in {
@@ -177,7 +180,7 @@
             inherit pkgs;
             modules = [
               {
-                nixpkgs.overlays = [ overlays.unstable-packages ];
+                nixpkgs.overlays = builtins.attrValues overlays;
                 nixpkgs.config.allowUnfree = true;
               }
               "${inputs.nixpkgs}/nixos/modules/virtualisation/xen-domU.nix"
@@ -203,7 +206,7 @@
             inherit pkgs;
             modules = [
               {
-                nixpkgs.overlays = [ overlays.unstable-packages ];
+                nixpkgs.overlays = builtins.attrValues overlays;
                 nixpkgs.config.allowUnfree = true;
               }
               ./nix/config/modules/vmconfig.nix
