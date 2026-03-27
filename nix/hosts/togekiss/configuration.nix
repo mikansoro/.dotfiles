@@ -129,7 +129,7 @@
 
   # Configure Sunshine to ONLY listen on Tailscale interface
   services.sunshine = {
-    enable = true;
+    enable = false;
     autoStart = false;
     capSysAdmin = true;
   };
