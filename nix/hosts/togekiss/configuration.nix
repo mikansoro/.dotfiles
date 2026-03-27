@@ -48,7 +48,10 @@
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
 
-  services.mullvad-vpn.enable = false;
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
+  };
 
   # Set your time zone.
   services.automatic-timezoned.enable = true;
