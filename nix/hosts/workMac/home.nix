@@ -61,7 +61,7 @@
       assume = "source ${pkgs.unstable.granted}/bin/assume";
       flushdns = "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
     };
-    initExtraBeforeCompInit = "PATH='/Users/michael.rowland/bin':$PATH";
+    initContent = lib.mkOrder 550 "PATH='/Users/michael.rowland/bin':$PATH";
     envExtra = ''
     export STARTERVIEW="/Users/michael.rowland/git/zr-private/ziprecruiter/main"
     PATH=$PATH:$STARTERVIEW/bin
