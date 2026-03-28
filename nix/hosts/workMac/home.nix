@@ -8,6 +8,7 @@
     #../../home-modules/gpg-agent
     # ../../home-modules/gpg
     ../../home-modules/emacs
+    ../../home-modules/claude
   ];
 
   programs.home-manager.enable = true;
