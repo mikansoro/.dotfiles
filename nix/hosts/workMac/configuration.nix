@@ -42,6 +42,8 @@
 
   nixpkgs.hostPlatform = "aarch64-darwin";
 
+  home-manager.backupFileExtension = "hmbak";
+  
   homebrew = {
     # NOTE: Temporarily disable homebrew integration until i can remove the old binaries
     enable = false;
