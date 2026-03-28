@@ -33,7 +33,7 @@
       colima
       docker-client
       # go
-      go_1_24
+      go_1_25
       unstable.granted
     ];
   };

@@ -11,8 +11,6 @@
   environment.systemPackages = with pkgs; [
     vim
     git
-    code-cursor
-    unstable.claude-code
   ];
 
   # https://github.com/DeterminateSystems/nix-installer/issues/234
