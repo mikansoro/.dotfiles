@@ -79,5 +79,12 @@
         };
       };
     })
+
+    (lib.mkIf pkgs.stdenv.isDarwin { 
+      settings = {
+        alwaysThinkingEnabled = true;
+        model = "opus";
+      };
+    })
   ];
 }
