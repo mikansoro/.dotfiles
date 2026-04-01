@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 # Description:
 # Physical Workstation
@@ -80,6 +80,23 @@
   #nixpkgs.config = {
   #  cudaSupport = true;
   #};
+  
+  # Tailscale
+  services.resolved.enable = true;
+  #networking.networkmanager.dns = "systemd-resolved";
+  networking.interfaces."tailscale0".useDHCP = lib.mkForce false;
+
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+    disableTaildrop = false;
+
+    extraSetFlags = [
+      "--accept-dns"
+      "--accept-routes"
+    ];
+  };
+  # End Tailscale
 
   # graphical environment
   services.xserver.enable = true;
