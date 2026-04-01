@@ -98,6 +98,11 @@
   };
   # End Tailscale
 
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
+  };
+
   # graphical environment
   services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
