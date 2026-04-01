@@ -98,7 +98,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  virtualisation.docker.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerSocket.enable = false;
+  };
   #services.openssh.enable = false;
 
   networking.firewall.enable = true;
