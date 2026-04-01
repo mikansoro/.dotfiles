@@ -13,6 +13,7 @@
       ../../nixos-modules/nix
       ../../nixos-modules/1password
       ../../nixos-modules/fonts
+      ./scanner.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
