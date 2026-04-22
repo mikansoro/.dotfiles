@@ -43,12 +43,13 @@
       # need https://github.com/NixOS/nixpkgs/pull/358620 for IME support in plasma
       unstable.chromium
       #firefox
-      darktable
       #mpv #handled by mpv.nix
-      nextcloud-client
       spotify
       #yubioath-desktop
       yubioath-flutter
+    ] ++ lib.optionals (config.mikansoro.machineUsage == "personal") [
+      darktable
+      nextcloud-client
     ];
   };
 }

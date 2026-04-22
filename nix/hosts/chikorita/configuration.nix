@@ -18,6 +18,8 @@
       nixos-hardware.nixosModules.common-pc-laptop-ssd
     ];
 
+  mikansoro.machineUsage = "personal";
+
   # ---------------
   # ssh/networking
   # ---------------

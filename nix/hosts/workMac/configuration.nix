@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
+  mikansoro.machineUsage = "work";
 
   users.users."michael.rowland" = {
     name = "michael.rowland";

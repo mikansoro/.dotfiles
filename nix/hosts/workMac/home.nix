@@ -11,6 +11,8 @@
     ../../home-modules/claude
   ];
 
+  mikansoro.machineUsage = "work";
+
   programs.home-manager.enable = true;
 
   home = {

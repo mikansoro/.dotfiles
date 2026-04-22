@@ -49,9 +49,8 @@
       #  '';
       #};
     }
-    
-    # TODO: base this off some "iswork" key later
-    (lib.mkIf (!pkgs.stdenv.isDarwin) {
+
+    (lib.mkIf (config.mikansoro.machineUsage == "personal") {
       mcpServers = {
         searxng = {
           command = "${pkgs.mcp-searxng}/bin/mcp-searxng";
@@ -80,7 +79,7 @@
       };
     })
 
-    (lib.mkIf pkgs.stdenv.isDarwin { 
+    (lib.mkIf (config.mikansoro.machineUsage == "work") {
       settings = {
         alwaysThinkingEnabled = true;
         model = "opus";
