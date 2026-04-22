@@ -31,7 +31,7 @@ in
       volume = 80;
       volume-max = 150;
       # TODO: make this conditional on wayland somehow?
-      ao = "pulse";
+      ao = lib.mkIf (!pkgs.stdenv.isDarwin) "pulse";
 
       # video
       vo = "gpu-next";
