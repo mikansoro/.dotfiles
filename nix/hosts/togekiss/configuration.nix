@@ -8,12 +8,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./disk.nix
-      ../../nixos-modules/users
-      ../../nixos-modules/nfs/client
-      ../../nixos-modules/audio
-      ../../nixos-modules/fonts
-      ../../nixos-modules/nix
-      ../../nixos-modules/1password
       ./power.nix
 #      ../../nixos-modules/hardware/devices/lenovo/x13
       nixos-hardware.nixosModules.lenovo-thinkpad-x13-amd

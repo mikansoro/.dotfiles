@@ -113,7 +113,10 @@
                 home-manager.extraSpecialArgs = { inherit self; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.sharedModules = [ ./nix/modules/mikansoro ];
+                home-manager.sharedModules = [
+                  ./nix/modules/mikansoro
+                  ./nix/modules/home-manager
+                ];
                 home-manager.users."michael.rowland" = hmConfig hostName;
 
                 # home-manager.sharedModules = [
@@ -140,15 +143,19 @@
                 nixpkgs.overlays = builtins.attrValues overlays;
                 nixpkgs.config.allowUnfree = true;
               }
-              ./nix/modules/mikansoro
               { environment.systemPackages = [ flox.packages."x86_64-linux".default ]; }
+              ./nix/modules/mikansoro
+              ./nix/modules/nixos
               ./nix/config/modules/tty.nix
               disko.nixosModules.disko
               configPath
               home-manager.nixosModules.home-manager {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.sharedModules = [ ./nix/modules/mikansoro ];
+                home-manager.sharedModules = [
+                  ./nix/modules/mikansoro
+                  ./nix/modules/home-manager
+                ];
                 home-manager.users.michael = hmConfig hostName;
                 home-manager.extraSpecialArgs = {
                   inherit self;

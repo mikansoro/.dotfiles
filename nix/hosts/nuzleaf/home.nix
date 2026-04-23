@@ -2,13 +2,15 @@
 
 {
   imports = [
-    ../../home-modules/common
-    ../../home-modules/shell
-    ../../home-modules/git
-    ../../home-modules/emacs
   ];
 
-  mikansoro.machineUsage = "personal";
+  mikansoro = {
+    machineUsage = "personal";
+    common.enable = true;
+    shell.enable = true;
+    git.enable = true;
+    emacs.enable = true;
+  };
 
   programs.home-manager.enable = true;
 

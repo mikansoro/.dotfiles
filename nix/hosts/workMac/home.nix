@@ -2,16 +2,16 @@
 
 {
   imports = [
-    ../../home-modules/common
-    ../../home-modules/shell
-    ../../home-modules/git
-    #../../home-modules/gpg-agent
-    # ../../home-modules/gpg
-    ../../home-modules/emacs
-    ../../home-modules/claude
   ];
 
-  mikansoro.machineUsage = "work";
+  mikansoro = {
+    machineUsage = "work";
+    common.enable = true;
+    shell.enable = true;
+    git.enable = true;
+    emacs.enable = true;
+    claude.enable = true;
+  };
 
   programs.home-manager.enable = true;
 

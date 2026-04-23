@@ -6,5 +6,4 @@
     ./zsh.nix
     ./wezterm
   ];
-
 }

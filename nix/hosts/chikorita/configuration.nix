@@ -8,12 +8,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./disk.nix
-      ../../nixos-modules/users
-      ../../nixos-modules/nfs/client
-      ../../nixos-modules/audio
-      ../../nixos-modules/fonts
-      ../../nixos-modules/nix
-      ../../nixos-modules/1password
       nixos-hardware.nixosModules.lenovo-thinkpad-x220
       nixos-hardware.nixosModules.common-pc-laptop-ssd
     ];
