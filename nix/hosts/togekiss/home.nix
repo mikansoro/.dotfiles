@@ -11,6 +11,8 @@
     #../../home-modules/gpg-agent
   ];
 
+  mikansoro.machineUsage = "personal";
+
   programs.home-manager.enable = true;
 
   xdg = {

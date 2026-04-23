@@ -102,11 +102,13 @@
                 nixpkgs.config.allowUnfree = true;
               }
               { environment.systemPackages = [ flox.packages."aarch64-darwin".default ]; }
+              ./nix/modules/mikansoro
               # mac-app-util.darwinModules.default
               home-manager.darwinModules.home-manager {
                 home-manager.extraSpecialArgs = { inherit self; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
+                home-manager.sharedModules = [ ./nix/modules/mikansoro ];
                 home-manager.users."michael.rowland" = hmConfig hostName;
 
                 # home-manager.sharedModules = [
@@ -133,12 +135,14 @@
                 nixpkgs.overlays = builtins.attrValues overlays;
                 nixpkgs.config.allowUnfree = true;
               }
+              ./nix/modules/mikansoro
               ./nix/config/modules/tty.nix
               disko.nixosModules.disko
               configPath
               home-manager.nixosModules.home-manager {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
+                home-manager.sharedModules = [ ./nix/modules/mikansoro ];
                 home-manager.users.michael = hmConfig hostName;
                 home-manager.extraSpecialArgs = {
                   inherit self;

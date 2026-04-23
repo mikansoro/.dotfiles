@@ -8,6 +8,8 @@
     ../../home-modules/emacs
   ];
 
+  mikansoro.machineUsage = "personal";
+
   programs.home-manager.enable = true;
 
   home = {

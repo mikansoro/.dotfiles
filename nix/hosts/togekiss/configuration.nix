@@ -19,6 +19,8 @@
       nixos-hardware.nixosModules.lenovo-thinkpad-x13-amd
     ];
 
+  mikansoro.machineUsage = "personal";
+
   home-manager.backupFileExtension = "hmbak";
 
   # Use the systemd-boot EFI boot loader.
