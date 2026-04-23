@@ -21,12 +21,5 @@
 
   home = {
     stateVersion = "25.05";
-
-    packages = with pkgs; [
-      remmina
-
-      ffmpeg
-      unstable.yt-dlp
-    ];
   };
 }

@@ -28,22 +28,10 @@
     stateVersion = "22.11";
 
     packages = with pkgs; [
-      unstable.discord
-      unstable.vesktop
-      webcord
-      signal-desktop
-      remmina
-
       makemkv
       losslesscut-bin
       mkvtoolnix
       handbrake
-
-      ffmpeg
-      filebot
-      unstable.yt-dlp
-
-      unstable.opencode
     ];
   };
 }

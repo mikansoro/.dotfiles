@@ -27,7 +27,6 @@
       devbox
       eks-node-viewer
       kind
-      kubeconform
       # mysql-shell # build fail, ld fatal warning - libs were build for newer macos version than linked (10.12 vs 10.10)
       sqlite
       #pinentry_mac

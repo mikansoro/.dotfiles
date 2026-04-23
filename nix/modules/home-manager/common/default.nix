@@ -4,12 +4,13 @@
   imports = [
     ./mpv.nix
   ];
-
+  
   config = lib.mkIf config.mikansoro.common.enable {
     home = {
       packages = with pkgs; [
         _1password-cli
         dive # docker image inspector
+        ffmpeg
         gcrane # like skopeo, docker image copy tools
         gitu
         ipmitool
@@ -33,25 +34,29 @@
         #terraform
         unzip
         yubikey-personalization
-        # yubikey-personalization-gui # marked as broken
         yubikey-manager
-        # yubioath-desktop # error when trying to install pyscard, exit code 2
-        zed-editor
         zip
       ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
-        #pinentry # disabled on upgrade to 25.11 (deprecated)
         # TODO(mrowland): revert to stable after upgrade to 25.05
         # need https://github.com/NixOS/nixpkgs/pull/358620 for IME support in plasma
         unstable.chromium
-        #firefox
-        #mpv #handled by mpv.nix
         spotify
-        #yubioath-desktop
         yubioath-flutter
       ] ++ lib.optionals (config.mikansoro.machineUsage == "personal") [
         darktable
         nextcloud-client
+        remmina
+        filebot
+        
+        unstable.opencode
+        
+        unstable.discord
+        signal-desktop
+        unstable.vesktop
+        webcord
+        unstable.yt-dlp
       ];
     };
   };
 }
+  
