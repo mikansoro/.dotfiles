@@ -32,6 +32,9 @@ in
         volume = 80;
         volume-max = 150;
         # TODO: make this conditional on wayland somehow?
+        # discord screenshare on wayland can only listen from the
+        # pulseaudio sink, any app that uses pipewire directly
+        # (default for mpv if available) will have no audio. upstream bug
         ao = lib.mkIf (!pkgs.stdenv.isDarwin) "pulse";
 
         # video
