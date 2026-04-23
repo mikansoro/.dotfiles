@@ -53,22 +53,6 @@
     refind
     easyeffects
 
-    vim
-    wget
-    curl
-    git
-    htop
-    btop
-
-    # switch to ESR so it doesn't clash with home-manager managed firefox
-    firefox-esr
-
-    nfs-utils
-
-    # ios mounting
-    libimobiledevice
-    ifuse
-
     steam-tui
     steam-run
     lutris

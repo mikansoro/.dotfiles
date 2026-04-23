@@ -98,15 +98,6 @@
 
   environment.systemPackages = with pkgs; [
     refind
-
-    vim
-    wget
-    curl
-    git
-    htop
-    btop
-    firefox-esr
-    ripgrep
   ];
 
   # graphical environment

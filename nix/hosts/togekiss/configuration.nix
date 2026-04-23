@@ -9,7 +9,6 @@
       ./hardware-configuration.nix
       ./disk.nix
       ./power.nix
-#      ../../nixos-modules/hardware/devices/lenovo/x13
       nixos-hardware.nixosModules.lenovo-thinkpad-x13-amd
     ];
 
@@ -56,16 +55,7 @@
   environment.systemPackages = with pkgs; [
     refind
 
-    vim
-    wget
-    curl
-    git
-    htop
-    btop
-    firefox-esr
-    ripgrep
-
-    sunshine
+    #sunshine
     libxcvt
     #steam-tui
     #steam-run
