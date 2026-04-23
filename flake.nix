@@ -141,6 +141,7 @@
                 nixpkgs.config.allowUnfree = true;
               }
               ./nix/modules/mikansoro
+              { environment.systemPackages = [ flox.packages."x86_64-linux".default ]; }
               ./nix/config/modules/tty.nix
               disko.nixosModules.disko
               configPath
