@@ -1,13 +1,11 @@
 { config, lib, pkgs, ... }:
 
-{
-  home = {
-    packages = with pkgs; [
-      mcp-searxng
+lib.mkMerge [
+  {
+    home.packages = with pkgs; [
     ];
-  };
-  
-  programs.claude-code = lib.mkMerge [
+
+    programs.claude-code = lib.mkMerge [
     {
       enable = true;
       package = pkgs.unstable.claude-code;
@@ -51,6 +49,10 @@
     }
 
     (lib.mkIf (config.mikansoro.machineUsage == "personal") {
+      home.packages = with pkgs; [
+        mcp-searxng
+      ];
+
       mcpServers = {
         searxng = {
           command = "${pkgs.mcp-searxng}/bin/mcp-searxng";
@@ -58,18 +60,6 @@
         };
       };
       settings = {
-        env = {
-          # local settings
-          ANTHROPIC_AUTH_TOKEN = "ollama";
-          ANTHROPIC_API_KEY = "";
-          #ANTHROPIC_BASE_URL = "http://ollama.int.mikansystems.com:11434";
-          ANTHROPIC_BASE_URL = "http://ollama.int.mikansystems.com:11395";
-          ANTHROPIC_DEFAULT_OPUS_MODEL = "qwen3.5-27b-code";
-          ANTHROPIC_DEFAULT_SONNET_MODEL = "qwen3.5-27b-code";
-          ANTHROPIC_DEFAULT_HAIKU_MODEL = "qwen3.5-27b-code";
-          CLAUDE_CODE_SUBAGENT_MODEL = "qwen3.5-27b-code";
-          
-        };
         permissions = {
           deny = [
             #"WebSearch(*)"
@@ -86,4 +76,20 @@
       };
     })
   ];
-}
+  }
+
+  (lib.mkIf (config.mikansoro.machineUsage == "personal") {
+    home.packages = [
+      (pkgs.writeShellScriptBin "claude-local" ''
+        export ANTHROPIC_AUTH_TOKEN="ollama"
+        export ANTHROPIC_API_KEY=""
+        export ANTHROPIC_BASE_URL="http://ollama.int.mikansystems.com:11395"
+        export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen3.5-27b-code"
+        export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3.5-27b-code"
+        export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen3.5-27b-code"
+        export CLAUDE_CODE_SUBAGENT_MODEL="qwen3.5-27b-code"
+        exec claude "$@"
+      '')
+    ];
+  })
+]
