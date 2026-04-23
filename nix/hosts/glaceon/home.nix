@@ -31,7 +31,7 @@
     stateVersion = "22.11";
 
     packages = with pkgs; [
-      discord
+      unstable.discord
       vesktop
       webcord
       signal-desktop
@@ -44,7 +44,7 @@
 
       ffmpeg
       filebot
-      yt-dlp
+      unstable.yt-dlp
 
       unstable.opencode
     ];

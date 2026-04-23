@@ -58,6 +58,7 @@
   environment.systemPackages = with pkgs; [
     refind
     easyeffects
+    unstable.opencode
 
     vim
     wget
@@ -78,6 +79,7 @@
     steam-tui
     steam-run
     lutris
+    unstable.vesktop
   ];
 
   # build apps with cuda support by default
