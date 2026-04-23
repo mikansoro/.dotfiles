@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    really-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -65,6 +66,10 @@
       overlays = {
         unstable-packages = final: _prev: {
           unstable = import inputs.nixpkgs-unstable {
+            system = final.stdenv.hostPlatform.system;
+            config.allowUnfree = true;
+          };
+          really-unstable = import inputs.really-unstable {
             system = final.stdenv.hostPlatform.system;
             config.allowUnfree = true;
           };
