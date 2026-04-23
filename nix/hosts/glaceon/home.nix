@@ -29,7 +29,7 @@
 
     packages = with pkgs; [
       unstable.discord
-      vesktop
+      unstable.vesktop
       webcord
       signal-desktop
       remmina
