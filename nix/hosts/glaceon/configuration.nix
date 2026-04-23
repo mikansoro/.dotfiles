@@ -53,6 +53,8 @@
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
+  home-manager.backupFileExtension = "hmbak";
+
   environment.systemPackages = with pkgs; [
     refind
     easyeffects

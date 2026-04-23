@@ -3,6 +3,8 @@
 lib.mkMerge [
   {
     home.packages = with pkgs; [
+      really-unstable.nono
+      really-unstable.beans
     ];
 
     programs.claude-code = lib.mkMerge [
@@ -31,6 +33,14 @@ lib.mkMerge [
           ];
         };
         spinnerTipsEnabled = false;
+      };
+      hooks = {
+        SessionStart = ''
+          beans prime
+        '';
+        PreCompact = ''
+          beans prime
+        '';
       };
       #hooks = {
       #  no-command-chaining = ''
