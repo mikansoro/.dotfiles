@@ -1,0 +1,5 @@
+{ mLib, ... }:
+
+{
+  imports = mLib.importSubmodules ./.;
+}

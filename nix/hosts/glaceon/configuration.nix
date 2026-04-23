@@ -7,12 +7,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../nixos-modules/nfs/client
-      ../../nixos-modules/users
-      ../../nixos-modules/audio
-      ../../nixos-modules/nix
-      ../../nixos-modules/1password
-      ../../nixos-modules/fonts
       ./scanner.nix
     ];
 
