@@ -63,6 +63,8 @@
     let
       lib = nixpkgs.lib;
 
+      mLib = import ./nix/lib { inherit lib; };
+
       overlays = {
         unstable-packages = final: _prev: {
           unstable = import inputs.nixpkgs-unstable {
@@ -99,7 +101,7 @@
         in
           darwin.lib.darwinSystem {
             inherit system;
-            specialArgs = { inherit self darwin; };
+            specialArgs = { inherit self darwin mLib; };
             modules = [
               # Configure nixpkgs with overlays
               {
@@ -110,7 +112,7 @@
               ./nix/modules/mikansoro
               # mac-app-util.darwinModules.default
               home-manager.darwinModules.home-manager {
-                home-manager.extraSpecialArgs = { inherit self; };
+                home-manager.extraSpecialArgs = { inherit self mLib; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.sharedModules = [
@@ -132,7 +134,7 @@
         let
           configPath = ./nix/hosts + "/${hostName}/configuration.nix";
           specialArgs = {
-            inherit self nixos-hardware;
+            inherit self nixos-hardware mLib;
           };
         in
           nixpkgs.lib.nixosSystem {
@@ -158,7 +160,7 @@
                 ];
                 home-manager.users.michael = hmConfig hostName;
                 home-manager.extraSpecialArgs = {
-                  inherit self;
+                  inherit self mLib;
                 };
               }
             ];
