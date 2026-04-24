@@ -14,28 +14,26 @@
 
   mikansoro.machineUsage = "personal";
 
-  home-manager.backupFileExtension = "hmbak";
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
 
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5 = {
-      waylandFrontend = true;
-      addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-      ];
-    };
-  };
-  services.blueman.enable = true;
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
+  # i18n.inputMethod = {
+  #   enable = true;
+  #   type = "fcitx5";
+  #   fcitx5 = {
+  #     waylandFrontend = true;
+  #     addons = with pkgs; [
+  #       fcitx5-mozc
+  #       fcitx5-gtk
+  #     ];
+  #   };
+  # };
+  # services.blueman.enable = true;
+  # hardware.bluetooth = {
+  #   enable = true;
+  #   powerOnBoot = true;
+  # };
 
   # hostname
   networking.domain = "int.mikansystems.com";

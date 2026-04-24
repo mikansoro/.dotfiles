@@ -187,6 +187,7 @@
         glaceon = nixosServer "x86_64-linux";
         togekiss = nixosServer "x86_64-linux";
         chikorita = nixosServer "x86_64-linux";
+        michaelr-z = nixosServer "x86_64-linux";
       };
 
       homeConfigurations = {

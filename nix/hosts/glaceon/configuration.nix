@@ -23,31 +23,26 @@
     };
   };
 
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5 = {
-      waylandFrontend = true;
-      addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-      ];
-    };
-  };
-  services.blueman.enable = true;
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
+  # i18n.inputMethod = {
+  #   enable = true;
+  #   type = "fcitx5";
+  #   fcitx5 = {
+  #     waylandFrontend = true;
+  #     addons = with pkgs; [
+  #       fcitx5-mozc
+  #       fcitx5-gtk
+  #     ];
+  #   };
+  # };
+  # services.blueman.enable = true;
+  # hardware.bluetooth = {
+  #   enable = true;
+  #   powerOnBoot = true;
+  # };
 
   # hostname
   networking.domain = "int.mikansystems.com";
   networking.hostName = "glaceon"; # Define your hostname.
-
-  # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
-
-  home-manager.backupFileExtension = "hmbak";
 
   environment.systemPackages = with pkgs; [
     refind

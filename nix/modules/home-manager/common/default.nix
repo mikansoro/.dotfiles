@@ -42,6 +42,8 @@
         unstable.chromium
         spotify
         yubioath-flutter
+      ] ++ lib.optionals (config.mikansoro.machineUsage == "work") [
+        slack
       ] ++ lib.optionals (config.mikansoro.machineUsage == "personal") [
         darktable
         nextcloud-client
