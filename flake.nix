@@ -44,6 +44,10 @@
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "";
     };
+
+    nix-private = {
+      url = "git+ssh://git@github.com/mikansoro/nix-private";
+    };
   };
 
   outputs = inputs@{
@@ -58,6 +62,7 @@
     disko,
     flox,
     # mac-app-util,
+    nix-private,
     ...
   }:
     let
@@ -118,6 +123,7 @@
                 home-manager.sharedModules = [
                   ./nix/modules/mikansoro
                   ./nix/modules/home-manager
+                  nix-private.homeModule
                 ];
                 home-manager.users."michael.rowland" = hmConfig hostName;
 
@@ -148,6 +154,7 @@
               { environment.systemPackages = [ flox.packages."x86_64-linux".default ]; }
               ./nix/modules/mikansoro
               ./nix/modules/nixos
+              nix-private.nixosModule
               ./nix/config/modules/tty.nix
               disko.nixosModules.disko
               configPath
@@ -157,6 +164,7 @@
                 home-manager.sharedModules = [
                   ./nix/modules/mikansoro
                   ./nix/modules/home-manager
+                  nix-private.homeModule
                 ];
                 home-manager.users.michael = hmConfig hostName;
                 home-manager.extraSpecialArgs = {
@@ -190,6 +198,16 @@
         #   ];
         # };
       };
+
+      devShells = lib.genAttrs [ "aarch64-darwin" "x86_64-linux" ] (system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in {
+          default = pkgs.mkShell {
+            packages = [ pkgs.just ];
+          };
+        }
+      );
 
       packages.x86_64-linux =
         let

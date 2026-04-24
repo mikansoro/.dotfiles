@@ -220,6 +220,21 @@
         "type": "github"
       }
     },
+    "nix-private": {
+      "locked": {
+        "lastModified": 1777055478,
+        "narHash": "sha256-2OxxmhI5IHDuOqznIh1qdbzmdf4f2FGhuwFO3XyMHE8=",
+        "ref": "refs/heads/main",
+        "rev": "5d005904b9b2d6e3b204d9474b803f5b1210d07d",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/mikansoro/nix-private"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/mikansoro/nix-private"
+      }
+    },
     "nixlib": {
       "locked": {
         "lastModified": 1736643958,
@@ -350,6 +365,7 @@
         "flox": "flox",
         "home-manager": "home-manager",
         "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",
+        "nix-private": "nix-private",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

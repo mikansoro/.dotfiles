@@ -63,33 +63,6 @@
       flushdns = "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
     };
     initContent = lib.mkOrder 550 "PATH='/Users/michael.rowland/bin':$PATH";
-    envExtra = ''
-    export STARTERVIEW="/Users/michael.rowland/git/zr-private/ziprecruiter/main"
-    PATH=$PATH:$STARTERVIEW/bin
-    '';
-  };
-
-  programs.git = {
-    includes = [
-      {
-        condition = "gitdir:~/git/ziprecruiter/";
-        contents = {
-          user = {
-            email = "michael.rowland@ziprecruiter.com";
-            name = "Michael Rowland";
-          };
-        };
-      }
-      {
-        condition = "gitdir:~/git/zr-private/";
-        contents = {
-          user = {
-            email = "michael.rowland@ziprecruiter.com";
-            name = "Michael Rowland";
-          };
-        };
-      }
-    ];
   };
 
   targets.darwin.defaults = {
