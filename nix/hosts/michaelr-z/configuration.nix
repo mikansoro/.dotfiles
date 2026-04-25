@@ -30,6 +30,10 @@
     enable = true;
     dockerSocket.enable = true;
     dockerCompat = true;
+    autoPrune = {
+      enable = true;
+      dates = "weekly";
+    };
   };
 
   environment.systemPackages = with pkgs; [
