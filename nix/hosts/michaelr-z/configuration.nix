@@ -21,6 +21,7 @@
 
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
+  services.resolved.enable = true;
 
   services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
