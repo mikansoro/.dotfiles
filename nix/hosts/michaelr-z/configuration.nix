@@ -20,7 +20,7 @@
   services.automatic-timezoned.enable = true;
 
   networking.networkmanager.enable = true;
-  programs.nm-applet.enable = true;
+  #programs.nm-applet.enable = true;
   services.resolved.enable = true;
 
   services.xserver.enable = true;
@@ -38,6 +38,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    easyeffects
     refind
   ];
 
