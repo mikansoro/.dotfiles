@@ -14,6 +14,7 @@
         ffmpeg
         gcrane # like skopeo, docker image copy tools
         gitu
+        gnumake
         ipmitool
         jless
         kubectl
