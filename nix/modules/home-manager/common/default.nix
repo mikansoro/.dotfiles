@@ -52,7 +52,7 @@
         kind
         slack
       ] ++ lib.optionals (config.mikansoro.machineUsage == "personal") [
-        darktable
+        unstable.darktable
         nextcloud-client
         remmina
         filebot

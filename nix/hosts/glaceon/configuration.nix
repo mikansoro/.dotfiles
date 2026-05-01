@@ -80,6 +80,12 @@
     package = pkgs.mullvad-vpn;
   };
 
+  fileSystems."/remotehome" = {
+    device = "172.16.1.10:/mnt/data1/homedirs/michael";  # server IP : exported path
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+  };
+
   # graphical environment
   services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
