@@ -1,5 +1,69 @@
 { config, lib, pkgs, ... }:
 
+let
+  # Build the .lsp.json content
+  lspConfig = {
+    go = {
+      command = "${pkgs.gopls}/bin/gopls";
+      args = [ "serve" ];
+      extensionToLanguage.".go" = "go";
+    };
+    python = {
+      command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
+      args = [ "--stdio" ];
+      extensionToLanguage = {
+        ".py" = "python";
+        ".pyi" = "python";
+      };
+    };
+    typescript = {
+      command = "${pkgs.vtsls}/bin/vtsls";
+      args = [ "--stdio" ];
+      extensionToLanguage = {
+        ".ts" = "typescript";
+        ".tsx" = "typescriptreact";
+        ".js" = "javascript";
+        ".jsx" = "javascriptreact";
+      };
+    };
+    yaml = {
+      command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
+      args = [ "--stdio" ];
+      extensionToLanguage = {
+        ".yaml" = "yaml";
+        ".yml" = "yaml";
+      };
+    };
+  };
+
+  # Replicate what the unstable module does internally
+  lspPluginDir = pkgs.runCommand "claude-code-lsp-plugin" { } ''
+    install -Dm644 ${
+      pkgs.writeText "plugin.json" (builtins.toJSON {
+        name = "claude-code-lsp";
+      })
+    } $out/.claude-plugin/plugin.json
+
+    install -Dm644 ${
+      pkgs.writeText "lsp.json" (builtins.toJSON lspConfig)
+    } $out/.lsp.json
+  '';
+
+  # Wrap the base package with --plugin-dir
+  claudeWithLsp = pkgs.symlinkJoin {
+    name = "claude-code";
+    paths = [ pkgs.unstable.claude-code ];
+    postBuild = ''
+      mv $out/bin/claude $out/bin/.claude-wrapped
+      cat > $out/bin/claude <<EOF
+      #! ${pkgs.bash}/bin/bash -e
+      exec -a "\$0" "$out/bin/.claude-wrapped" --plugin-dir ${lspPluginDir} "\$@"
+      EOF
+      chmod +x $out/bin/claude
+    '';
+    inherit (pkgs.unstable.claude-code) meta;
+  };
+in
 {
   config = lib.mkIf config.mikansoro.claude.enable (lib.mkMerge [
     {
@@ -11,7 +75,7 @@
       programs.claude-code = lib.mkMerge [
         {
           enable = true;
-          package = pkgs.unstable.claude-code;
+          package = claudeWithLsp;
           
           memory.source = ./claude-memory.md;
           
@@ -35,7 +99,7 @@
             };
             spinnerTipsEnabled = false;
           };
-          # NOTE: only on home-manager unstable
+          # NOTE: only on home-manager unstable, see let block for workaround until then
           #lspServers = {
           #  go = {
           #    command = "${pkgs.gopls}/bin/gopls"; 
