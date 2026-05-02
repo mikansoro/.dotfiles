@@ -20,7 +20,6 @@
               CLAUDE_CODE_ATTRIBUTION_HEADER = "0";
               CLAUDE_CODE_ENABLE_TELEMETRY = "0";
               CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1";
-              CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = "1";
             };
             attribution = {
               pullRequests = false;
@@ -110,6 +109,7 @@
           export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3.5-27b-code"
           export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen3.5-27b-code"
           export CLAUDE_CODE_SUBAGENT_MODEL="qwen3.5-27b-code"
+          export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS="1"
           exec claude "$@"
         '')
       ];
