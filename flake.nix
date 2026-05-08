@@ -30,7 +30,7 @@
     };
 
     flox = {
-      url = "github:flox/flox?tag=v1.11.4";
+      url = "github:flox/flox?tag=v1.12.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
