@@ -46,6 +46,17 @@
     "L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
   ];
 
+  # run binaries/wheels that aren't patched by autoPatchELF
+  # escape hatch, if i need it later. 
+  #programs.nix-ld.enable = true;
+  #programs.nix-ld.libraries = with pkgs; [
+    #stdenv.cc.cc.lib
+    #zlib
+    #zstd
+    #openssl
+    #glib
+  #];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
