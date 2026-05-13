@@ -69,8 +69,8 @@
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
 
-  nix.settings.trusted-substituters = [ "https://cache.flox.dev" ];
-  nix.settings.trusted-public-keys = [ "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs=" ];
+  nix.settings.extra-substituters = [ "https://cache.flox.dev" ];
+  nix.settings.extra-trusted-public-keys = [ "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs=" ];
 
   # workaround for a single user system: https://github.com/LnL7/nix-darwin/pull/252#issuecomment-731083818
   # emacs doesn't handle $USER or $HOME expansion in PATH, so even when the path is set via launchd packages
