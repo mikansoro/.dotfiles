@@ -9,6 +9,7 @@
     emacs.enable = true;
     firefox.enable = true;
     claude.enable = true;
+    opencode.enable = true;
   };
 
   programs.home-manager.enable = true;
