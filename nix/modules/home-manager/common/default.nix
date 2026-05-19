@@ -35,6 +35,7 @@
         #sqlite
         stern # k8s log tailing that doesn't suck
         #terraform
+        tmux
         unzip
         yubikey-personalization
         yubikey-manager
@@ -58,11 +59,11 @@
         remmina
         filebot
         
-        unstable.opencode
+        #unstable.opencode
         
         unstable.discord
         signal-desktop
-        unstable.vesktop
+        vesktop
         webcord
       ];
     };
