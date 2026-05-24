@@ -9,9 +9,9 @@
     openssh.authorizedKeys.keys = lib.mkIf (config.mikansoro.machineUsage == "personal") [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPCKkMo4zEB0IVy4ojrLV2RPGl+1MBXoNuK2vZjMdJT mikans@localhost" # mkn-adm
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA7ZWEPpcg/o/910IF/METhIctRcVmnpNCpZzarDAzO3 michael@ipad"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAMOvDXX75V5cGZTihAGQWt2GZi15QOE+oE4T+DSJjvJ michael@manmaru"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImX+Ntrw+wxmJn/A+btETIuH4EhDsgQmRSPR9M0C2Ue michael@togekiss"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMm4CLd/vneBjE77+T5Npf/SQhy39X0iibIfpP6vnUZX michael@chikorita"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKpOtZdJ2yECeotPQDyKEHvQjr9Dy+o04m4+l79QeHM5 michael@glaceon"
     ];
     shell = pkgs.zsh;
   };
