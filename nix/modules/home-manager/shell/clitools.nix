@@ -24,7 +24,7 @@
       settings = {
         update_check = false;
         auto_sync = true;
-        sync_address = "https://atuin.lavaridge.k8s.mikansystems.com";
+        sync_address = "https://atuin.int.mikansystems.com";
         sync_frequency = "5m";
         secrets_filter = true;
       };
