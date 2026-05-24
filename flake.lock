@@ -141,11 +141,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1779145062,
-        "narHash": "sha256-XFAGGvXB127Eh5GEnUAx2I6PQOq6Cbe+f0sb0InANGg=",
+        "lastModified": 1779487817,
+        "narHash": "sha256-Cq1gd19KXXqbOySn8IELK5nZRDOYDy8rPCs5Qe+SJ+s=",
         "owner": "flox",
         "repo": "flox",
-        "rev": "e2b6885f9b80429e767839b855d4ebc3a2df7c2d",
+        "rev": "40be89bb7912d7755f391eef340d6a8f931a1105",
         "type": "github"
       },
       "original": {
@@ -220,11 +220,11 @@
     },
     "nix-private": {
       "locked": {
-        "lastModified": 1778105582,
-        "narHash": "sha256-mPN6At6QMfgf0xe/77N9ibxSrY9ghDxn3n6n7V1PZqs=",
+        "lastModified": 1779663848,
+        "narHash": "sha256-cEbqPgzLz6TnX/OUJeVJb47no2DOo2KF3C0uz/HKap0=",
         "ref": "refs/heads/main",
-        "rev": "493f644129529f46b50ce3b2dbad0e03c7533224",
-        "revCount": 14,
+        "rev": "2ee40f526fcf03f1111401fedb5cdadff7ecea16",
+        "revCount": 15,
         "type": "git",
         "url": "ssh://git@github.com/mikansoro/nix-private"
       },
@@ -287,11 +287,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1776548001,
-        "narHash": "sha256-ZSK0NL4a1BwVbbTBoSnWgbJy9HeZFXLYQizjb2DPF24=",
+        "lastModified": 1774386573,
+        "narHash": "sha256-4hAV26quOxdC6iyG7kYaZcM3VOskcPUrdCQd/nx8obc=",
         "owner": "flox",
         "repo": "nixpkgs",
-        "rev": "b12141ef619e0a9c1c84dc8c684040326f27cdcc",
+        "rev": "46db2e09e1d3f113a13c0d7b81e2f221c63b8ce9",
         "type": "github"
       },
       "original": {

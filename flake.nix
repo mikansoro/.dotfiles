@@ -30,9 +30,7 @@
     };
 
     flox = {
-      #url = "github:flox/flox/latest";
       url = "github:flox/flox?tag=v1.12.1";
-      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # handles .app bundle sync
