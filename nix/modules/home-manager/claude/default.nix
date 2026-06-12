@@ -30,6 +30,21 @@
                 "Bash(sops:*)"
                 "Read(./.env)"
                 "Read(./secrets/**)"
+
+                # stop running find -- exec damnit. use ripgrep.
+                "Bash(find *-exec grep*)"
+                "Bash(find *-exec egrep*)"
+                "Bash(find *-exec fgrep*)"
+                "Bash(find *|*xargs *grep*)"
+                "Bash(find *|*xargs *egrep*)"
+                "Bash(find *|*xargs *fgrep*)"
+                "Bash(grep -r*)"
+                "Bash(grep -R*)"
+                "Bash(grep -nr*)"
+                "Bash(grep -nR*)"
+                "Bash(grep -lr*)"
+                "Bash(grep -lR*)"
+                "Bash(grep --recursive*)"
               ];
             };
             spinnerTipsEnabled = false;
