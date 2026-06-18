@@ -24,14 +24,14 @@
 
         # language support
         cue
-        nixfmt-rfc-style
+        nixfmt
 
         # language servers
         docker-ls
         gopls
         lua-language-server
         pyright
-        nodePackages.yaml-language-server
+        yaml-language-server
       ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
         libvterm
         wl-clipboard
