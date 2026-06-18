@@ -33,6 +33,7 @@
       losslesscut-bin
       mkvtoolnix
       handbrake
+      whipper
     ];
   };
 }
