@@ -19,3 +19,15 @@ deploy-only:
     fi
 
 deploy: update-private deploy-only
+
+boot-only:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [[ "$(uname)" == "Darwin" ]]; then
+        #sudo nixos-rebuild boot --flake .#{{hostname}}
+        sudo nixos-rebuild boot --flake .#workMac
+    else
+        sudo nixos-rebuild boot --flake .#{{hostname}}
+    fi
+
+boot: update-private boot-only
