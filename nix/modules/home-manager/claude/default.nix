@@ -13,7 +13,7 @@
           enable = true;
           package = pkgs.unstable.claude-code;
           
-          memory.source = ./claude-memory.md;
+          context = ./claude-memory.md;
           
           settings = {
             env = {
@@ -56,6 +56,12 @@
               args = [ "serve" ];
               extensionToLanguage = {
                 ".go" = "go";
+              };
+            };
+            nix = {
+              command = "${pkgs.nixd}/bin/nixd";
+              extensionToLanguage = {
+                ".nix" = "nix";
               };
             };
             python = {
