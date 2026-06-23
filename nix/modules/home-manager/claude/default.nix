@@ -45,6 +45,7 @@
                 "Bash(grep -lr*)"
                 "Bash(grep -lR*)"
                 "Bash(grep --recursive*)"
+                "Bash(xargs -I{} sh*)"
               ];
             };
             spinnerTipsEnabled = false;
