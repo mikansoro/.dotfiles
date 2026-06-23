@@ -50,42 +50,41 @@
             };
             spinnerTipsEnabled = false;
           };
-          # NOTE: only on home-manager unstable
-          #lspServers = {
-          #  go = {
-          #    command = "${pkgs.gopls}/bin/gopls"; 
-          #    args = [ "serve" ];
-          #    extensionToLanguage = {
-          #      ".go" = "go";
-          #    };
-          #  };
-          #  python = {
-          #    command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
-          #    args = [ "--stdio" ];
-          #    extensionToLanguage = {
-          #      ".py" = "python";
-          #      ".pyi" = "python";
-          #    };
-          #  };
-          #  typescript = {
-          #    command = "${pkgs.vtsls}/bin/vtsls";
-          #    args = [ "--stdio" ];
-          #    extensionToLanguage = {
-          #      ".ts" = "typescript";
-          #      ".tsx" = "typescriptreact";
-          #      ".js" = "javascript";
-          #      ".jsx" = "javascriptreact";
-          #    };
-          #  };
-          #  yaml = {
-          #    command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
-          #    args = [ "--stdio" ];
-          #    extensionToLanguage = {
-          #      ".yaml" = "yaml";
-          #      ".yml" = "yaml";
-          #    };
-          #  };
-          #};
+          lspServers = {
+            go = {
+              command = "${pkgs.gopls}/bin/gopls"; 
+              args = [ "serve" ];
+              extensionToLanguage = {
+                ".go" = "go";
+              };
+            };
+            python = {
+              command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
+              args = [ "--stdio" ];
+              extensionToLanguage = {
+                ".py" = "python";
+                ".pyi" = "python";
+              };
+            };
+            typescript = {
+              command = "${pkgs.vtsls}/bin/vtsls";
+              args = [ "--stdio" ];
+              extensionToLanguage = {
+                ".ts" = "typescript";
+                ".tsx" = "typescriptreact";
+                ".js" = "javascript";
+                ".jsx" = "javascriptreact";
+              };
+            };
+            yaml = {
+              command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
+              args = [ "--stdio" ];
+              extensionToLanguage = {
+                ".yaml" = "yaml";
+                ".yml" = "yaml";
+              };
+            };
+          };
         }
         
         (lib.mkIf (config.mikansoro.machineUsage == "personal") {
