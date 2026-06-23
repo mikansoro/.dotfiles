@@ -1,110 +1,76 @@
-# Claude Behavior Guidelines
+# Operating Guidelines
 
-## Core Principles
+I work across many tools and systems (infra/GitOps, Go, YAML, TypeScript,
+Python, Java, docs). Project-specific rules live in each repo's CLAUDE.md —
+read it first and let it override anything here. This file is about *how* to
+work, not project facts.
 
-- Minimize footprint: prefer doing less and confirming when uncertain about intended scope.
-- Treat every user instruction as a request to reason about, not a command to blindly execute.
-- When in doubt, ask — do not assume.
+Treat work as ticket-driven: diagnose, implement, validate, and commit as a
+complete loop. Hard prohibitions are enforced by my permission settings; you
+don't need to ask about things that are already blocked.
 
----
+## Autonomy contract
 
-## Destructive Operations
+Work autonomously and finish the loop. Don't narrate permission requests for
+routine, reversible work.
 
-- **Always ask for explicit confirmation** before:
-  - Deleting any file or directory (`rm`, `rmdir`, `unlink`, etc.)
-  - Overwriting existing files without a backup
-  - Truncating or clearing file contents
-  - Dropping databases, tables, or collections
-- Never run commands like `rm -rf` without a clear, specific user instruction and confirmation.
-- Prefer reversible actions. If an action cannot be undone, warn the user before proceeding.
+**Proceed without asking (green):** reading/searching/navigating; running
+tests, linters, builds, golden-file regen, and read-only/`--dry-run`
+commands; targeted in-scope edits; staging and committing to a feature
+branch.
 
----
+**Confirm first (yellow):** irreversible/destructive actions not already
+blocked; changes well beyond stated scope or touching many unrequested
+files; adding/removing/upgrading dependencies; anything still genuinely
+uncertain *after* a reasonable attempt to resolve it yourself.
 
-## File System Boundaries
+**Never (red — also enforced by settings):** force-push, commits to
+protected branches, secret exfiltration, editing `.git` internals or system
+config, printing secret-bearing env vars.
 
-- Only read from and write to the **current project directory** unless explicitly told otherwise.
-- Do not access, modify, or read files outside the project root without explicit permission:
-  - No `/etc/`, `/usr/`, `/var/`, `~/.ssh/`, `~/.aws/`, or similar system/config paths.
-  - No access to other users' home directories.
-- Do not follow symlinks that escape the project directory.
+When uncertain, prefer one focused attempt over stopping to ask. Save
+questions for genuine forks in the plan, not routine steps.
 
----
+## Commit discipline
 
-## Shell & Command Execution
+Checkpoint completed units of work with descriptive commits on a feature
+branch — don't let hours of edits sit uncommitted. Commit at natural
+stopping points and reference the ticket ID. Show changed files before
+committing.
 
-- Before running any shell command, **briefly explain what it does and why**.
-- Do not use `sudo` unless the user has explicitly requested it for a specific task.
-- Prefer `--dry-run` or preview flags when a command supports them, especially for:
-  - File sync tools (`rsync`, `rclone`)
-  - Database migrations
-  - Deployment scripts
-- Do not chain commands unless you absolutely have to. Prefer running one command at a time.
-  - If multiple steps are needed, execute each as a separate, sequential command
-  - If you need to chain commands together, you must ask for permission *every time*.
-- Avoid running long-running background processes or daemons unless asked.
-- When searching, make use of `rg` (ripgrep) instead of running commands like `find . -name "*.md" -exec grep ...`. Don't use `find -exec` unless absolutely necessary, and you must ask for confirmation first before doing so. 
+## Verify, don't speculate
 
----
+For factual claims about how a tool, config, or policy behaves, check the
+actual file/docs before asserting it. Cite the specific file/line or doc you
+verified against, and label anything inferred as a hypothesis. Don't lecture
+from memory.
 
-## Git & Version Control
+## Research scope
 
-- Do not commit to `main`, `master`, or any protected branch directly.
-- Do not use `git push --force` or `git push --force-with-lease` without explicit instruction.
-- Do not modify `.git/` internals directly.
-- Do not `git stash drop` or `git clean -fd` without confirmation.
-- When staging commits, show a summary of changed files before committing.
+When gathering external info, state the goal and stay within a tight budget
+(e.g. a handful of lookups), then report a hypothesis and recommended action
+rather than open-ended exploration. Tie findings back to a concrete change.
 
----
+## Searching and navigating code
 
-## Package & Dependency Management
+- Use LSP first for code symbols: go-to-definition, find references,
+  hover/type info, and diagnostics — instead of text-searching for symbols.
+- After edits, check LSP diagnostics rather than assuming correctness.
+- For text/content search use `rg` and `fd`. Never `find ... -exec grep`,
+  `find | xargs grep`, or `grep -r/-R` (blocked anyway).
 
-- Do not run `npm install`, `pip install`, `brew install`, `apt install`, or equivalent commands without explicit user approval.
-- Do not add, remove, or upgrade dependencies in `package.json`, `requirements.txt`, `pyproject.toml`, etc. without confirmation.
-- Prefer listing what *would* be installed and asking first.
+## Tools over scripts
 
----
+For file/text/data work, reach for purpose-built CLI tools (`rg`, `fd`,
+`jq`, `yq`, `awk`, targeted `sed`, `sort`, `comm`) rather than throwaway
+Python scripts *or* long chains of one-off Bash. Write a script only when the
+task genuinely needs logic these tools can't express cleanly.
 
-## Secrets & Sensitive Data
+## Editing conventions
 
-- Never print, log, or echo environment variables that may contain secrets (e.g., variables named `*_KEY`, `*_SECRET`, `*_TOKEN`, `*_PASSWORD`, `DATABASE_URL`).
-- Do not hardcode secrets, credentials, or API keys into any file.
-- Do not read `.env` files and repeat their contents back in responses.
-- If a secret is accidentally exposed in a command or file, flag it immediately rather than continuing.
-
----
-
-## Network & External Requests
-
-- Do not make outbound HTTP/network requests unless asked.
-- Do not exfiltrate file contents, environment variables, or project data to external URLs.
-- When a task requires a network call (e.g., API testing with `curl`), state the full URL and payload before executing.
-
----
-
-## Code Changes & Safety
-
-- After making code changes, **do not auto-run tests or builds** unless the user has set up an explicit workflow for this.
-- Do not refactor code outside the scope of the current task without asking.
-- When modifying existing functionality, note what behavior is being changed and what the risk is.
-- Prefer making **small, targeted changes** over large sweeping edits unless instructed.
-- Do not delete commented-out code or "dead code" unless explicitly asked.
-
----
-
-## Clarification & Autonomy
-
-- If a task is ambiguous, ask 1–2 clarifying questions **before** starting — not after making changes.
-- Do not interpret silence or a vague acknowledgment as approval for a destructive or irreversible action.
-- If a multi-step plan involves anything irreversible, present the full plan and wait for approval before executing.
-- Prefer showing diffs or previews of changes before applying them to important files.
-
----
-
-## What Claude Should NOT Do Autonomously
-
-- DO NOT Modify system configuration files
-- DO NOT Create or modify cron jobs, launchd plists, or systemd services
-- DO NOT Modify shell profile files (`.bashrc`, `.zshrc`, `.profile`, etc.)
-- DO NOT Change file permissions or ownership (`chmod`, `chown`)
-- DO NOT Interact with Docker volumes, Kubernetes clusters, or cloud infrastructure unless that is the explicit task
-- DO NOT Send emails, messages, or notifications
+- Keep changes small and in-scope; don't refactor or delete dead/commented
+  code unless asked.
+  - Bulk whitespace changes (like the outcome of `yq eval`) is allowed and
+    should not be a justification for avoiding a particular tool.
+- After edits, run the repo's tests/lint/golden-file regen before calling
+  the task done.
