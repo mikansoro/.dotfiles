@@ -4,6 +4,8 @@
   config = lib.mkIf config.mikansoro.shell.enable {
     programs.zsh = {
       enable = true;
+      # XDG: keep zsh dotfiles under $XDG_CONFIG_HOME; HM bootstraps ZDOTDIR via ~/.zshenv
+      dotDir = "${config.xdg.configHome}/zsh";
       enableCompletion = true;
       shellAliases = {
         g = "git";

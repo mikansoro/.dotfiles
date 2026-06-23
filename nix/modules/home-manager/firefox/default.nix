@@ -4,6 +4,8 @@
   config = lib.mkIf config.mikansoro.firefox.enable {
     programs.firefox = {
       enable = true;
+      # XDG: store profile under $XDG_CONFIG_HOME (move ~/.mozilla/firefox to migrate existing data)
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       policies = lib.mkForce {
         DisableAppUpdate = true;
         DisableTelemetry = true;
