@@ -38,6 +38,8 @@ branch — don't let hours of edits sit uncommitted. Commit at natural
 stopping points and reference the ticket ID. Show changed files before
 committing.
 
+Use conventional commit format. No LLM attribution.
+
 ## Verify, don't speculate
 
 For factual claims about how a tool, config, or policy behaves, check the
@@ -56,15 +58,6 @@ rather than open-ended exploration. Tie findings back to a concrete change.
 - Use LSP first for code symbols: go-to-definition, find references,
   hover/type info, and diagnostics — instead of text-searching for symbols.
 - After edits, check LSP diagnostics rather than assuming correctness.
-- For text/content search use `rg` and `fd`. Never `find ... -exec grep`,
-  `find | xargs grep`, or `grep -r/-R` (blocked anyway).
-
-## Tools over scripts
-
-For file/text/data work, reach for purpose-built CLI tools (`rg`, `fd`,
-`jq`, `yq`, `awk`, targeted `sed`, `sort`, `comm`) rather than throwaway
-Python scripts *or* long chains of one-off Bash. Write a script only when the
-task genuinely needs logic these tools can't express cleanly.
 
 ## Editing conventions
 

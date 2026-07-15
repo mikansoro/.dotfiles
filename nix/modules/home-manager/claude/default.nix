@@ -114,27 +114,29 @@
           settings = {
             alwaysThinkingEnabled = true;
             model = "opus";
+            fallbackModel = ["sonnet"];
+            effortLevel = "xhigh";
           };
         })
       ];
     }
     
-    (lib.mkIf (config.mikansoro.machineUsage == "personal") {
-      home.packages = with pkgs; [
-        mcp-searxng
-        (pkgs.writeShellScriptBin "claude-local" ''
-          export ANTHROPIC_AUTH_TOKEN="ollama"
-          export ANTHROPIC_API_KEY=""
-          export ANTHROPIC_BASE_URL="http://ollama.int.mikansystems.com:11395"
-          export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen3.5-27b-code"
-          export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3.5-27b-code"
-          export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen3.5-27b-code"
-          export CLAUDE_CODE_SUBAGENT_MODEL="qwen3.5-27b-code"
-          export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS="1"
-          exec claude "$@"
-        '')
-      ];
-    })
+    #(lib.mkIf (config.mikansoro.machineUsage == "personal") {
+    #  home.packages = with pkgs; [
+    #    mcp-searxng
+    #    (pkgs.writeShellScriptBin "claude-local" ''
+    #      export ANTHROPIC_AUTH_TOKEN="ollama"
+    #      export ANTHROPIC_API_KEY=""
+    #      export ANTHROPIC_BASE_URL="http://ollama.int.mikansystems.com:11395"
+    #      export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen3.5-27b-code"
+    #      export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3.5-27b-code"
+    #      export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen3.5-27b-code"
+    #      export CLAUDE_CODE_SUBAGENT_MODEL="qwen3.5-27b-code"
+    #      export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS="1"
+    #      exec claude "$@"
+    #    '')
+    #  ];
+    #})
   ]);
 }
   
