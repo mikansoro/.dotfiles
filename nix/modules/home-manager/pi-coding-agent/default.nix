@@ -28,7 +28,7 @@ let
   };
   
   searxngConfig = {
-    baseUrl           = "http://searx.lan:8080";
+    baseUrl           = "https://searx.int.mikansystems.com";
     defaultLanguage   = "en";
     defaultCategories = "general";
     timeoutMs         = 15000;

@@ -12,6 +12,7 @@
     emacs.enable = true;
     firefox.enable = true;
     claude.enable = true;
+    pi-coding-agent.enable = true;
   };
 
   programs.home-manager.enable = true;
