@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixos-hardware, ... }:
+{ config, lib, nix-msb, pkgs, nixos-hardware, ... }:
 
 # Description:
 # Lenovo x13 Remote Workstation
@@ -40,7 +40,11 @@
   environment.systemPackages = with pkgs; [
     easyeffects
     refind
+    msb
+    boxed
   ];
+
+  users.users.michael.extraGroups = [ "kvm" ];
 
   systemd.tmpfiles.rules = [
     "L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
