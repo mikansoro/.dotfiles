@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1784356237,
-        "narHash": "sha256-ASq5oqEuZqG6CQhEb5NlDnF7nlUOYB+zUI88cEBUbW8=",
+        "lastModified": 1784441513,
+        "narHash": "sha256-mHqsWQJAXTmUYDEeM7hI2O6IzP/8b/i67qskeiIoGkE=",
         "ref": "refs/heads/main",
-        "rev": "a210c01dcfb98076a4643ea9ab90e667339bff83",
-        "revCount": 75,
+        "rev": "951751a8eb0c842a172352d29beeda194f38615e",
+        "revCount": 88,
         "type": "git",
         "url": "ssh://git@github.com/mikansoro/boxed"
       },
@@ -327,11 +327,11 @@
     },
     "nix-private": {
       "locked": {
-        "lastModified": 1782173161,
-        "narHash": "sha256-jR8JhaUAUs+fvAc7PSb+DhKq/5Zo9/lDaF5pZO9sblQ=",
+        "lastModified": 1784572925,
+        "narHash": "sha256-2imjS3keWzBrIE6Yxuxq+wkymL2BSAPFrrEdr9uR4yU=",
         "ref": "refs/heads/main",
-        "rev": "f570c2f43497bd6993e422981005ac8e7ba28a19",
-        "revCount": 16,
+        "rev": "259b3315439f5436ee0bfde28531801f250edb9a",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://git@github.com/mikansoro/nix-private"
       },
