@@ -46,6 +46,15 @@
     defaultWindowManager = "startplasma-x11";
   };
 
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id == "org.freedesktop.NetworkManager.wifi.scan" &&
+          subject.isInGroup("networkmanager")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
+
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
   # -------------------
