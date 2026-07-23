@@ -51,6 +51,8 @@
     steam-tui
     steam-run
     lutris
+
+    unar
   ];
 
   # build apps with cuda support by default
