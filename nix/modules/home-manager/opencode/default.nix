@@ -25,11 +25,11 @@
         #];
         
         settings = {
-          model = "llamacpp/qwen-dense";
+          model = "llamacpp/qwen3.6-27b";
 
           # Fast model for lightweight tasks (session titles, housekeeping)
           # and the default for subagents spawned without an explicit model.
-          small_model = "llamacpp/qwen-moe";
+          small_model = "llamacpp/qwen3.6-35b-a3b";
 
           provider = {
             llamacpp = {
@@ -41,14 +41,14 @@
                 apiKey = "not-required";
               };
               models = {
-                "qwen-dense" = {
+                "qwen3.6-27b" = {
                   name = "Qwen3.6-27B (Build)";
                   limit = {
                     context = 131072;
                     output = 32768;
                   };
                 };
-                "qwen-moe" = {
+                "qwen3.6-35b-a3b" = {
                   name = "Qwen3.6-35B-A3B (Plan/Review)";
                   limit = {
                     context = 131072;
@@ -69,7 +69,7 @@
           # Agent routing: Plan uses the MoE model, Build uses the dense model.
           agent = {
             build = {
-              model = "llamacpp/qwen-dense";
+              model = "llamacpp/qwen3.6-27b";
               temperature = 0.6;
               permission = {
                 read = "allow";
@@ -89,7 +89,7 @@
               };
             };
             plan = {
-              model = "llamacpp/qwen-moe";
+              model = "llamacpp/qwen3.6-35b-a3b";
               temperature = 0.7;
               permission = {
                 read = "allow";
@@ -141,7 +141,7 @@
           };
         };
 
-        # Global subagents: run on the MoE model (qwen-moe), invoked by Build.
+        # Global subagents: run on the MoE model (qwen3.6-35b-a3b), invoked by Build.
         agents = {
           explorer = ''
             ---
@@ -150,7 +150,7 @@
               sites, or patterns. Returns file paths, line ranges, and brief summaries.
               Never edits files or runs commands.
             mode: subagent
-            model: llamacpp/qwen-moe
+            model: llamacpp/qwen3.6-35b-a3b
             temperature: 0.3
             permission:
               edit: deny
@@ -178,7 +178,7 @@
               regressions, and plan adherence. Use after producing a patch, before running
               tests. Never edits files.
             mode: subagent
-            model: llamacpp/qwen-moe
+            model: llamacpp/qwen3.6-35b-a3b
             temperature: 0.3
             permission:
               edit: deny
@@ -212,7 +212,7 @@
               summary. Use after edits are reviewed and ready for verification. Reports
               pass/fail counts and failing test output only -- nothing else.
             mode: subagent
-            model: llamacpp/qwen-moe
+            model: llamacpp/qwen3.6-35b-a3b
             temperature: 0.1
             permission:
               edit: deny
