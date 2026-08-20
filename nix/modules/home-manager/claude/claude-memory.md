@@ -31,6 +31,15 @@ config, printing secret-bearing env vars.
 When uncertain, prefer one focused attempt over stopping to ask. Save
 questions for genuine forks in the plan, not routine steps.
 
+## Documentation and prose guidelines
+
+Keep all documentation, PR descriptions, READMEs, and code comments concise, terse and 
+readable. Prefer simple language and avoid injecting jargon unless it's necessary 
+to convey a specific idea. Do NOT inject JIRA/ticket numbers into code comments 
+or documentation unless asked to do so. 
+
+PR descriptions should be shorter than 6 lines per question/section.
+
 ## Commit discipline
 
 Checkpoint completed units of work with descriptive commits on a feature
@@ -39,6 +48,8 @@ stopping points and reference the ticket ID. Show changed files before
 committing.
 
 Use conventional commit format. No LLM attribution.
+
+Keep commit messages brief, less than 6 lines total.
 
 ## Verify, don't speculate
 
