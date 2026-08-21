@@ -1,5 +1,12 @@
 { config, lib, pkgs, ... }:
 
+let
+  statusline = pkgs.writeShellApplication {
+    name = "claude-statusline";
+    runtimeInputs = [ pkgs.coreutils pkgs.jq pkgs.git ];
+    text = builtins.readFile ./statusline.sh;
+  };
+in
 {
   config = lib.mkIf config.mikansoro.claude.enable (lib.mkMerge [
     {
@@ -49,6 +56,10 @@
               ];
             };
             spinnerTipsEnabled = false;
+            statusLine = {
+              type = "command";
+              command = lib.getExe statusline;
+            };
           };
           lspServers = {
             go = {
