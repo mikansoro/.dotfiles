@@ -42,16 +42,10 @@ in
                 "Bash(find *-exec grep*)"
                 "Bash(find *-exec egrep*)"
                 "Bash(find *-exec fgrep*)"
+                "Bash(xargs *)"
                 "Bash(find *|*xargs *grep*)"
                 "Bash(find *|*xargs *egrep*)"
                 "Bash(find *|*xargs *fgrep*)"
-                "Bash(grep -r*)"
-                "Bash(grep -R*)"
-                "Bash(grep -nr*)"
-                "Bash(grep -nR*)"
-                "Bash(grep -lr*)"
-                "Bash(grep -lR*)"
-                "Bash(grep --recursive*)"
                 "Bash(xargs -I{} sh*)"
               ];
             };
@@ -124,7 +118,7 @@ in
         (lib.mkIf (config.mikansoro.machineUsage == "work") {
           settings = {
             alwaysThinkingEnabled = true;
-            model = "opus";
+            model = "claude-opus-4-6[1m]";
             fallbackModel = ["sonnet"];
             effortLevel = "xhigh";
           };
