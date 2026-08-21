@@ -327,11 +327,11 @@
     },
     "nix-private": {
       "locked": {
-        "lastModified": 1784572925,
-        "narHash": "sha256-2imjS3keWzBrIE6Yxuxq+wkymL2BSAPFrrEdr9uR4yU=",
+        "lastModified": 1787346746,
+        "narHash": "sha256-tF/C0b6A+6/dCHPYNUbvdpM4gqeo96+PJdLJqh69uGs=",
         "ref": "refs/heads/main",
-        "rev": "259b3315439f5436ee0bfde28531801f250edb9a",
-        "revCount": 17,
+        "rev": "9120c6c2984d2ca44b2d05e9ae90599a50c6702d",
+        "revCount": 19,
         "type": "git",
         "url": "ssh://git@github.com/mikansoro/nix-private"
       },
