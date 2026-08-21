@@ -54,6 +54,10 @@
       url = "git+ssh://git@github.com/mikansoro/boxed";
     };
 
+    wt = {
+      url = "git+ssh://git@github.com/mikansoro/wt";
+    };
+
     pi-llama-swap = {
       url = "github:mikansoro/pi-llama-swap";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -116,6 +120,7 @@
           };
         };
         boxed = inputs.boxed.overlays.default;
+        wt = inputs.wt.overlays.default;
       };
       # genPkgsStable = system: import nixpkgs-stable {
         # inherit system;
