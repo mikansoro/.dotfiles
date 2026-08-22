@@ -40,6 +40,7 @@
         yubikey-personalization
         yubikey-manager
         unstable.yt-dlp
+        wt
         zip
       ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
         # TODO(mrowland): revert to stable after upgrade to 25.05
@@ -66,6 +67,12 @@
         vesktop
         webcord
       ];
+    };
+
+    programs.zsh = {
+      initContent = lib.mkOrder 550 ''
+        eval "$(${pkgs.wt}/bin/wt shell-init)"
+        '';
     };
   };
 }

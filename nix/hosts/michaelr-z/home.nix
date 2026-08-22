@@ -21,14 +21,7 @@
     enable = true;
   };
 
-  programs.zsh = {
-    initContent = lib.mkOrder 550 "eval $(${pkgs.wt} shell-init)";
-  };
-
   home = {
-    packages = with pkgs; [
-      wt
-    ];
     stateVersion = "25.11";
   };
 }
