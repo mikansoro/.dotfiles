@@ -23,6 +23,11 @@ in
           context = ./claude-memory.md;
           
           settings = {
+            alwaysThinkingEnabled = true;
+            fallbackModel = ["sonnet"];
+            effortLevel = "xhigh";
+            spinnerTipsEnabled = false;
+
             env = {
               CLAUDE_CODE_ATTRIBUTION_HEADER = "0";
               CLAUDE_CODE_ENABLE_TELEMETRY = "0";
@@ -49,7 +54,6 @@ in
                 "Bash(xargs -I{} sh*)"
               ];
             };
-            spinnerTipsEnabled = false;
             statusLine = {
               type = "command";
               command = lib.getExe statusline;
@@ -106,6 +110,8 @@ in
             };
           };
           settings = {
+            # 1m context for opus-4-6 requires extra usage credits on "pro" tier
+            model = "claude-opus-4-6";
             permissions = {
               deny = [
                 #"WebSearch(*)"
@@ -117,10 +123,7 @@ in
         
         (lib.mkIf (config.mikansoro.machineUsage == "work") {
           settings = {
-            alwaysThinkingEnabled = true;
             model = "claude-opus-4-6[1m]";
-            fallbackModel = ["sonnet"];
-            effortLevel = "xhigh";
           };
         })
       ];
