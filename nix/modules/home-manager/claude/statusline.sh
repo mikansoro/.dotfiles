@@ -25,12 +25,22 @@ D=$'\033[2m'
 B=$'\033[1m'
 X=$'\033[0m'
 
-OUT="${B}${DIR##*/}${X}"
-
+REPO_NAME="${DIR##*/}"
 BRANCH=""
 if git -C "$DIR" rev-parse --git-dir >/dev/null 2>&1; then
   BRANCH=$(git -C "$DIR" branch --show-current 2>/dev/null)
+  COMMON=$(git -C "$DIR" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)
+  if [ -n "$COMMON" ]; then
+    LEAF="${COMMON##*/}"
+    if [[ "$LEAF" == .* ]]; then
+      REPO_NAME="$(basename "$(dirname "$COMMON")")"
+    else
+      REPO_NAME="${LEAF%.git}"
+    fi
+  fi
 fi
+
+OUT="${B}${REPO_NAME}${X}"
 
 if [ -n "$GIT_WT" ]; then
   OUT="${OUT} ${D}wt:${X}${C}${GIT_WT}${X}"
