@@ -114,8 +114,11 @@ in
             # 1m context for opus-4-6 requires extra usage credits on "pro" tier
             model = "claude-opus-4-6";
             permissions = {
+              allow = [
+                "mcp__plugin_claude-code-home-manager_searxng__*"
+              ];
               deny = [
-                #"WebSearch(*)"
+                "WebSearch(*)"
                 "WebFetch(domain:*)"
               ];
             };
