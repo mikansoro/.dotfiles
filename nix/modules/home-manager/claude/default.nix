@@ -20,7 +20,7 @@ in
           enable = true;
           package = pkgs.unstable.claude-code;
           
-          context = ./claude-memory.md;
+          context = builtins.readFile ./claude-memory.md;
           
           settings = {
             alwaysThinkingEnabled = true;
@@ -109,6 +109,7 @@ in
               env.SEARXNG_URL = "https://searx.int.mikansystems.com/";
             };
           };
+          context = builtins.readFile ./personal-memory.md;
           settings = {
             # 1m context for opus-4-6 requires extra usage credits on "pro" tier
             model = "claude-opus-4-6";
