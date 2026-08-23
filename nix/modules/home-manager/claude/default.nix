@@ -39,6 +39,8 @@ in
             };
             permissions = {
               deny = [
+                "EnterWorktree"
+                "ExitWorktree"
                 "Bash(sops:*)"
                 "Read(./.env)"
                 "Read(./secrets/**)"

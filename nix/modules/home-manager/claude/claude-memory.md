@@ -78,3 +78,18 @@ rather than open-ended exploration. Tie findings back to a concrete change.
     should not be a justification for avoiding a particular tool.
 - After edits, run the repo's tests/lint/golden-file regen before calling
   the task done.
+
+## Worktrees
+
+Use `wt` (the external worktree manager) instead of the built-in `EnterWorktree`/`ExitWorktree` tools.
+
+- `wt list` to see slot assignments
+- `wt go <branch>` to check out a branch into a slot (it will automatically fetch from upstream if required.)
+- `wt release <slot>` to free a slot when done
+
+Only use `wt go <branch>` to either enter a branch that already has an active slot or to enter an idle slot. If no slots are free, **inform the user and stop**.
+
+Work in slots via their paths (e.g. `./<repo>/slot-4`). Never create worktrees with the internal mechanism.
+
+If `wt list` returns "not a wt-managed repository", inform the user and ask what they'd like to do next. 
+**NEVER** run `wt adopt` on your own. 
