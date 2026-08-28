@@ -25,7 +25,7 @@
         #];
         
         settings = {
-          model = "llamacpp/qwen3.6-27b";
+          model = "llamacpp/qwen3.8-27b";
 
           # Fast model for lightweight tasks (session titles, housekeeping)
           # and the default for subagents spawned without an explicit model.
@@ -41,8 +41,8 @@
                 apiKey = "not-required";
               };
               models = {
-                "qwen3.6-27b" = {
-                  name = "Qwen3.6-27B (Build)";
+                "qwen3.8-27b" = {
+                  name = "Qwen3.8-27B (Build)";
                   limit = {
                     context = 131072;
                     output = 32768;
@@ -69,7 +69,7 @@
           # Agent routing: Plan uses the MoE model, Build uses the dense model.
           agent = {
             build = {
-              model = "llamacpp/qwen3.6-27b";
+              model = "llamacpp/qwen3.8-27b";
               temperature = 0.6;
               permission = {
                 read = "allow";
@@ -141,7 +141,7 @@
           };
         };
 
-        # Global subagents: run on the MoE model (qwen3.6-35b-a3b), invoked by Build.
+        # Global subagents: run on the MoE model, invoked by Build.
         agents = {
           explorer = ''
             ---
