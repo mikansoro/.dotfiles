@@ -12,7 +12,8 @@ let
       (lib.filterAttrs (_: type: type == "directory") entries);
 in
 {
-  config = lib.mkIf config.programs.claude-code.enable {
-    programs.claude-code.skills = discoverSkills;
+  config = {
+    programs.claude-code.skills = lib.mkIf config.mikansoro.claude.enable discoverSkills;
+    programs.opencode.skills = lib.mkIf config.mikansoro.opencode.enable discoverSkills;
   };
 }

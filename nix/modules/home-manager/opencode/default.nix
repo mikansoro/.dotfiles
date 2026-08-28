@@ -23,7 +23,7 @@
         #  typescript                   # tsserver, required by ts-language-server
         #  mcp-searxng
         #];
-        
+
         settings = {
           model = "llamacpp/qwen3.8-27b";
 

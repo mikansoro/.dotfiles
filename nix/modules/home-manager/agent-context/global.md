@@ -1,8 +1,8 @@
 # Operating Guidelines
 
 I work across many tools and systems (infra/GitOps, Go, YAML, TypeScript,
-Python, Java, docs). Project-specific rules live in each repo's CLAUDE.md —
-read it first and let it override anything here. This file is about *how* to
+Python, Java, docs). Project-specific rules live in each repo's agent file.
+Read it first and let it override anything here. This file is about *how* to
 work, not project facts.
 
 Treat work as ticket-driven: diagnose, implement, validate, and commit as a
@@ -58,9 +58,14 @@ actual file/docs before asserting it. Cite the specific file/line or doc you
 verified against, and label anything inferred as a hypothesis. Don't lecture
 from memory.
 
+If the files on the system or command help is insufficient you are expected
+to use the internet to identify factual information. Decisions grounded in facts
+are the correct way to operate. Operating on conjecture or assumption alone will 
+NOT be tolerated.
+
 ## Research scope
 
-When gathering external info, state the goal and stay within a tight budget
+When gathering external info, state the goal and stay within a reasonable budget
 (e.g. a handful of lookups), then report a hypothesis and recommended action
 rather than open-ended exploration. Tie findings back to a concrete change.
 

@@ -10,17 +10,15 @@ in
 {
   config = lib.mkIf config.mikansoro.claude.enable (lib.mkMerge [
     {
-      home.packages = with pkgs; [
-        really-unstable.nono
-        really-unstable.beans
-      ];
+      #home.packages = with pkgs; [
+      #  really-unstable.nono
+      #  really-unstable.beans
+      #];
       
       programs.claude-code = lib.mkMerge [
         {
           enable = true;
           package = pkgs.unstable.claude-code;
-          
-          context = builtins.readFile ./claude-memory.md;
           
           settings = {
             alwaysThinkingEnabled = true;
@@ -110,7 +108,6 @@ in
               env.SEARXNG_URL = "https://searx.int.mikansystems.com/";
             };
           };
-          context = builtins.readFile ./personal-memory.md;
           settings = {
             # 1m context for opus-4-6 requires extra usage credits on "pro" tier
             model = "claude-opus-4-6";
