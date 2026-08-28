@@ -43,7 +43,6 @@ in
                 "ExitWorktree"
                 "Bash(sops:*)"
                 "Read(./.env)"
-                "Read(./secrets/**)"
 
                 # stop running find -- exec damnit. use ripgrep.
                 "Bash(find *-exec grep*)"
@@ -122,6 +121,7 @@ in
               deny = [
                 "WebSearch(*)"
                 "WebFetch(domain:*)"
+                "Read(./secrets/**)"
               ];
             };
           };
