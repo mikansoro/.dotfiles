@@ -10,6 +10,7 @@
     firefox.enable = true;
     claude.enable = true;
     opencode.enable = true;
+    pi-coding-agent.enable = true;
   };
 
   programs.home-manager.enable = true;
@@ -34,6 +35,7 @@
       mkvtoolnix
       handbrake
       whipper
+      unstable.nono
     ];
   };
 }

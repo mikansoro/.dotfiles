@@ -3,26 +3,20 @@
 let
   cfg = config.mikansoro.pi-coding-agent;
   
-  extensionPaths = lib.attrValues pkgs.piExtensions;
-  
   # Declarative settings. Anything you put here wins over what pi writes.
   # Anything you OMIT is preserved across rebuilds (e.g. lastChangelogVersion,
   # or defaultModel if you want /model selection to stick).
   settings = {
-    defaultProvider      = "anthropic";
+    defaultProvider      = "llama-swap";
     defaultThinkingLevel = "xhigh";
     transport            = "auto";
     
     enabledModels = [
-      "anthropic/claude-opus-4-7"
-      "anthropic/claude-opus-4-6"
-      "anthropic/claude-sonnet-4-6"
-      "llama-swap/qwen3.6-35b-precise"
-      "llama-swap/qwen3.6-35b-code"
-      "llama-swap/qwen3.5-122b-code"
+      #"anthropic/claude-opus-4-6"
+      #"anthropic/claude-sonnet-5"
+      "llama-swap/qwen3.8-27b"
+      "llama-swap/qwen3.6-35b-a3b"
     ];
-    
-    packages = map toString extensionPaths;
     
     # Intentionally NOT setting defaultModel — let `/model` persist.
   };
@@ -37,7 +31,7 @@ let
   };
   
   llamaSwapConfig = {
-    baseUrl = "http://ollama.int.mikansystems.com:11395";
+    baseUrl = "https://llm.int.mikansystems.com";
   };
   
   # Build an activation entry that merges a Nix-built JSON file into
@@ -79,6 +73,7 @@ in {
       piLlamaSwap = mkMergedConfig "llama-swap.json" llamaSwapConfig;
     };
     
+    home.file.".pi/agent/extensions".source = ./extensions;
     # auth.json: never touched. Pi owns it, user writes via /login.
   };
 }

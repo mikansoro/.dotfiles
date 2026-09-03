@@ -57,21 +57,6 @@
     wt = {
       url = "git+ssh://git@github.com/mikansoro/wt";
     };
-
-    pi-llama-swap = {
-      url = "github:mikansoro/pi-llama-swap";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    pi-searxng = {
-      url = "github:mikansoro/pi-searxng";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    pi-cc-commands = {
-      url = "github:mikansoro/pi-cc-commands";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
   };
 
   outputs = inputs@{
@@ -108,16 +93,7 @@
         custom-packages = final: prev: {
           mcp-searxng = final.callPackage ./nix/packages/mcp-searxng.nix { };
           #pi-lens = final.callPackage ./nix/packages/pi-lens.nix { };
-          pi-mcp-adapter = final.callPackage ./nix/packages/pi-mcp-adapter.nix { };
-        };
-        pi-extensions = final: _prev: {
-          piExtensions = {
-            llama-swap = inputs.pi-llama-swap.packages.${final.system}.default;
-            searxng = inputs.pi-searxng.packages.${final.system}.default;
-            cc-commands = inputs.pi-cc-commands.packages.${final.system}.default;
-            #pi-lens = final.pi-lens;
-            pi-mcp-adapter = final.pi-mcp-adapter;
-          };
+          #pi-mcp-adapter = final.callPackage ./nix/packages/pi-mcp-adapter.nix { };
         };
         boxed = inputs.boxed.overlays.default;
         wt = inputs.wt.overlays.default;

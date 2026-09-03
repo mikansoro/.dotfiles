@@ -15,5 +15,6 @@ in
   config = {
     programs.claude-code.skills = lib.mkIf config.mikansoro.claude.enable discoverSkills;
     programs.opencode.skills = lib.mkIf config.mikansoro.opencode.enable discoverSkills;
+    home.file."./pi/agent/skills".source = lib.mkIf config.mikansoro.pi-coding-agent.enable ./skills;
   };
 }

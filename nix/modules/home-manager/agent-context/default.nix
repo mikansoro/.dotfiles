@@ -9,4 +9,5 @@ in
 {
   programs.claude-code.context = context;
   programs.opencode.context = context;
+  #home.file.".pi/agent/AGENTS.md".text = context;
 }

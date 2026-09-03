@@ -1,0 +1,54 @@
+{
+  "extends": "nolabs-ai/pi",
+  "meta": {
+    "name": "pi-custom"
+  },
+  "groups": {
+    "include": [],
+    "exclude": []
+  },
+  "commands": {
+    "allow": [],
+    "deny": []
+  },
+  "workdir": { "access": "readwrite" },
+  "filesystem": {
+    "allow": [
+      "~/.config/gh",
+      "/tmp/jiti" // extensions are transpiled at runtime here
+      "../.bare"
+    ],
+    "read": [],
+    "write": [],
+    "allow_file": [],
+    "read_file": [],
+    "write_file": [],
+    "deny": [],
+    "bypass_protection": [],
+    "suppress_save_prompt": []
+  },
+  "network": {
+    "block": false,
+    "allow_domain": [],
+    "credentials": [
+      // "github-token"
+    ],
+    "open_port": [],
+    "listen_port": [],
+    "custom_credentials": {
+      // "github-token": {
+      //   "upstream": "https://api.github.com",
+      //   "credential_key": "op://agent-use/github-agent-readonly/password",
+      //   "inject_header": "Authorization",
+      //   "credential_format": "token {}",
+      //   "env_var": "GITHUB_TOKEN"
+      // }
+    }
+  },
+  "env_credentials": {},
+  "hooks": {},
+  "rollback": {
+    "exclude_patterns": [],
+    "exclude_globs": []
+  }
+}
