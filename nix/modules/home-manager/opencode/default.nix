@@ -36,7 +36,7 @@
               npm = "@ai-sdk/openai-compatible";
               name = "llama.cpp server";
               options = {
-                baseURL = "http://ollama.int.mikansystems.com:11395/v1";
+                baseURL = "https://llm.int.mikansystems.com";
                 # llama-swap and llama.cpp don't require api keys
                 apiKey = "not-required";
               };
