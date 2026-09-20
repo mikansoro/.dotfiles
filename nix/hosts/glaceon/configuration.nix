@@ -47,6 +47,7 @@
   environment.systemPackages = with pkgs; [
     refind
     easyeffects
+    crosspipe
 
     steam-tui
     steam-run
