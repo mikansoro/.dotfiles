@@ -125,7 +125,7 @@ in
         
         (lib.mkIf (config.mikansoro.machineUsage == "work") {
           settings = {
-            model = "claude-opus-4-6[1m]";
+            model = "opus";
           };
         })
       ];
