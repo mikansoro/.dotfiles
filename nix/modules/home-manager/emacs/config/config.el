@@ -66,6 +66,7 @@
 
 (setq grip-preview-use-webkit t)
 
+
 ;; switched to docker doom plugin
 ;; (use-package! dockerfile-mode
 ;;   :config
