@@ -65,7 +65,7 @@
         unstable.discord
         signal-desktop
         vesktop
-        webcord
+        #webcord
       ];
     };
 
