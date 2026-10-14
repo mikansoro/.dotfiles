@@ -107,6 +107,7 @@
         };
         custom-packages = final: prev: {
           mcp-searxng = final.callPackage ./nix/packages/mcp-searxng.nix { };
+          slk = final.callPackage ./nix/packages/slk.nix { };
           #pi-lens = final.callPackage ./nix/packages/pi-lens.nix { };
           pi-mcp-adapter = final.callPackage ./nix/packages/pi-mcp-adapter.nix { };
         };
