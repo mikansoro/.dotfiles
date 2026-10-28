@@ -5,10 +5,6 @@
     programs.doom-emacs = {
       enable = true;
       doomDir = ./config;
-      emacsPackageOverrides = eself: esuper: {
-        ghostel = pkgs.unstable.emacsPackages.ghostel;
-        evil-ghostel = pkgs.unstable.emacsPackages.evil-ghostel;
-      };
       extraPackages = epkgs: with pkgs; [
         # emacs modes
         emacsPackages.gitconfig

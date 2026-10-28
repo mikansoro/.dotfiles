@@ -54,7 +54,6 @@
 	  :recipe (:host github :repo "russell/cue-mode"
 			 :files ("cue-mode.el")))
 
-
 ;;(package! ox-confluence
 ;;  :recipe (:local-repo "./lib/ox-confluence"
 ;;(use-package! ox-confluence
