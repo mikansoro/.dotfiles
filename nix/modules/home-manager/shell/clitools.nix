@@ -19,6 +19,7 @@
     # shell history in sqlite
     programs.atuin = {
       enable = true;
+      package = pkgs.unstable.atuin;
       enableZshIntegration = true;
       flags = [ "--disable-up-arrow" ];
       settings = {
