@@ -23,7 +23,7 @@ in
           settings = {
             alwaysThinkingEnabled = true;
             fallbackModel = ["sonnet"];
-            effortLevel = "xhigh";
+            effortLevel = "high";
             spinnerTipsEnabled = false;
 
             env = {
@@ -109,7 +109,7 @@ in
           };
           settings = {
             # 1m context for opus-4-6 requires extra usage credits on "pro" tier
-            model = "claude-opus-4-6";
+            model = "opus";
             permissions = {
               allow = [
                 "mcp__plugin_claude-code-home-manager_searxng__*"
