@@ -23,6 +23,21 @@
     };
   };
 
+  services.xrdp = {
+    enable = true;
+    openFirewall = true;
+    defaultWindowManager = "startplasma-x11";
+  };
+
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id == "org.freedesktop.NetworkManager.wifi.scan" &&
+          subject.isInGroup("networkmanager")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
+
   # i18n.inputMethod = {
   #   enable = true;
   #   type = "fcitx5";
@@ -153,6 +168,9 @@
   # extra frame buffer that harms gpu render performance
   # https://github.com/NixOS/nixpkgs/issues/302059#issuecomment-2192598395
   boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
+
+  # makemkv needs SCSI generic devices (/dev/sg*) to see optical drives
+  boot.kernelModules = [ "sg" ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
